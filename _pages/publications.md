@@ -7,4 +7,6 @@ redirect_from:
   - /publications
 ---
 
-abcd
+{% include base_path %}
+
+- **Cuong V. Nguyen**, Tal Hassner, Cedric Archambeau, Matthias Seeger. [LEEP: A New Measure to Evaluate Transferability of Learned Representations](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"}. International Conference on Machine Learning (ICML 2020).
