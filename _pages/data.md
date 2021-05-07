@@ -7,6 +7,8 @@ redirect_from:
   - /data
 ---
 
+{% include base_path %}
+
 ### Punctuation Prediction
 - This dataset contains 5450 conversational speech texts with annotated punctuations from various movie transcripts online. 60% of the texts are used for training and the remaining 40% are used for testing. The dataset was used in the JMLR 2014 paper.
 - Train file: punc.tr
