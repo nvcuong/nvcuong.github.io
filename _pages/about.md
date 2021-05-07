@@ -14,6 +14,8 @@ I am an Applied Scientist at Amazon Web Services (AWS). Before joining AWS, I wa
 
 My research interests are in **machine learning** and **artificial intelligence**.
 
+<!---
 ### Latest News
 
 - I will be joining the [Knight Foundation School of Computing and Information Sciences](https://www.cis.fiu.edu/){:target="_blank"} at the Florida International University as a tenure-track assistant professor in August 2021.
+-->
