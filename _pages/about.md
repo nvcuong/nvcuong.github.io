@@ -14,8 +14,11 @@ I am an Applied Scientist at Amazon Web Services (AWS). Before joining AWS, I wa
 
 My research interests are in **machine learning** and **artificial intelligence**.
 
-<!---
+
 ### Latest News
 
+<!---
 - I will be joining the [Knight Foundation School of Computing and Information Sciences](https://www.cis.fiu.edu/){:target="_blank"} at the Florida International University as a tenure-track assistant professor in August 2021.
 -->
+- [New patent](https://patentimages.storage.googleapis.com/a9/b5/67/1feb04d8e27eeb/US10839245.pdf){:target="_blank"} issued (Nov 2021).
+- [LEEP paper](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"} on transferability accepted to ICML 2020.
