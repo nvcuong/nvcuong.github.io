@@ -7,8 +7,6 @@ redirect_from:
   - /publications
 ---
 
-{% include base_path %}
-
 1. **Cuong V. Nguyen**, Tal Hassner, Cedric Archambeau, Matthias Seeger. [LEEP: A New Measure to Evaluate Transferability of Learned Representations](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"}. International Conference on Machine Learning (ICML 2020).
 2. Thang D. Bui, **Cuong V. Nguyen**, Siddharth Swaroop, Richard E. Turner. [Partitioned Variational Inference: A unified framework encompassing federated and continual learning](https://arxiv.org/abs/1811.11206){:target="_blank"}. arXiv:1811.11206.
 3. **Cuong V. Nguyen**, Alessandro Achille, Michael Lam, Tal Hassner, Vijay Mahadevan, Stefano Soatto. [Meta-analysis of Continual Learning](http://metalearning.ml/2019/papers/metalearn2019-nguyen.pdf){:target="_blank"}. Workshop on Meta-Learning @ NeurIPS 2019. ([old version](https://arxiv.org/abs/1908.01091){:target="_blank"})
@@ -27,4 +25,4 @@ redirect_from:
 16. Vu Dinh, Lam Si Tung Ho, **Nguyen Viet Cuong**, Duy Nguyen, Binh T. Nguyen. [Learning From Non-iid Data: Fast Rates for the One-vs-All Multiclass Plug-in Classifiers](https://arxiv.org/abs/1408.2714){:target="_blank"}. Conference on Theory and Applications of Models of Computation (TAMC 2015).
 17. Quang H. Pham, Minh-Le Nguyen, Binh T. Nguyen, **Nguyen Viet Cuong**. [Semi-supervised Learning for Vietnamese Named Entity Recognition using Online Conditional Random Fields](https://www.aclweb.org/anthology/W15-3907.pdf){:target="_blank"}. Named Entities Workshop @ ACL 2015.
 18. **Nguyen Viet Cuong**. [Near-optimality and Robustness of Greedy Algorithms for Bayesian Pool-based Active Learning](https://scholarbank.nus.edu.sg/handle/10635/121366){:target="_blank"}. *PhD Thesis*. Department of Computer Science, National University of Singapore, 2015.
-19. **Nguyen Viet Cuong**, Wee Sun Lee, Nan Ye. [Near-optimal Adaptive Pool-based Active Learning with General Loss](http://www.auai.org/uai2014/proceedings/individuals/223.pdf){:target="_blank"}. Conference on Uncertainty in Artificial Intelligence (UAI 2014). **Google Best Student Paper Award**. ([supplementary](nvcuong.github.io/files/cuong2014near-supp.pdf){:target="_blank"}) (slides)
+19. **Nguyen Viet Cuong**, Wee Sun Lee, Nan Ye. [Near-optimal Adaptive Pool-based Active Learning with General Loss](http://www.auai.org/uai2014/proceedings/individuals/223.pdf){:target="_blank"}. Conference on Uncertainty in Artificial Intelligence (UAI 2014). **Google Best Student Paper Award**. ([supplementary](https://nvcuong.github.io/files/cuong2014near-supp.pdf){:target="_blank"}) ([slides](https://nvcuong.github.io/files/uai2014_slides.pdf){:target="_blank"})
