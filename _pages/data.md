@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Data sets"
+title: "Data"
 permalink: /data/
 author_profile: true
 redirect_from:
@@ -9,4 +9,4 @@ redirect_from:
 
 ## Punctuation Prediction
 
-## Bibliography Extraction
+### Bibliography Extraction
