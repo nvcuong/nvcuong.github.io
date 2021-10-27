@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-1. **Cuong V. Nguyen**, Sanjiv R. Das, John He, Shenghua Yue, Vinay Hanumaiah, Xavier Ragot, Li Zhang. [Multimodal machine learning for credit modeling](https://www.amazon.science/publications/multimodal-machine-learning-for-credit-modeling){:target="_blank"}. IEEE International Workshop on Dynamic Data Science & Big Data Analytics in Finance (DDS-BDAF 2021).
+1. **Cuong V. Nguyen**, Sanjiv R. Das, John He, Shenghua Yue, Vinay Hanumaiah, Xavier Ragot, Li Zhang. [Multimodal machine learning for credit modeling](https://www.amazon.science/publications/multimodal-machine-learning-for-credit-modeling){:target="_blank"}. IEEE Annual Computers, Software, and Applications Conference (COMPSAC 2021).
 2. **Cuong V. Nguyen**, Tal Hassner, Cedric Archambeau, Matthias Seeger. [LEEP: A New Measure to Evaluate Transferability of Learned Representations](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"}. International Conference on Machine Learning (ICML 2020).
 3. Thang D. Bui, **Cuong V. Nguyen**, Siddharth Swaroop, Richard E. Turner. [Partitioned Variational Inference: A unified framework encompassing federated and continual learning](https://arxiv.org/abs/1811.11206){:target="_blank"}. arXiv:1811.11206.
 4. **Cuong V. Nguyen**, Alessandro Achille, Michael Lam, Tal Hassner, Vijay Mahadevan, Stefano Soatto. [Meta-analysis of Continual Learning](http://metalearning.ml/2019/papers/metalearn2019-nguyen.pdf){:target="_blank"}. Workshop on Meta-Learning @ NeurIPS 2019. ([old version](https://arxiv.org/abs/1908.01091){:target="_blank"})
