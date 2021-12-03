@@ -14,7 +14,7 @@ I am a tenure-track Assistant Professor at the [Knight Foundation School of Comp
 
 My research interests are **machine learning** and **artificial intelligence**.
 
-
+<!---
 ### Latest News
 
 - (Aug 2021) I will serve as a Senior Program Committee Member for [AAAI-22](https://aaai.org/Conferences/AAAI-22/){:target="_blank"}.
@@ -22,3 +22,4 @@ My research interests are **machine learning** and **artificial intelligence**.
 - (May 2021) [New paper](https://www.amazon.science/publications/multimodal-machine-learning-for-credit-modeling){:target="_blank"} on ML for finance accepted to DDS-BDAF 2021.
 - (Nov 2020) [New patent](https://patentimages.storage.googleapis.com/a9/b5/67/1feb04d8e27eeb/US10839245.pdf){:target="_blank"} issued.
 - (Jul 2020) [LEEP paper](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"} on transferability published at ICML 2020.
+-->
