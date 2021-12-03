@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-1. **Cuong V. Nguyen**, Lam Si Tung Ho, Huan Xu, Vu Dinh, Binh T. Nguyen. [Bayesian Active Learning with Abstention Feedbacks](https://www.sciencedirect.com/science/article/pii/S0925231221017045){:target="_blank"}. Neurocomputing, 2022. ([paper](https://arxiv.org/abs/1906.02179){:target="_blank"})
+1. **Cuong V. Nguyen**, Lam Si Tung Ho, Huan Xu, Vu Dinh, Binh T. Nguyen. [Bayesian active learning with abstention feedbacks](https://www.sciencedirect.com/science/article/pii/S0925231221017045){:target="_blank"}. Neurocomputing, 2022. ([paper](https://arxiv.org/abs/1906.02179){:target="_blank"})
 2. **Cuong V. Nguyen**, Sanjiv R. Das, John He, Shenghua Yue, Vinay Hanumaiah, Xavier Ragot, Li Zhang. [Multimodal machine learning for credit modeling](https://ieeexplore.ieee.org/document/9529883){:target="_blank"}. IEEE Annual Computers, Software, and Applications Conference (COMPSAC 2021). ([paper](https://assets.amazon.science/25/fa/882cb69c4f8983f6c4b287da7a6f/multimodal-machine-learning-for-credit-modeling.pdf){:target="_blank"})
 3. **Cuong V. Nguyen**, Tal Hassner, Cedric Archambeau, Matthias Seeger. [LEEP: A New Measure to Evaluate Transferability of Learned Representations](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"}. International Conference on Machine Learning (ICML 2020).
 4. Thang D. Bui, **Cuong V. Nguyen**, Siddharth Swaroop, Richard E. Turner. [Partitioned Variational Inference: A unified framework encompassing federated and continual learning](https://arxiv.org/abs/1811.11206){:target="_blank"}. arXiv:1811.11206.
