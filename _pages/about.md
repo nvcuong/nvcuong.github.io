@@ -14,6 +14,8 @@ I am a tenure-track Assistant Professor at the [Knight Foundation School of Comp
 
 My research interests are **machine learning** and **artificial intelligence**.
 
+**Working with me:** If you are an FIU student interested in working with me, please drop me an email.
+
 <!---
 ### Latest News
 
