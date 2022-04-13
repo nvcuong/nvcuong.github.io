@@ -12,9 +12,9 @@ redirect_from:
 
 I am a tenure-track Assistant Professor at the [Knight Foundation School of Computing and Information Sciences](https://www.cis.fiu.edu/){:target="_blank"}, [Florida International University](https://www.fiu.edu/){:target="_blank"}. Before joining FIU, I was an Applied Scientist at Amazon Web Services from 2018--2021, a postdoc at Cambridge University from 2016--2018 (working with [Richard Turner](http://cbl.eng.cam.ac.uk/Public/Turner/Turner){:target="_blank"}), and a postdoc at the National University of Singapore from 2015--2016 (working with [Huan Xu](https://scholar.google.com/citations?user=7vLwm84AAAAJ&hl=en){:target="_blank"}). I received Bachelor and PhD degrees in Computer Science from the National University of Singapore in 2010 and 2015 respectively. My PhD thesis advisor was [Wee Sun Lee](https://www.comp.nus.edu.sg/~leews/){:target="_blank"}.
 
-My research interests are **machine learning** and **artificial intelligence**.
+My research interests are **machine learning** and **artificial intelligence**. 
 
-**Working with me:** If you are an FIU student interested in working with me, please drop me an email.
+**Working with me:** If you are an FIU student interested in doing research with me, please drop me an email.
 
 <!---
 ### Latest News
