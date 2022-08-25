@@ -17,8 +17,8 @@ I am a tenure-track Assistant Professor at the Knight Foundation School of Compu
 - CAP 5610 - Introduction to Machine Learning (Spring 2022)
 
 ### Selected Publications
-- **Cuong V. Nguyen**, Lam Si Tung Ho, Huan Xu, Vu Dinh, Binh T. Nguyen. [Bayesian active learning with abstention feedbacks](https://www.sciencedirect.com/science/article/pii/S0925231221017045){:target="_blank"}. Neurocomputing, 2022.
-- **Cuong V. Nguyen**, Tal Hassner, Cedric Archambeau, Matthias Seeger. [LEEP: A New Measure to Evaluate Transferability of Learned Representations](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"}. ICML 2020.
-- Anh T. Tran, **Cuong V. Nguyen**, Tal Hassner. [Transferability and Hardness of Supervised Classification Tasks](https://arxiv.org/abs/1908.08142){:target="_blank"}. ICCV 2019.
-- **Cuong V. Nguyen**, Yingzhen Li, Thang D. Bui, Richard E. Turner. [Variational Continual Learning](https://openreview.net/pdf?id=BkQqq0gRb){:target="_blank"}. ICLR 2018.
-- Thang D. Bui, **Cuong V. Nguyen**, Richard E. Turner. [Streaming Sparse Gaussian Process Approximations](https://papers.nips.cc/paper/2017/hash/f31b20466ae89669f9741e047487eb37-Abstract.html){:target="_blank"}. NeurIPS 2017.
+- Cuong V. Nguyen, Lam Si Tung Ho, Huan Xu, Vu Dinh, Binh T. Nguyen. *Bayesian active learning with abstention feedbacks*. Neurocomputing, 2022.
+- Cuong V. Nguyen, Tal Hassner, Cedric Archambeau, Matthias Seeger. *LEEP: A New Measure to Evaluate Transferability of Learned Representations*. ICML 2020.
+- Anh T. Tran, Cuong V. Nguyen, Tal Hassner. *Transferability and Hardness of Supervised Classification Tasks*. ICCV 2019.
+- Cuong V. Nguyen, Yingzhen Li, Thang D. Bui, Richard E. Turner. *Variational Continual Learning*. ICLR 2018.
+- Thang D. Bui, Cuong V. Nguyen, Richard E. Turner. *Streaming Sparse Gaussian Process Approximations*. NeurIPS 2017.
