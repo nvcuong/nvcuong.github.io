@@ -17,8 +17,8 @@ I am a tenure-track Assistant Professor at the Knight Foundation School of Compu
 - CAP 5610 - Introduction to Machine Learning (Spring 2022)
 
 ### Selected Publications
-- Cuong V. Nguyen, Lam Si Tung Ho, Huan Xu, Vu Dinh, Binh T. Nguyen. *Bayesian active learning with abstention feedbacks*. Neurocomputing, 2022.
 - Cuong V. Nguyen, Tal Hassner, Cedric Archambeau, Matthias Seeger. *LEEP: A New Measure to Evaluate Transferability of Learned Representations*. ICML 2020.
 - Anh T. Tran, Cuong V. Nguyen, Tal Hassner. *Transferability and Hardness of Supervised Classification Tasks*. ICCV 2019.
 - Cuong V. Nguyen, Yingzhen Li, Thang D. Bui, Richard E. Turner. *Variational Continual Learning*. ICLR 2018.
 - Thang D. Bui, Cuong V. Nguyen, Richard E. Turner. *Streaming Sparse Gaussian Process Approximations*. NeurIPS 2017.
+- Cuong V. Nguyen, Wee Sun Lee, Nan Ye. *Near-optimal Adaptive Pool-based Active Learning with General Loss*. UAI 2014.
