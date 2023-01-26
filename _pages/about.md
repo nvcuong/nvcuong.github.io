@@ -14,7 +14,7 @@ I am a tenure-track Assistant Professor at the Knight Foundation School of Compu
 
 ### Teaching
 - CAP 5602 - Introduction to Artificial Intelligence (Fall 2021, 2022)
-- CAP 5610 - Introduction to Machine Learning (Spring 2022)
+- CAP 5610 - Introduction to Machine Learning (Spring 2022, 2023)
 
 ### Selected Publications
 - Cuong V. Nguyen, Tal Hassner, Cedric Archambeau, Matthias Seeger. *LEEP: A New Measure to Evaluate Transferability of Learned Representations*. ICML 2020.
