@@ -17,7 +17,7 @@ I am a tenure-track Assistant Professor at the Knight Foundation School of Compu
 - CAP 5602 - Introduction to Artificial Intelligence (Fall 2021, 2022)
 - CAP 5610 - Introduction to Machine Learning (Spring 2022, 2023)
 
-### Selected Publications
+### Selected publications [(full list)](https://nvcuong.github.io/publications/)
 - Cuong N. Nguyen, Phong Tran, Lam S. T. Ho, Vu Dinh, Anh T. Tran, Tal Hassner, Cuong V. Nguyen. *Simple Transferability Estimation for Regression Tasks*. UAI 2023.
 - Cuong V. Nguyen, Tal Hassner, Cedric Archambeau, Matthias Seeger. *LEEP: A New Measure to Evaluate Transferability of Learned Representations*. ICML 2020.
 - Anh T. Tran, Cuong V. Nguyen, Tal Hassner. *Transferability and Hardness of Supervised Classification Tasks*. ICCV 2019.
