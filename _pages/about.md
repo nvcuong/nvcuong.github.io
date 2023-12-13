@@ -19,7 +19,7 @@ I am an Assistant Professor in Statistics at the Department of Mathematical Scie
 - 2015--2016: Postdoctoral Researcher at National University of Singapore.
 
 **Education:**
-- 2015: PhD in Computer Science (National University of Singapore).
-- 2010: Bachelor in Computing (National University of Singapore).
+- 2015: PhD in Computer Science, National University of Singapore.
+- 2010: Bachelor in Computing, National University of Singapore.
 
 
