@@ -36,3 +36,7 @@ redirect_from:
 25. **Nguyen Viet Cuong**, Wee Sun Lee, Nan Ye, Kian Ming A. Chai, Hai Leong Chieu. [Active Learning for Probabilistic Hypotheses Using the Maximum Gibbs Error Criterion](https://proceedings.neurips.cc/paper/2013/hash/fb89705ae6d743bf1e848c206e16a1d7-Abstract.html){:target="_blank"}. Advances in Neural Information Processing Systems (NIPS 2013).
 26. **Nguyen Viet Cuong**, Lam Si Tung Ho, Vu Dinh. [Generalization and Robustness of Batched Weighted Average Algorithm with V-geometrically Ergodic Markov Data](https://arxiv.org/abs/1406.3166){:target="_blank"}. International Conference on Algorithmic Learning Theory (ALT 2013).
 27. **Nguyen Viet Cuong**, Vu Dinh, Lam Si Tung Ho. [Mel-frequency Cepstral Coefficients for Eye Movement Identification](https://nvcuong.github.io/files/cuong2012mel.pdf){:target="_blank"}. IEEE International Conference on Tools with Artificial Intelligence (ICTAI 2012). ([code](https://github.com/nvcuong/MfccEMI){:target="_blank"})
+
+### Patents
+
+1. Guneet Dhillon, Vijay Mahadevan, Yuting Zhang, Meng Wang, Gangadhar Payyavula, **Viet Cuong Nguyen**, Rahul Bhotika, Stefano Soatto. [Structured Document Analyzer](https://patentimages.storage.googleapis.com/a9/b5/67/1feb04d8e27eeb/US10839245.pdf){:target="_blank"}. US Patent 10,839,245.
