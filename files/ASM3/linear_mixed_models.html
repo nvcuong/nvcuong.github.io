@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Linear mixed models | Advanced Statistical Modelling III (second term)</title>
+  <meta name="description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Linear mixed models | Advanced Statistical Modelling III (second term)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Linear mixed models | Advanced Statistical Modelling III (second term)" />
+  
+  <meta name="twitter:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  
+
+<meta name="author" content="Dr. Cuong Nguyen" />
+
+
+<meta name="date" content="2024-01-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="marginal_models.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Statistical Modelling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Information</a></li>
+<li class="chapter" data-level="1" data-path="generalised_linear_models.html"><a href="generalised_linear_models.html"><i class="fa fa-check"></i><b>1</b> Review of Generalised Linear Models</a></li>
+<li class="chapter" data-level="2" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>2</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estimation.html"><a href="estimation.html#likelihood"><i class="fa fa-check"></i><b>2.1</b> Likelihood</a></li>
+<li class="chapter" data-level="2.2" data-path="estimation.html"><a href="estimation.html#loglike"><i class="fa fa-check"></i><b>2.2</b> Log-Likelihood</a></li>
+<li class="chapter" data-level="2.3" data-path="estimation.html"><a href="estimation.html#score-function-and-equation"><i class="fa fa-check"></i><b>2.3</b> Score Function and Equation</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="estimation.html"><a href="estimation.html#natural-link"><i class="fa fa-check"></i><b>2.3.1</b> Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="estimation.html"><a href="estimation.html#fisherinformation"><i class="fa fa-check"></i><b>2.4</b> Fisher Information</a></li>
+<li class="chapter" data-level="2.5" data-path="estimation.html"><a href="estimation.html#example-poisson-regression"><i class="fa fa-check"></i><b>2.5</b> Example: Poisson Regression</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="estimation.html"><a href="estimation.html#with-natural-link"><i class="fa fa-check"></i><b>2.5.1</b> With Natural Link</a></li>
+<li class="chapter" data-level="2.5.2" data-path="estimation.html"><a href="estimation.html#with-identity-link"><i class="fa fa-check"></i><b>2.5.2</b> With Identity Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="estimation.html"><a href="estimation.html#properties-of-boldsymbolsboldsymbolbeta-and-boldsymbolfboldsymbolbeta"><i class="fa fa-check"></i><b>2.6</b> Properties of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span> and <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="estimation.html"><a href="estimation.html#expectation-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.1</b> Expectation of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.2" data-path="estimation.html"><a href="estimation.html#variance-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.2</b> Variance of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.3" data-path="estimation.html"><a href="estimation.html#boldsymbolfboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.3</b> <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="estimation.html"><a href="estimation.html#matrix-notation"><i class="fa fa-check"></i><b>2.7</b> Matrix Notation</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="estimation.html"><a href="estimation.html#score-function-and-fisher-information"><i class="fa fa-check"></i><b>2.7.1</b> Score Function and Fisher Information</a></li>
+<li class="chapter" data-level="2.7.2" data-path="estimation.html"><a href="estimation.html#natural-link-2"><i class="fa fa-check"></i><b>2.7.2</b> Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="estimation.html"><a href="estimation.html#iterativesolution"><i class="fa fa-check"></i><b>2.8</b> Iterative Solution of <span class="math inline">\(\boldsymbol{S}(\hat{\boldsymbol{\beta}}) = 0\)</span></a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="estimation.html"><a href="estimation.html#irls-pseudo-code"><i class="fa fa-check"></i><b>2.8.1</b> IRLS Pseudo-Code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="estimation.html"><a href="estimation.html#practical-example-dataset-b-us-polio-data"><i class="fa fa-check"></i><b>2.9</b> Practical Example: Dataset B: US Polio Data</a></li>
+<li class="chapter" data-level="2.10" data-path="estimation.html"><a href="estimation.html#estimation-of-phi"><i class="fa fa-check"></i><b>2.10</b> Estimation of <span class="math inline">\(\phi\)</span></a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="estimation.html"><a href="estimation.html#special-cases"><i class="fa fa-check"></i><b>2.10.1</b> Special Cases</a></li>
+<li class="chapter" data-level="2.10.2" data-path="estimation.html"><a href="estimation.html#practical-example-dataset-c-hospital-data"><i class="fa fa-check"></i><b>2.10.2</b> Practical Example: Dataset C: Hospital Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="estimation.html"><a href="estimation.html#asymptotic-properties-of-hatboldsymbolbeta"><i class="fa fa-check"></i><b>2.11</b> Asymptotic Properties of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="estimation.html"><a href="estimation.html#fisher-scoring"><i class="fa fa-check"></i><b>2.11.1</b> Fisher Scoring</a></li>
+<li class="chapter" data-level="2.11.2" data-path="estimation.html"><a href="estimation.html#expectation"><i class="fa fa-check"></i><b>2.11.2</b> Expectation</a></li>
+<li class="chapter" data-level="2.11.3" data-path="estimation.html"><a href="estimation.html#variance"><i class="fa fa-check"></i><b>2.11.3</b> Variance</a></li>
+<li class="chapter" data-level="2.11.4" data-path="estimation.html"><a href="estimation.html#asymptotic-normality"><i class="fa fa-check"></i><b>2.11.4</b> Asymptotic Normality</a></li>
+<li class="chapter" data-level="2.11.5" data-path="estimation.html"><a href="estimation.html#closing-the-circle"><i class="fa fa-check"></i><b>2.11.5</b> Closing The Circle</a></li>
+<li class="chapter" data-level="2.11.6" data-path="estimation.html"><a href="estimation.html#next-step"><i class="fa fa-check"></i><b>2.11.6</b> Next Step</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html"><i class="fa fa-check"></i><b>3</b> Prediction and Inference</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#prediction2"><i class="fa fa-check"></i><b>3.1</b> Prediction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#example-dataset-b"><i class="fa fa-check"></i><b>3.1.1</b> Example: Dataset B</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#hypothesis-tests"><i class="fa fa-check"></i><b>3.2</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#simple-tests"><i class="fa fa-check"></i><b>3.2.1</b> Simple Tests</a></li>
+<li class="chapter" data-level="3.2.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#generalisation-to-nested-models"><i class="fa fa-check"></i><b>3.2.2</b> Generalisation to Nested Models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#example-dataset-c"><i class="fa fa-check"></i><b>3.2.3</b> Example: Dataset C</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#confidence-regions-for-hatboldsymbolbeta"><i class="fa fa-check"></i><b>3.3</b> Confidence Regions for <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#alpha-hessian-cr"><i class="fa fa-check"></i><b>3.3.1</b> <span class="math inline">\((1 - \alpha)\)</span> Hessian CR</a></li>
+<li class="chapter" data-level="3.3.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#alpha-method-of-support-cr"><i class="fa fa-check"></i><b>3.3.2</b> <span class="math inline">\((1 - \alpha)\)</span> <em>method of support</em> CR</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#issues-with-glms-and-the-wald-test"><i class="fa fa-check"></i><b>3.4</b> Issues with GLMs and the Wald Test</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#separation"><i class="fa fa-check"></i><b>3.4.1</b> Separation</a></li>
+<li class="chapter" data-level="3.4.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#hauck-donner-effect"><i class="fa fa-check"></i><b>3.4.2</b> Hauck-Donner Effect</a></li>
+<li class="chapter" data-level="3.4.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#next-step-1"><i class="fa fa-check"></i><b>3.4.3</b> Next Step</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html"><i class="fa fa-check"></i><b>4</b> Deviance</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#goodness-of-fit"><i class="fa fa-check"></i><b>4.1</b> Goodness-of-Fit</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#saturated-model"><i class="fa fa-check"></i><b>4.1.1</b> Saturated Model</a></li>
+<li class="chapter" data-level="4.1.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#deviance"><i class="fa fa-check"></i><b>4.1.2</b> Deviance</a></li>
+<li class="chapter" data-level="4.1.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-special-cases"><i class="fa fa-check"></i><b>4.1.3</b> Example Special Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#asymptotic-properties"><i class="fa fa-check"></i><b>4.2</b> Asymptotic Properties</a></li>
+<li class="chapter" data-level="4.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#pearson-statistic"><i class="fa fa-check"></i><b>4.3</b> Pearson Statistic</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#relation-to-deviance"><i class="fa fa-check"></i><b>4.3.1</b> Relation to Deviance</a></li>
+<li class="chapter" data-level="4.3.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#pearson-residuals"><i class="fa fa-check"></i><b>4.3.2</b> Pearson Residuals</a></li>
+<li class="chapter" data-level="4.3.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-dataset-b-1"><i class="fa fa-check"></i><b>4.3.3</b> Example: Dataset B</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#residuals-and-diagnostics"><i class="fa fa-check"></i><b>4.4</b> Residuals and Diagnostics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-dataset-c-1"><i class="fa fa-check"></i><b>4.4.1</b> Example: Dataset C</a></li>
+<li class="chapter" data-level="4.4.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-dataset-b-2"><i class="fa fa-check"></i><b>4.4.2</b> Example: Dataset B</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#analysis-of-deviance"><i class="fa fa-check"></i><b>4.5</b> Analysis of Deviance</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#interpretation-and-testing"><i class="fa fa-check"></i><b>4.5.1</b> Interpretation and Testing</a></li>
+<li class="chapter" data-level="4.5.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#general-case"><i class="fa fa-check"></i><b>4.5.2</b> General Case</a></li>
+<li class="chapter" data-level="4.5.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-dataset-c-2"><i class="fa fa-check"></i><b>4.5.3</b> Example: Dataset C</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html"><i class="fa fa-check"></i><b>5</b> Quasi-Likelihood methods</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#dispersion"><i class="fa fa-check"></i><b>5.1</b> Dispersion</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-5.1-hospital-stay-data"><i class="fa fa-check"></i><b>5.1.1</b> Example 5.1 (Hospital stay data)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#overdispersion"><i class="fa fa-check"></i><b>5.2</b> Overdispersion</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-5.2-us-polio-data"><i class="fa fa-check"></i><b>5.2.1</b> Example 5.2 (US Polio data)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-5.3-us-polio-data"><i class="fa fa-check"></i><b>5.2.2</b> Example 5.3 (US Polio data)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#generalized-estimating-equations"><i class="fa fa-check"></i><b>5.3</b> Generalized estimating equations</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-5.4"><i class="fa fa-check"></i><b>5.3.1</b> Example 5.4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="marginal_models.html"><a href="marginal_models.html"><i class="fa fa-check"></i><b>6</b> Marginal models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="marginal_models.html"><a href="marginal_models.html#repeated-measures-data"><i class="fa fa-check"></i><b>6.1</b> Repeated measures data</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="marginal_models.html"><a href="marginal_models.html#example-6.1-oxford-boys-data"><i class="fa fa-check"></i><b>6.1.1</b> Example 6.1 (Oxford boys data)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="marginal_models.html"><a href="marginal_models.html#example-6.2-mathematics-achievement-data"><i class="fa fa-check"></i><b>6.1.2</b> Example 6.2 (Mathematics achievement data)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="marginal_models.html"><a href="marginal_models.html#the-marginal-model-for-repeated-measures"><i class="fa fa-check"></i><b>6.2</b> The marginal model for repeated measures</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="marginal_models.html"><a href="marginal_models.html#example-6.3"><i class="fa fa-check"></i><b>6.2.1</b> Example 6.3</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="marginal_models.html"><a href="marginal_models.html#estimation-1"><i class="fa fa-check"></i><b>6.3</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="marginal_models.html"><a href="marginal_models.html#example-6.4"><i class="fa fa-check"></i><b>6.3.1</b> Example 6.4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html"><i class="fa fa-check"></i><b>7</b> Linear mixed models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#random-intercept-models"><i class="fa fa-check"></i><b>7.1</b> Random intercept models</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.1-oxford-boys-data"><i class="fa fa-check"></i><b>7.1.1</b> Example 7.1 (Oxford boys data)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.2-oxford-boys-data"><i class="fa fa-check"></i><b>7.1.2</b> Example 7.2 (Oxford boys data)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#random-slope-models"><i class="fa fa-check"></i><b>7.2</b> Random slope models</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.3-oxford-boys"><i class="fa fa-check"></i><b>7.2.1</b> Example 7.3 (Oxford boys)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#the-linear-mixed-model-lmm"><i class="fa fa-check"></i><b>7.3</b> The Linear Mixed Model (LMM)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.4"><i class="fa fa-check"></i><b>7.3.1</b> Example 7.4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#estimation-of-fixed-effects"><i class="fa fa-check"></i><b>7.4</b> Estimation of fixed effects</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.5"><i class="fa fa-check"></i><b>7.4.1</b> Example 7.5</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#inference-for-fixed-effects"><i class="fa fa-check"></i><b>7.5</b> Inference for fixed effects</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.6-mathematics-achievement-data"><i class="fa fa-check"></i><b>7.5.1</b> Example 7.6 (Mathematics achievement data)</a></li>
+<li class="chapter" data-level="7.5.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.7-mathematics-achievement-data"><i class="fa fa-check"></i><b>7.5.2</b> Example 7.7 (Mathematics achievement data)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#prediction-of-random-effects"><i class="fa fa-check"></i><b>7.6</b> Prediction of random effects</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.8-mathematics-achievement-data"><i class="fa fa-check"></i><b>7.6.1</b> Example 7.8 (Mathematics achievement data)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#inference-for-random-effects"><i class="fa fa-check"></i><b>7.7</b> Inference for random effects</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-7.9-mathematics-achievement-data"><i class="fa fa-check"></i><b>7.7.1</b> Example 7.9 (Mathematics achievement data)</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Statistical Modelling III (second term)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear_mixed_models" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Linear mixed models<a href="linear_mixed_models.html#linear_mixed_models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="random-intercept-models" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Random intercept models<a href="linear_mixed_models.html#random-intercept-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="example-7.1-oxford-boys-data" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Example 7.1 (Oxford boys data)<a href="linear_mixed_models.html#example-7.1-oxford-boys-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We revisit the Oxford boys data from Example 6.1 and 6.4.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="linear_mixed_models.html#cb176-1" tabindex="-1"></a><span class="fu">require</span>(nlme)</span>
+<span id="cb176-2"><a href="linear_mixed_models.html#cb176-2" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb176-3"><a href="linear_mixed_models.html#cb176-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data  =</span> Oxboys, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> height, <span class="at">col =</span> Subject)) <span class="sc">+</span></span>
+<span id="cb176-4"><a href="linear_mixed_models.html#cb176-4" tabindex="-1"></a>       <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb176-5"><a href="linear_mixed_models.html#cb176-5" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Height vs. Age&quot;</span>, <span class="at">subtitle=</span><span class="st">&quot;by subject&quot;</span>)<span class="sc">+</span></span>
+<span id="cb176-6"><a href="linear_mixed_models.html#cb176-6" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>The growth of the boys appears to be governed by an (overall) linear trend with subject-specific intercepts. In this section we are interested in modelling these subject-specific effects explicitly, not just the marginal, population-averaged effects as in the previous section.</p>
+<p>In order to do this, one could consider the following modelling strategies:</p>
+<ul>
+<li>Option 1: Fit a traditional regression model into which we include as many levels as subjects.</li>
+</ul>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="linear_mixed_models.html#cb177-1" tabindex="-1"></a>oxboys.int.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(height<span class="sc">~</span>age<span class="sc">+</span>Subject, <span class="at">data=</span>Oxboys)</span>
+<span id="cb177-2"><a href="linear_mixed_models.html#cb177-2" tabindex="-1"></a>oxboys.int.lm<span class="sc">$</span>coef</span></code></pre></div>
+<pre><code>## (Intercept)         age   Subject.L   Subject.Q   Subject.C   Subject^4 
+## 149.3717351   6.5239272  38.2711944  -1.0176524   9.7862876  -0.2592347 
+##   Subject^5   Subject^6   Subject^7   Subject^8   Subject^9  Subject^10 
+##   2.4811449  -1.7440210  -0.1519776  -0.8033613   0.0949727  -5.1229859 
+##  Subject^11  Subject^12  Subject^13  Subject^14  Subject^15  Subject^16 
+##   1.4768831  -0.1076707  -1.4004605   1.5915615  -1.9752706   0.6604833 
+##  Subject^17  Subject^18  Subject^19  Subject^20  Subject^21  Subject^22 
+##   1.3405697   2.0599463   1.7441624  -2.3586125  -1.3409881   1.3729270 
+##  Subject^23  Subject^24  Subject^25 
+##   3.4359538   1.1353750  -1.8758449</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="linear_mixed_models.html#cb179-1" tabindex="-1"></a>oxboys.int.pred<span class="ot">&lt;-</span> <span class="fu">predict</span>(oxboys.int.lm)</span>
+<span id="cb179-2"><a href="linear_mixed_models.html#cb179-2" tabindex="-1"></a></span>
+<span id="cb179-3"><a href="linear_mixed_models.html#cb179-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data  =</span> Oxboys, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> height)) <span class="sc">+</span></span>
+<span id="cb179-4"><a href="linear_mixed_models.html#cb179-4" tabindex="-1"></a>       <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>Subject)) <span class="sc">+</span></span>
+<span id="cb179-5"><a href="linear_mixed_models.html#cb179-5" tabindex="-1"></a>       <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>oxboys.int.pred,  <span class="at">col=</span>Subject))<span class="sc">+</span></span>
+<span id="cb179-6"><a href="linear_mixed_models.html#cb179-6" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Height vs. Age&quot;</span>, <span class="at">subtitle=</span><span class="st">&quot;with subject-specific intercepts&quot;</span>)<span class="sc">+</span></span>
+<span id="cb179-7"><a href="linear_mixed_models.html#cb179-7" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+While this seems to fit well, the approach does not appear very practicable, for two reasons: Firstly, one potentially needs very many parameters (one for each subject/cluster <span class="math inline">\(i=1, \ldots,n\)</span>). Secondly, the approach is useless for prediction of a new subject (since the intercept of that new subject will be unknown)</p>
+<ul>
+<li>Option 2: Consider the subject-specific intercepts to be drawn from a distribution centered at the overall intercept. This view implies a “hierarchical” model. One also speaks of a “two-level-model” (or more generally multilevel models), where however this notion of levels has nothing to do with the notion of levels of a factor! Specifically, one has:
+<ul>
+<li>Lower level (observations/ repeated measurements):
+<span class="math display">\[
+y_{ij}=  a_i+ \beta x_{ij}+ \epsilon_{ij} \,\,\mbox{ with } \epsilon_{ij} \sim N(0, \sigma^2)
+\]</span></li>
+<li>Upper level (clusters/ subjects):
+<span class="math display">\[
+a_i= \alpha + u_i  \,\,\mbox{ with } u_{i} \sim N(0, \sigma_u^2)
+\]</span>
+where all “random effects” <span class="math inline">\(u_i\)</span> and model errors <span class="math inline">\(\epsilon_{ij}\)</span> are independent.</li>
+</ul></li>
+</ul>
+<p>(In the above, Greek letters indicate fixed effect parameters, and Latin letters, when indexed by <span class="math inline">\(i\)</span> or <span class="math inline">\(ij\)</span>, random quantities).</p>
+<p>Random effect model with subjects-specific random intercepts and a singe covariate <span class="math inline">\(x_{ij}=\texttt{age}_{ij}\)</span>:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="linear_mixed_models.html#cb180-1" tabindex="-1"></a><span class="fu">require</span>(lme4)</span></code></pre></div>
+<pre><code>## Loading required package: lme4</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:npmlreg&#39;:
+## 
+##     expand</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lme4&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:nlme&#39;:
+## 
+##     lmList</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="linear_mixed_models.html#cb187-1" tabindex="-1"></a>oxboys.lmm <span class="ot">&lt;-</span> <span class="fu">lmer</span>(height <span class="sc">~</span> age <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Subject), <span class="at">data=</span>Oxboys)</span>
+<span id="cb187-2"><a href="linear_mixed_models.html#cb187-2" tabindex="-1"></a>oxboys.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: height ~ age + (1 | Subject)
+##    Data: Oxboys
+## REML criterion at convergence: 940.0297
+## Random effects:
+##  Groups   Name        Std.Dev.
+##  Subject  (Intercept) 8.097   
+##  Residual             1.311   
+## Number of obs: 234, groups:  Subject, 26
+## Fixed Effects:
+## (Intercept)          age  
+##     149.372        6.524</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="linear_mixed_models.html#cb189-1" tabindex="-1"></a>oxboys.lmm.pred<span class="ot">&lt;-</span> <span class="fu">predict</span>(oxboys.lmm)     <span class="co"># predict xi^T beta + zi_T u_i</span></span>
+<span id="cb189-2"><a href="linear_mixed_models.html#cb189-2" tabindex="-1"></a>                                          <span class="co"># will study later how u_i are predicted!</span></span>
+<span id="cb189-3"><a href="linear_mixed_models.html#cb189-3" tabindex="-1"></a></span>
+<span id="cb189-4"><a href="linear_mixed_models.html#cb189-4" tabindex="-1"></a><span class="co"># oxboys.lmm.marg&lt;- predict(oxboys.lmm, re.form=NA) # predict xi^T beta</span></span>
+<span id="cb189-5"><a href="linear_mixed_models.html#cb189-5" tabindex="-1"></a>                                          <span class="co"># corresponds to predicting the marginal model fit</span></span>
+<span id="cb189-6"><a href="linear_mixed_models.html#cb189-6" tabindex="-1"></a></span>
+<span id="cb189-7"><a href="linear_mixed_models.html#cb189-7" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data  =</span> Oxboys, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> height)) <span class="sc">+</span></span>
+<span id="cb189-8"><a href="linear_mixed_models.html#cb189-8" tabindex="-1"></a>       <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>Subject)) <span class="sc">+</span></span>
+<span id="cb189-9"><a href="linear_mixed_models.html#cb189-9" tabindex="-1"></a>       <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>oxboys.lmm.pred,  <span class="at">col=</span>Subject))<span class="sc">+</span></span>
+<span id="cb189-10"><a href="linear_mixed_models.html#cb189-10" tabindex="-1"></a><span class="co">#       geom_line(aes(y=oxboys.lmm.marg), lwd=3, colour=2)+</span></span>
+<span id="cb189-11"><a href="linear_mixed_models.html#cb189-11" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Height vs. Age&quot;</span>, <span class="at">subtitle=</span><span class="st">&quot;with subject-specific intercepts&quot;</span>)<span class="sc">+</span></span>
+<span id="cb189-12"><a href="linear_mixed_models.html#cb189-12" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<hr />
+<p>Note that we can combine the two-level representation of the model displayed above into a single model (we also slightly generalize the notation here to allow for more than one covariate):</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_{ij}&amp;=&amp; \alpha+  \boldsymbol{\beta}^T\boldsymbol{x}_{ij}+  u_i + \epsilon_{ij}\\
+&amp;=&amp; \alpha+  u_i + \boldsymbol{\beta}^T\boldsymbol{x}_{ij}+  \epsilon_{ij}
+\end{aligned}
+\]</span>
+where the first representation is useful as it highlights the separation of the model into a “fixed part” (first two terms) and a “random part” (last two terms), and the second representation is useful because it highlights its role as a <strong>random intercept model</strong>.</p>
+<p>Also, it is interesting to look at the marginal effects of this model. Specifically, the marginal means are
+<span class="math display">\[
+E(y_{ij}) = \alpha+ \boldsymbol{\beta}^T\boldsymbol{x}_{ij}
+\]</span>
+and the marginal variances are</p>
+<p><span class="math display">\[
+\mbox{Var}(y_{ij}) = \sigma_u^2+ \sigma^2
+\]</span>
+We see that</p>
+<ul>
+<li>fixed effects specify the marginal mean;</li>
+<li>random effects specify the marginal variance.</li>
+</ul>
+<p>Since models of the type above contain a mixture of fixed effect parameters and random effects, they are also often termed “mixed effect models”.</p>
+<p>What can we say about marginal covariances?</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mbox{Cov}(y_{ij}, y_{ik})&amp;=&amp; E\left((y_{ij}-E(y_{ij}))(y_{ik}-E(y_{ik}))\right)\\
+&amp;=&amp;  E\left((u_i+\epsilon_{ij})(u_i+\epsilon_{ik})\right)\\
+&amp;=&amp; E(u_i^2)+ E(u_i)E(\epsilon_{ij})+E(u_i)E(\epsilon_{ik})+E(\epsilon_{ij})E(\epsilon_{ik})\\
+&amp;=&amp; \sigma_u^2
+\end{aligned}
+\]</span></p>
+<p>This implies also</p>
+<p><span class="math display">\[
+\mbox{Corr}(y_{ij}, y_{ik})= \frac{\sigma_u^2}{\sigma_u^2+\sigma^2}
+\]</span></p>
+<p>This quantity is commonly known as the <strong>intra-class-correlation</strong>. It can be interpreted as the proprtion of “total” variation explained by the cluster structure. Alternatively it can be interpreted as the correlation of two items randomly drawn from the same cluster.</p>
+<p>In this context, one can show easily that
+<span class="math display">\[
+\mbox{Corr}(y_{ij}, y_{i^{\prime}k})=0 \,\, \mbox{ for } i \not= i^{\prime}
+\]</span>
+that is, observations from different clusters are uncorrelated.</p>
+<p>It is clear from the equations above that covariates have not played a role in this derivation. In fact, it is common to compute the ICC for a model which does not
+contain any fixed-effect parameters at all, i.e. <span class="math inline">\(\boldsymbol{\beta}\equiv 0\)</span>. However, while the equation for ICC is then unchanged, the estimates of <span class="math inline">\(\sigma^2\)</span> and
+<span class="math inline">\(\sigma_u^2\)</span> may still be different for the “empty random intercept” model <span class="math inline">\(y_{ij}=\alpha+u_i+\epsilon_{ij}\)</span> and the “random intercept model with fixed effect covariates”. In the literature, ICCs which are based on the empty model (without fixed effect covariates) are sometimes called unconditional ICC, and the ones including
+fixed effects “conditional ICC”, with terminology not being entirely consistent across
+resources.</p>
+<p>ICCs are often the “first shot” when assessing whether or not a repeated measure
+structure needs to be explicitly addressed through a (say) two-level model.</p>
+</div>
+<div id="example-7.2-oxford-boys-data" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Example 7.2 (Oxford boys data)<a href="linear_mixed_models.html#example-7.2-oxford-boys-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We compute the intra-class correlation for this data set; firstly “conditional”</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="linear_mixed_models.html#cb190-1" tabindex="-1"></a>oxboys.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: height ~ age + (1 | Subject)
+##    Data: Oxboys
+## REML criterion at convergence: 940.0297
+## Random effects:
+##  Groups   Name        Std.Dev.
+##  Subject  (Intercept) 8.097   
+##  Residual             1.311   
+## Number of obs: 234, groups:  Subject, 26
+## Fixed Effects:
+## (Intercept)          age  
+##     149.372        6.524</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="linear_mixed_models.html#cb192-1" tabindex="-1"></a>oxboys.v <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(oxboys.lmm)<span class="sc">$</span>varcor)</span>
+<span id="cb192-2"><a href="linear_mixed_models.html#cb192-2" tabindex="-1"></a>oxboys.v</span></code></pre></div>
+<pre><code>##        grp        var1 var2      vcov    sdcor
+## 1  Subject (Intercept) &lt;NA&gt; 65.554956 8.096602
+## 2 Residual        &lt;NA&gt; &lt;NA&gt;  1.718066 1.310750</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="linear_mixed_models.html#cb194-1" tabindex="-1"></a>icc<span class="ot">&lt;-</span> oxboys.v[<span class="dv">1</span>,<span class="dv">4</span>]<span class="sc">/</span>(oxboys.v[<span class="dv">1</span>,<span class="dv">4</span>]<span class="sc">+</span>oxboys.v[<span class="dv">2</span>,<span class="dv">4</span>])</span>
+<span id="cb194-2"><a href="linear_mixed_models.html#cb194-2" tabindex="-1"></a>icc</span></code></pre></div>
+<pre><code>## [1] 0.9744613</code></pre>
+<p>Then “unconditional”:</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="linear_mixed_models.html#cb196-1" tabindex="-1"></a>oxboys.int_only.lmm <span class="ot">&lt;-</span> <span class="fu">lmer</span>(height <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> Subject), <span class="at">data=</span>Oxboys)</span>
+<span id="cb196-2"><a href="linear_mixed_models.html#cb196-2" tabindex="-1"></a>oxboys.int_only.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: height ~ (1 | Subject)
+##    Data: Oxboys
+## REML criterion at convergence: 1466.59
+## Random effects:
+##  Groups   Name        Std.Dev.
+##  Subject  (Intercept) 7.957   
+##  Residual             4.661   
+## Number of obs: 234, groups:  Subject, 26
+## Fixed Effects:
+## (Intercept)  
+##       149.5</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="linear_mixed_models.html#cb198-1" tabindex="-1"></a>oxboys.int_only.v<span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(oxboys.int_only.lmm)<span class="sc">$</span>varcor)</span>
+<span id="cb198-2"><a href="linear_mixed_models.html#cb198-2" tabindex="-1"></a>icc<span class="ot">&lt;-</span> oxboys.int_only.v[<span class="dv">1</span>,<span class="dv">4</span>]<span class="sc">/</span>(oxboys.int_only.v[<span class="dv">1</span>,<span class="dv">4</span>]<span class="sc">+</span>oxboys.int_only.v[<span class="dv">2</span>,<span class="dv">4</span>])</span>
+<span id="cb198-3"><a href="linear_mixed_models.html#cb198-3" tabindex="-1"></a>icc</span></code></pre></div>
+<pre><code>## [1] 0.7445153</code></pre>
+<p>Automated (confusing output!):</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="linear_mixed_models.html#cb200-1" tabindex="-1"></a><span class="fu">require</span>(performance)</span></code></pre></div>
+<pre><code>## Loading required package: performance</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="linear_mixed_models.html#cb202-1" tabindex="-1"></a><span class="fu">icc</span>(oxboys.lmm)</span></code></pre></div>
+<pre><code>## # Intraclass Correlation Coefficient
+## 
+##     Adjusted ICC: 0.974
+##   Unadjusted ICC: 0.770</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="linear_mixed_models.html#cb204-1" tabindex="-1"></a><span class="fu">icc</span>(oxboys.int_only.lmm)</span></code></pre></div>
+<pre><code>## # Intraclass Correlation Coefficient
+## 
+##     Adjusted ICC: 0.745
+##   Unadjusted ICC: 0.745</code></pre>
+</div>
+</div>
+<div id="random-slope-models" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Random slope models<a href="linear_mixed_models.html#random-slope-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What is if not only the intercept, but also the slopes subject-specific?</p>
+<p>For ease of presentation, let us now just consider a single covariate <span class="math inline">\(x_{ij}\)</span>. In this case, we have</p>
+<ul>
+<li>lower level:
+<span class="math display">\[
+y_{ij}= a_i+b_i x_{ij}+\epsilon_{ij}
+\]</span></li>
+<li>upper level:
+<span class="math display">\[
+\begin{aligned}
+a_i &amp;= &amp; \alpha + u_i\\
+b_i &amp;= &amp; \beta + v_i
+\end{aligned}
+\]</span>
+where <span class="math inline">\(\epsilon_{ij}\sim N(0,\sigma^2)\)</span>, <span class="math inline">\(u_i \sim N(0, \sigma^2_u)\)</span>, <span class="math inline">\(v_i \sim (0,\sigma^2_v)\)</span> are independent.</li>
+</ul>
+<p>Combined this gives</p>
+<p><span class="math display">\[
+y_{ij}= \alpha+\beta x_{ij}+ u_i+v_ix_{ij}+\epsilon_{ij}
+\]</span>
+where <span class="math inline">\(\alpha+\beta x_{ij}\)</span> is the fixed part and <span class="math inline">\(u_i+v_ix_{ij}+\epsilon_{ij}\)</span> the random part of the model.</p>
+<p>Marginally this implies
+<span class="math display">\[
+\begin{aligned}
+E(y_{ij})&amp;=&amp; \alpha+\beta x_{ij}\\
+\mbox{Var}(y_{ij})&amp;=&amp; \sigma^2+ \sigma_u^2+\sigma_v^2x_{ij}^2+2r\sigma_u\sigma_vx_{ij}
+\end{aligned}
+\]</span>
+where we define <span class="math inline">\(r=\mbox{Corr}(u_j,v_j)\)</span> which is sometimes assumed to be 0 [Dobson, p. 221].</p>
+<div id="example-7.3-oxford-boys" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Example 7.3 (Oxford boys)<a href="linear_mixed_models.html#example-7.3-oxford-boys" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="linear_mixed_models.html#cb206-1" tabindex="-1"></a><span class="fu">require</span>(lme4)</span>
+<span id="cb206-2"><a href="linear_mixed_models.html#cb206-2" tabindex="-1"></a>oxboys.slope.lmm <span class="ot">&lt;-</span> <span class="fu">lmer</span>(height <span class="sc">~</span> age <span class="sc">+</span> (age <span class="sc">|</span> Subject), <span class="at">data=</span>Oxboys)</span>
+<span id="cb206-3"><a href="linear_mixed_models.html#cb206-3" tabindex="-1"></a>oxboys.slope.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: height ~ age + (age | Subject)
+##    Data: Oxboys
+## REML criterion at convergence: 724.091
+## Random effects:
+##  Groups   Name        Std.Dev. Corr
+##  Subject  (Intercept) 8.0811       
+##           age         1.6807   0.64
+##  Residual             0.6599       
+## Number of obs: 234, groups:  Subject, 26
+## Fixed Effects:
+## (Intercept)          age  
+##     149.372        6.525</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="linear_mixed_models.html#cb208-1" tabindex="-1"></a>oxboys.slope.lmm.pred<span class="ot">&lt;-</span> <span class="fu">predict</span>(oxboys.slope.lmm)</span>
+<span id="cb208-2"><a href="linear_mixed_models.html#cb208-2" tabindex="-1"></a><span class="co"># oxboys.slope.lmm.marg&lt;- predict(oxboys.slope.lmm, re.form=NA)</span></span></code></pre></div>
+<p>So, here <span class="math inline">\(r=0.64\)</span>.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="linear_mixed_models.html#cb209-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data  =</span> Oxboys, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> height)) <span class="sc">+</span></span>
+<span id="cb209-2"><a href="linear_mixed_models.html#cb209-2" tabindex="-1"></a>       <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>Subject)) <span class="sc">+</span></span>
+<span id="cb209-3"><a href="linear_mixed_models.html#cb209-3" tabindex="-1"></a>       <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>oxboys.slope.lmm.pred,  <span class="at">col=</span>Subject))<span class="sc">+</span></span>
+<span id="cb209-4"><a href="linear_mixed_models.html#cb209-4" tabindex="-1"></a>  <span class="co">#     geom_line(aes(y=oxboys.slope.lmm.marg), lwd=3, colour=2)+</span></span>
+<span id="cb209-5"><a href="linear_mixed_models.html#cb209-5" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Height vs. Age&quot;</span>, <span class="at">subtitle=</span><span class="st">&quot;with subject-specific intercepts and slopes&quot;</span>)<span class="sc">+</span></span>
+<span id="cb209-6"><a href="linear_mixed_models.html#cb209-6" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+</div>
+</div>
+<div id="the-linear-mixed-model-lmm" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> The Linear Mixed Model (LMM)<a href="linear_mixed_models.html#the-linear-mixed-model-lmm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>General framework encompassing all previous models (but still only Gaussian response):</p>
+<p><span class="math display">\[
+\boldsymbol{Y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{Z}\boldsymbol{u}+\boldsymbol{\epsilon}
+\]</span></p>
+<p>where we have</p>
+<p><span class="math display">\[
+\begin{aligned}
+\boldsymbol{Y}= (y_{11}, \ldots, y_{1n_1}, y_{21}, \ldots, y_{2n_2}, \ldots, y_{n1}, \ldots, y_{nn_n})^T \in \mathbb{R}^N\\
+\boldsymbol{\epsilon}= (\epsilon_{11}, \ldots, \epsilon_{1n_1}, \epsilon_{21}, \ldots, \epsilon_{2n_2}, \ldots, \epsilon_{n1}, \ldots, \epsilon_{nn_n})^T \in \mathbb{R}^N
+\end{aligned}
+\]</span></p>
+<p>where we we recall that <span class="math inline">\(N=\sum_{i=1}^n n_i\)</span>, and</p>
+<ul>
+<li><span class="math inline">\(p\)</span> fixed effects; i.e. <span class="math inline">\(\boldsymbol{\beta} \in \mathbb{R}^p\)</span>, with design matrix <span class="math inline">\(\boldsymbol{X} \in \mathbb{R}^{N \times p}\)</span>;</li>
+<li><span class="math inline">\(q\)</span> random effects, i.e. <span class="math inline">\(\boldsymbol{u}= (\tilde{\boldsymbol{u}}_1, \ldots,\tilde{\boldsymbol{u}}_n )^T\)</span> with <span class="math inline">\(\tilde{\boldsymbol{u}}_1 \in \mathbb{R}^q\)</span>, and random-efffects design matrix <span class="math inline">\(\boldsymbol{Z} \in \mathbb{R}^{N \times nq}\)</span>.</li>
+</ul>
+<div id="example-7.4" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Example 7.4<a href="linear_mixed_models.html#example-7.4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>For the “empty model” with random intercept,
+<span class="math display">\[
+y_{ij}= \alpha+u_i+\epsilon_{ij},
+\]</span>
+one has
+<span class="math display">\[
+\begin{aligned}
+\boldsymbol{\beta}&amp;=&amp;\alpha,\\
+\boldsymbol{u}&amp;=&amp;(u_1, \ldots, u_n)^T,\\
+\boldsymbol{X}&amp;=&amp;(1, \ldots, 1)^T,\\
+\end{aligned}
+\]</span>
+as well as
+<span class="math display">\[
+\boldsymbol{Z}= \left(\begin{array}{ccc}
+1         &amp;       &amp;    \\
+\vdots    &amp;       &amp;     \\
+1         &amp;       &amp;       \\
+        &amp;\ddots   &amp;   \\
+        &amp;       &amp;1 \\
+        &amp;       &amp; \vdots \\
+        &amp;       &amp;   1 \\
+\end{array}\right).
+\]</span></p></li>
+<li><p>For the random intercept model with fixed slope,
+<span class="math display">\[
+y_{ij}= \alpha+\boldsymbol{\beta}x_{ij} +u_i+\epsilon_{ij},
+\]</span>
+one has
+<span class="math display">\[
+\begin{aligned}
+\boldsymbol{\beta}&amp;=&amp; \left(\begin{array}{c} \alpha \\ \beta \end{array}\right),\\
+\boldsymbol{u}&amp;=&amp; (u_1, \ldots, u_n)^T,\\
+\boldsymbol{X}&amp;=&amp; \left(\begin{array}{cc}
+1 &amp; x_{11} \\
+\vdots &amp; \vdots \\
+1      &amp; x_{nn_n}\\ \end{array}\right)
+\end{aligned}
+\]</span>
+and <span class="math inline">\(\boldsymbol{Z}\)</span> as above.</p></li>
+<li><p>For the random slope model,
+<span class="math display">\[
+y_{ij}= \alpha+\beta x_{ij}+u_i+ v_ix_{ij}+\epsilon_{ij},
+\]</span>
+one has
+<span class="math display">\[
+\begin{aligned}
+\boldsymbol{\beta}&amp;=&amp; \left(\begin{array}{c} \alpha \\ \beta \end{array}\right),\\
+\boldsymbol{u}&amp;=&amp; (u_1, v_1, \ldots, u_n, v_n)^T\\
+\end{aligned}
+\]</span>
+<span class="math inline">\(\boldsymbol{X}\)</span> as above, and</p></li>
+</ul>
+<p><span class="math display">\[
+\boldsymbol{Z}= \left(\begin{array}{ccccc}
+1   &amp; x_{11}    &amp;          &amp;       &amp;  \\
+1   &amp; x_{1n_1}  &amp;          &amp;       &amp; \\
+    &amp;           &amp;  \ddots  &amp;       &amp; \\
+    &amp;           &amp;          &amp; 1     &amp; x_{n1}\\
+    &amp;           &amp;          &amp; 1     &amp; x_{nn_n}
+\end{array}\right).
+\]</span></p>
+<hr />
+<p>In the LMM, one (commonly) assumes:</p>
+<p><span class="math display">\[
+\boldsymbol{\epsilon} \sim N(0, \sigma^2\boldsymbol{I}_N)
+\]</span>
+(this is because correlation structures have already been induced by the random effect, hence there will be rarely a reason to make further specifications of such correlations) and
+<span class="math display">\[
+\boldsymbol{u}\sim N(0, \boldsymbol{Q})
+\]</span>
+where <span class="math inline">\(\boldsymbol{\epsilon}\)</span> and <span class="math inline">\(\boldsymbol{u}\)</span> are independent, and
+<span class="math display">\[
+\boldsymbol{Q}= \mbox{Var}(\boldsymbol{u})=
+\left(
+\begin{array}{ccc}
+\mbox{Var}(\tilde{\boldsymbol{u}}_1)    &amp;     &amp;   \\
+                                        &amp; \ddots    &amp;   \\
+                                        &amp;     &amp; \mbox{Var}(\tilde{\boldsymbol{u}}_n)
+\end{array}
+\right)=
+\left(
+\begin{array}{ccc}
+\tilde{\boldsymbol{Q}}  &amp;     &amp;   \\
+                                        &amp; \ddots    &amp;   \\
+                                        &amp;     &amp; \tilde{\boldsymbol{Q}}
+\end{array}
+\right)
+\]</span>
+That is, the <span class="math inline">\(\tilde{\boldsymbol{Q}}\)</span> is the variance matrix of the random effects of the <span class="math inline">\(i\)</span>th cluster (which usually does not depend <span class="math inline">\(i\)</span>).</p>
+<p>This implies marginally</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\boldsymbol{Y})&amp;=&amp;  \boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{Z}E(\boldsymbol{u})+E(\boldsymbol{\epsilon})= \boldsymbol{X}\boldsymbol{\beta}\\
+\mbox{Var}(\boldsymbol{Y})&amp;=&amp; \boldsymbol{Z}\mbox{Var}(\boldsymbol{u}) \boldsymbol{Z}^T+\sigma^2\boldsymbol{I}_N= \boldsymbol{Z}\boldsymbol{Q} \boldsymbol{Z}^T+\sigma^2\boldsymbol{I}_N
+\end{aligned}
+\]</span></p>
+<p>Summarizing, this gives us the ``structured” marginal variance matrix</p>
+<p><span class="math display">\[
+\boldsymbol{\Sigma}= \mbox{Var}(\boldsymbol{Y})= \boldsymbol{Z}\boldsymbol{Q}\boldsymbol{Z}^T+ \sigma^2\boldsymbol{I}_N.
+\]</span></p>
+</div>
+</div>
+<div id="estimation-of-fixed-effects" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Estimation of fixed effects<a href="linear_mixed_models.html#estimation-of-fixed-effects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall our modelling framework:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\boldsymbol{u} &amp;\sim&amp; N(0, \boldsymbol{Q}),\\
+\boldsymbol{Y}|\boldsymbol{u} &amp; \sim &amp; N(\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{Z}\boldsymbol{u}, \sigma^2\boldsymbol{I}_N),\\
+\boldsymbol{Y}&amp;\sim&amp; N(\boldsymbol{X}\boldsymbol{\beta},\boldsymbol{Z}\boldsymbol{Q}\boldsymbol{Z}^T+ \sigma^2\boldsymbol{I}_N )
+\end{aligned}
+\]</span>
+Denote the set of variance parameters (“variance components”) by <span class="math inline">\(\boldsymbol{\gamma}= \{\boldsymbol{Q}, \sigma^2\}\)</span>.
+Then <span class="math inline">\(\boldsymbol{\Sigma}=\boldsymbol{\Sigma}(\boldsymbol{\gamma})\)</span>;
+i.e. <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is only fully known when <span class="math inline">\(\boldsymbol{\gamma}\)</span> is known.</p>
+<p>For the estimation of the fixed effect parameters <span class="math inline">\(\boldsymbol{\beta}\)</span>, we distinguish several cases:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\boldsymbol{\gamma}\)</span> known (hence <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known). Then the solution is the same as for the marginal model with fixed <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, i.e.
+<span class="math display">\[
+\hat{\boldsymbol{\beta}}=(\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{Y}
+\]</span>
+Note that this is just the solution corresponding to the GEE <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{Y}-\boldsymbol{\mu})=0\)</span> with known (and correctly specified) variance matrix <span class="math inline">\(\boldsymbol{\Sigma}\)</span> (noting that in the current context we have <span class="math inline">\(\boldsymbol{D}=\boldsymbol{I}\)</span> since our setup is fully Gaussian, without link functions).</li>
+<li>If <span class="math inline">\(\boldsymbol{\gamma}\)</span> is unknown, a possible approach is to estimate it through maximization of the (marginal) likelihood
+<span class="math display">\[
+L^*(\boldsymbol{\beta}, \boldsymbol{\gamma}) \propto \frac{1}{|\boldsymbol{\Sigma}|^{1/2}}\exp\left(-\frac{1}{2}(\boldsymbol{Y}-\boldsymbol{X}\boldsymbol{\beta})^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{\gamma})(\boldsymbol{Y}-\boldsymbol{X}\boldsymbol{\beta})\right)
+\]</span>
+In order to maximize this likelihood, one typically employs a profile-likelihood-type approach. Consider therefore the same estimator as in case 1 above, but evaluated at <span class="math inline">\(\boldsymbol{\gamma}\)</span>, i.e.
+<span class="math display">\[
+\hat{\boldsymbol{\beta}}(\boldsymbol{\gamma})=(\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{\gamma})\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{\gamma})\boldsymbol{Y}
+\]</span>
+which can be plugged into <span class="math inline">\(L^*(\boldsymbol{\beta}, \boldsymbol{\gamma})\)</span>, yielding
+<span class="math display">\[
+L(\boldsymbol{\gamma})= L^*(\hat{\boldsymbol{\beta}}(\boldsymbol{\gamma}),\boldsymbol{\gamma} )
+\]</span>
+Maximizing <span class="math inline">\(L(\boldsymbol{\gamma})\)</span> w.r.t. <span class="math inline">\(\boldsymbol{\gamma}\)</span> yields</li>
+</ol>
+<p><span class="math display">\[
+\hat{\boldsymbol{\gamma}}_{ML}
+= \mbox{arg max}_{\boldsymbol{\gamma}}L(\boldsymbol{\gamma}).
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>REML estimation addresses the following problem in the ML solution: Just like, in the linear model (LM), the Maximum Likelihood estimate of the error variance <span class="math inline">\(\sigma^2\)</span> is biased, in the LMM the estimator <span class="math inline">\(\hat{\boldsymbol{\gamma}}_{ML}\)</span> is biased for <span class="math inline">\(\boldsymbol{\gamma}\)</span>, due to a “loss” of degress of freedom in the estimation of <span class="math inline">\(\boldsymbol{\beta}\)</span>. The idea of REML (Restricted Maximum Likelihood estimation) is to multiply the model equation <span class="math inline">\(\boldsymbol{Y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{Z}\boldsymbol{u}+\boldsymbol{\epsilon}\)</span> by any matrix <span class="math inline">\(\boldsymbol{A}\)</span> which is orthogonal to <span class="math inline">\(\boldsymbol{X}\)</span>, i.e. <span class="math inline">\(\boldsymbol{A}^T\boldsymbol{X}=0\)</span>, then
+<span class="math display">\[
+\boldsymbol{A}^T\boldsymbol{Y}= \boldsymbol{A}^T\boldsymbol{Z}\boldsymbol{u}+ \boldsymbol{A}^T\boldsymbol{\epsilon}
+\]</span>
+and based on this one can find a likelihood (of <span class="math inline">\(\boldsymbol{A}^T\boldsymbol{Y}\)</span>) which does not depend on <span class="math inline">\(\boldsymbol{\beta}\)</span> [FT page 290/291]. This “restricted likelihood” (the logarithm of which is called REML criterion in <code>lmer</code> output) does not depend on <span class="math inline">\(\boldsymbol{A}\)</span> and takes the shape
+<span class="math display">\[
+L_{REML}(\boldsymbol{\gamma}) \propto|\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{\gamma})\boldsymbol{X}|^{-1/2}L(\boldsymbol{\gamma})
+\]</span>
+Then the REML estimator of <span class="math inline">\(\gamma\)</span> is</li>
+</ol>
+<p><span class="math display">\[
+\hat{\boldsymbol{\gamma}}_{REML}= \mbox{arg max}_{\boldsymbol{\gamma}}L_{REML}(\boldsymbol{\gamma}).
+\]</span></p>
+<div id="example-7.5" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Example 7.5<a href="linear_mixed_models.html#example-7.5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>REML and ML estimates for Oxboys data</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="linear_mixed_models.html#cb210-1" tabindex="-1"></a>oxboys.slope.lmm <span class="ot">&lt;-</span> <span class="fu">lmer</span>(height <span class="sc">~</span> age <span class="sc">+</span> (age <span class="sc">|</span> Subject), <span class="at">data=</span>Oxboys)</span>
+<span id="cb210-2"><a href="linear_mixed_models.html#cb210-2" tabindex="-1"></a>oxboys.slope.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: height ~ age + (age | Subject)
+##    Data: Oxboys
+## REML criterion at convergence: 724.091
+## Random effects:
+##  Groups   Name        Std.Dev. Corr
+##  Subject  (Intercept) 8.0811       
+##           age         1.6807   0.64
+##  Residual             0.6599       
+## Number of obs: 234, groups:  Subject, 26
+## Fixed Effects:
+## (Intercept)          age  
+##     149.372        6.525</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="linear_mixed_models.html#cb212-1" tabindex="-1"></a>oxboys.slope.lmm.ml <span class="ot">&lt;-</span> <span class="fu">lmer</span>(height <span class="sc">~</span> age <span class="sc">+</span> (age <span class="sc">|</span> Subject), <span class="at">data=</span>Oxboys, <span class="at">REML=</span><span class="cn">FALSE</span>)</span>
+<span id="cb212-2"><a href="linear_mixed_models.html#cb212-2" tabindex="-1"></a>oxboys.slope.lmm.ml</span></code></pre></div>
+<pre><code>## Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
+## Formula: height ~ age + (age | Subject)
+##    Data: Oxboys
+##       AIC       BIC    logLik  deviance  df.resid 
+##  737.9677  758.6996 -362.9838  725.9677       228 
+## Random effects:
+##  Groups   Name        Std.Dev. Corr
+##  Subject  (Intercept) 7.9240       
+##           age         1.6467   0.64
+##  Residual             0.6599       
+## Number of obs: 234, groups:  Subject, 26
+## Fixed Effects:
+## (Intercept)          age  
+##     149.372        6.525</code></pre>
+<p>REML and ML estimates for Mathematics achievement data</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="linear_mixed_models.html#cb214-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;Datasets/sub_hsb.RData&quot;</span>)</span>
+<span id="cb214-2"><a href="linear_mixed_models.html#cb214-2" tabindex="-1"></a>school.id <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sub_hsb<span class="sc">$</span>schid)</span>
+<span id="cb214-3"><a href="linear_mixed_models.html#cb214-3" tabindex="-1"></a>hsb.lmm<span class="ot">&lt;-</span> <span class="fu">lmer</span>(mathach<span class="sc">~</span>ses<span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>school.id), <span class="at">data=</span>sub_hsb)</span>
+<span id="cb214-4"><a href="linear_mixed_models.html#cb214-4" tabindex="-1"></a>hsb.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: mathach ~ ses + (1 | school.id)
+##    Data: sub_hsb
+## REML criterion at convergence: 8601.028
+## Random effects:
+##  Groups    Name        Std.Dev.
+##  school.id (Intercept) 2.518   
+##  Residual              6.010   
+## Number of obs: 1329, groups:  school.id, 30
+## Fixed Effects:
+## (Intercept)          ses  
+##       12.89         2.12</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="linear_mixed_models.html#cb216-1" tabindex="-1"></a>hsb.lmm.ml<span class="ot">&lt;-</span> <span class="fu">lmer</span>(mathach<span class="sc">~</span>ses<span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>school.id), <span class="at">data=</span>sub_hsb, <span class="at">REML=</span><span class="cn">FALSE</span>)</span>
+<span id="cb216-2"><a href="linear_mixed_models.html#cb216-2" tabindex="-1"></a>hsb.lmm.ml</span></code></pre></div>
+<pre><code>## Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
+## Formula: mathach ~ ses + (1 | school.id)
+##    Data: sub_hsb
+##       AIC       BIC    logLik  deviance  df.resid 
+##  8608.516  8629.284 -4300.258  8600.516      1325 
+## Random effects:
+##  Groups    Name        Std.Dev.
+##  school.id (Intercept) 2.462   
+##  Residual              6.008   
+## Number of obs: 1329, groups:  school.id, 30
+## Fixed Effects:
+## (Intercept)          ses  
+##      12.886        2.131</code></pre>
+</div>
+</div>
+<div id="inference-for-fixed-effects" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Inference for fixed effects<a href="linear_mixed_models.html#inference-for-fixed-effects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall that, for known <span class="math inline">\(\boldsymbol{\Sigma}= \boldsymbol{Z}\boldsymbol{Q}\boldsymbol{Z}^T+ \sigma^2\boldsymbol{I}_N\)</span>,
+one has</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}}(\boldsymbol{\gamma})=(\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{Y}
+\]</span>
+which means that</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mbox{Var}(\hat{\boldsymbol{\beta}})&amp;=&amp; (\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\mbox{Var}(\boldsymbol{Y})\boldsymbol{\Sigma}^{-1}\boldsymbol{X}(\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{X})^{-1}\\
+&amp;=&amp; (\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{X})^{-1}
+\end{aligned}
+\]</span></p>
+<p>However, if <span class="math inline">\(\boldsymbol{\Sigma}= \boldsymbol{\Sigma}(\boldsymbol{\gamma})\)</span> needs to be estimated by <span class="math inline">\(\hat{\boldsymbol{\Sigma}}= \boldsymbol{\Sigma}(\hat{\boldsymbol{\gamma}})\)</span>, this variance estimator can be poor. Therefore, it has been suggested in the literature to use the sandwich variance estimator (as we have seen for GEEs in Section 6.3) also here. However, R function <code>lmer</code> does not actually do this. The LMM implementation in SAS does.
+Asymptotic normality and unbiasedness of the <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> hold approximately. So, for some fixed effects coefficient <span class="math inline">\(\beta_j\)</span>, <span class="math inline">\(j=1, \ldots, p\)</span>,</p>
+<ul>
+<li>p-values for <span class="math inline">\(H_0: \beta_j=0\)</span> can be approximately based on t-values <span class="math inline">\(\hat{\beta}_j/SE(\hat{\beta}_j)\)</span>;</li>
+<li><span class="math inline">\(\hat{\beta}_j \pm z_{\alpha/2} SE(\hat{\beta}_j)\)</span> will give reasonable confidence intervals,</li>
+</ul>
+<p>where <span class="math inline">\(z_{\alpha/2}\)</span> is the right-hand tail <span class="math inline">\(\alpha/2\)</span> quantile of the standard normal distribution.</p>
+<div id="example-7.6-mathematics-achievement-data" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Example 7.6 (Mathematics achievement data)<a href="linear_mixed_models.html#example-7.6-mathematics-achievement-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We consider the random intercept model for mathematics achievement with fixed effect for socioeconomic status (SES) as fitted in Example 7.5:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="linear_mixed_models.html#cb218-1" tabindex="-1"></a><span class="fu">summary</span>(hsb.lmm)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: mathach ~ ses + (1 | school.id)
+##    Data: sub_hsb
+## 
+## REML criterion at convergence: 8601
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.81268 -0.70959 -0.03616  0.76678  2.74101 
+## 
+## Random effects:
+##  Groups    Name        Variance Std.Dev.
+##  school.id (Intercept)  6.339   2.518   
+##  Residual              36.119   6.010   
+## Number of obs: 1329, groups:  school.id, 30
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  12.8865     0.4908  26.256
+## ses           2.1202     0.2536   8.359
+## 
+## Correlation of Fixed Effects:
+##     (Intr)
+## ses -0.010</code></pre>
+<p>The t-value for the fixed effect slope <code>ses</code> is given by <span class="math inline">\(2.1202/0.2536=8.359\)</span>, which is clearly <span class="math inline">\(&gt;&gt;2\)</span> and hence significantly different from 0 at the <span class="math inline">\(5\%\)</span> (or any other reasonable) level of significance.</p>
+<p>We can easily obtain an approximate 95% confidence interval for the fixed effect coefficient <code>ses</code>:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="linear_mixed_models.html#cb220-1" tabindex="-1"></a>CI <span class="ot">&lt;-</span> <span class="fl">2.1202</span><span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">0.2536</span></span>
+<span id="cb220-2"><a href="linear_mixed_models.html#cb220-2" tabindex="-1"></a>CI</span></code></pre></div>
+<pre><code>## [1] 1.623153 2.617247</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="linear_mixed_models.html#cb222-1" tabindex="-1"></a><span class="co"># confint(hsb.lmm)</span></span></code></pre></div>
+<hr />
+<p>However, as stated the methods mentioned above have only approximate character. The more principled approach is to use Likelihood ratio (LR)– based methods.</p>
+<p>Therefore, assume there is a smaller model <span class="math inline">\(M_0\)</span> and a larger model <span class="math inline">\(M_1\)</span>, in the sense that the smaller model is nested in the larger model <span class="math inline">\(M_1\)</span>, but with the only difference being in the fixed effects. Let us further denote the likelihoods (of the fitted models, evaluated at the respective MLEs) by <span class="math inline">\(L_0\)</span> and <span class="math inline">\(L_1\)</span> respectively, so that clearly <span class="math inline">\(L_0&lt;L_1\)</span>. Finally, let <span class="math inline">\(D_i=-2\log L_i+c\)</span>, with <span class="math inline">\(c\)</span> denoting a constant depending on the saturated likelihood. Then</p>
+<p><span class="math display">\[
+D_0-D_1= -2 \log L_0-2\log L_1 = -2 \log \frac{L_0}{L_1} \sim \chi^2(df)
+\]</span>
+where <span class="math inline">\(df\)</span> is the difference in the number of fixed effect parameters of the two models (it is not allowed here to have a difference in the number of random effect parameters). That is, for the test problem</p>
+<p><span class="math display">\[
+H_0: M_0\,\,\, \mbox{  versus   }\,\,\, H_1: M_1
+\]</span>
+one needs to fit both models and then reject <span class="math inline">\(H_0\)</span> if</p>
+<p><span class="math display">\[
+D_0-D_1&gt; \chi^2_{\alpha}(df)
+\]</span>
+where <span class="math inline">\(\chi^2_{\alpha}(df)\)</span> is the right-tail <span class="math inline">\(\alpha\)</span> quantile of the <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(df\)</span> degrees of freedom.</p>
+<p>Consider now the problem of finding a <span class="math inline">\(1-\alpha\)</span> confidence interval (or region) for some fixed effect parameters <span class="math inline">\(\boldsymbol{\beta}\)</span> (We may be interested in the whole parameter vector, or a subset of it, or just a single coefficient. We assume that <span class="math inline">\(k \le p\)</span> parameters are needed to estimate <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>.)</p>
+<p>Then we find the confidence interval (region) by identifying the range of <span class="math inline">\(\boldsymbol{\beta}\)</span> values for which</p>
+<p><span class="math display">\[
+\log L(\boldsymbol{\beta})\ge \log L(\hat{\boldsymbol{\beta}})- \frac{1}{2}\chi^2_{\alpha}(k)
+\]</span>
+where
+<span class="math display">\[
+L(\boldsymbol{\beta})= L^*(\boldsymbol{\beta}, \gamma(\boldsymbol{\beta}))
+\]</span>
+(Such a function does not really exist, it is evaluated by software, purely computationally).</p>
+</div>
+<div id="example-7.7-mathematics-achievement-data" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Example 7.7 (Mathematics achievement data)<a href="linear_mixed_models.html#example-7.7-mathematics-achievement-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We are interested in testing <span class="math inline">\(H_0\)</span>: “no linear trend for SES” versus <span class="math inline">\(H_1\)</span>: “There is a linear trend for SES”. To carry out the test, we need to fit both models (the one under the alternative is already available, via <code>hsb.lmm</code>) and find the difference in deviances.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="linear_mixed_models.html#cb223-1" tabindex="-1"></a>hsb.flat.lmm<span class="ot">&lt;-</span> <span class="fu">lmer</span>(mathach<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>school.id), <span class="at">data=</span>sub_hsb)</span>
+<span id="cb223-2"><a href="linear_mixed_models.html#cb223-2" tabindex="-1"></a><span class="fu">anova</span>(hsb.flat.lmm, hsb.lmm)</span></code></pre></div>
+<pre><code>## refitting model(s) with ML (instead of REML)</code></pre>
+<pre><code>## Data: sub_hsb
+## Models:
+## hsb.flat.lmm: mathach ~ 1 + (1 | school.id)
+## hsb.lmm: mathach ~ ses + (1 | school.id)
+##              npar    AIC    BIC  logLik deviance  Chisq Df Pr(&gt;Chisq)    
+## hsb.flat.lmm    3 8670.6 8686.2 -4332.3   8664.6                         
+## hsb.lmm         4 8608.5 8629.3 -4300.3   8600.5 64.102  1  1.182e-15 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We can also obtain the confidence intervals via</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="linear_mixed_models.html#cb226-1" tabindex="-1"></a><span class="fu">confint</span>(hsb.lmm)</span></code></pre></div>
+<pre><code>## Computing profile confidence intervals ...</code></pre>
+<pre><code>##                 2.5 %    97.5 %
+## .sig01       1.830620  3.380955
+## .sigma       5.783941  6.246918
+## (Intercept) 11.910502 13.864699
+## ses          1.613066  2.649187</code></pre>
+<p>(This also gives confidence intervals for the random effects but we have not studied these methods yet.)</p>
+<p>Addendum: Comparison of LMM to GEE</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="linear_mixed_models.html#cb229-1" tabindex="-1"></a><span class="co"># require(gee)</span></span>
+<span id="cb229-2"><a href="linear_mixed_models.html#cb229-2" tabindex="-1"></a><span class="co"># hsb.gee &lt;- gee(mathach~ses, data=sub_hsb, id=school.id, corstr = &quot;exchangeable&quot;)</span></span>
+<span id="cb229-3"><a href="linear_mixed_models.html#cb229-3" tabindex="-1"></a><span class="co"># summary(hsb.gee)$coef</span></span>
+<span id="cb229-4"><a href="linear_mixed_models.html#cb229-4" tabindex="-1"></a><span class="co"># summary(hsb.lmm)$coef</span></span></code></pre></div>
+</div>
+</div>
+<div id="prediction-of-random-effects" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Prediction of random effects<a href="linear_mixed_models.html#prediction-of-random-effects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall again
+<span class="math display">\[
+\begin{aligned}
+\boldsymbol{u} &amp;\sim&amp; N(0, \boldsymbol{Q}),\\
+\boldsymbol{Y}|\boldsymbol{u} &amp; \sim &amp; N(\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{Z}\boldsymbol{u}, \sigma^2\boldsymbol{I}_N),\\
+\boldsymbol{Y}&amp;\sim&amp; N(\boldsymbol{X}\boldsymbol{\beta},\boldsymbol{Z}\boldsymbol{Q}\boldsymbol{Z}^T+ \sigma^2\boldsymbol{I}_N )
+\end{aligned}
+\]</span>
+where <span class="math inline">\(\boldsymbol{u} \in \mathbb{R}^{nq}\)</span> contains all random effects, so for instance in the case of the random intercept model, one has <span class="math inline">\(\boldsymbol{u}=(u_1, \ldots, u_n)^T\)</span>, with <span class="math inline">\(q=1\)</span>.</p>
+<p>What can we say about the distribution of <span class="math inline">\(\boldsymbol{u}|\boldsymbol{Y}\)</span>?</p>
+<p>In principle, this is fully available from Bayes’ theorem,
+<span class="math display">\[
+f(\boldsymbol{u}|\boldsymbol{Y})= \frac{f(\boldsymbol{Y}|\boldsymbol{u})f(\boldsymbol{u})}{\int (\boldsymbol{Y}|\boldsymbol{u})f(\boldsymbol{u})d\boldsymbol{u}}
+\]</span></p>
+<p>In order to work out this posterior, we get help by a general result:</p>
+<p>If
+<span class="math display">\[
+\left(\begin{array}{c}\boldsymbol{y}_1 \\ \boldsymbol{y}_2  \end{array}  \right)
+\sim N\left(\left(\begin{array}{c}\boldsymbol{\mu}_1 \\ \boldsymbol{\mu}_2  \end{array} \right),
+\left(\begin{array}{cc}\boldsymbol{\Sigma}_{11} &amp; \boldsymbol{\Sigma}_{12} \\
+\boldsymbol{\Sigma}_{21} &amp; \boldsymbol{\Sigma}_{22}
+\end{array}
+\right)
+\right)
+\]</span>
+then</p>
+<p><span class="math display">\[
+\boldsymbol{y}_1|\boldsymbol{y}_2 \sim
+N\left(\boldsymbol{\mu}_1+ \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}
+(\boldsymbol{y}_2- \boldsymbol{\mu}_2), \boldsymbol{\Sigma}_{11}- \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21}
+\right)
+\]</span>
+so here with</p>
+<p><span class="math display">\[
+\left(\begin{array}{c}\boldsymbol{u} \\ \boldsymbol{Y}  \end{array}  \right)
+\sim N\left(\left(\begin{array}{c}0 \\ \boldsymbol{X}\boldsymbol{\beta}  \end{array} \right),
+\left(\begin{array}{cc}\boldsymbol{Q} &amp; \boldsymbol{C} \\
+\boldsymbol{C}^T &amp; \boldsymbol{\Sigma}
+\end{array}
+\right)
+\right)
+\]</span>
+we obtain</p>
+<p><span class="math display">\[
+\boldsymbol{u}|\boldsymbol{Y}\sim
+N\left(\boldsymbol{C}\boldsymbol{\Sigma}^{-1}(\boldsymbol{Y}-\boldsymbol{X}\boldsymbol{\beta}),
+\boldsymbol{Q}- \boldsymbol{C}\boldsymbol{\Sigma}^{-1}\boldsymbol{C}^T
+\right)
+\]</span></p>
+<p>with a covariance matrix <span class="math inline">\(\boldsymbol{C}\)</span> that we will work out later.</p>
+<p>So in summary we can predict <span class="math inline">\(\boldsymbol{u}\)</span> by</p>
+<p><span class="math display">\[
+E(\boldsymbol{u}|\boldsymbol{Y})= \boldsymbol{C}\boldsymbol{\Sigma}^{-1}(\boldsymbol{Y}-\boldsymbol{X}\boldsymbol{\beta}).
+\]</span></p>
+<p>It remains to work out <span class="math inline">\(\boldsymbol{C}=\mbox{Cov}(\boldsymbol{u}, \boldsymbol{Y}) \in \mathbb{R}^{nq \times N}\)</span>.</p>
+<p>Here again we make use of a general result. According to the law of total covariance, one has for any random vectors <span class="math inline">\(\boldsymbol{x}\)</span>, <span class="math inline">\(\boldsymbol{y}\)</span>, <span class="math inline">\(\boldsymbol{z}\)</span>,</p>
+<p><span class="math display">\[
+\mbox{Cov}(\boldsymbol{x}, \boldsymbol{y})= E\left(\mbox{Cov}(\boldsymbol{x},\boldsymbol{y})|\boldsymbol{z}\right)+
+\mbox{Cov}(E(\boldsymbol{x}|\boldsymbol{z}), E\left(\boldsymbol{y}| \boldsymbol{z})\right)
+\]</span>
+so when using <span class="math inline">\(\boldsymbol{z}=\boldsymbol{y}\)</span> this gives</p>
+<p><span class="math display">\[
+\mbox{Cov}(\boldsymbol{x}, \boldsymbol{y})= E\left(\mbox{Cov}(\boldsymbol{x},\boldsymbol{y})|\boldsymbol{y})\right)+
+\mbox{Cov}(E(\boldsymbol{x}|\boldsymbol{y}), E\left(\boldsymbol{y}| \boldsymbol{y})\right)= \mbox{Cov}(E(\boldsymbol{x}|\boldsymbol{y}), \boldsymbol{y})
+\]</span>
+i.e.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mbox{Cov}(\boldsymbol{Y},\boldsymbol{u} )&amp;=&amp; \mbox{Cov}(E(\boldsymbol{Y}|\boldsymbol{u}), \boldsymbol{u})=\mbox{Cov}(\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{Z}\boldsymbol{u}, \boldsymbol{u}) \\
+&amp;=&amp;\mbox{Cov}(\boldsymbol{X}\boldsymbol{\beta}, \boldsymbol{u})+ \mbox{Cov}(\boldsymbol{Z}, \boldsymbol{u})= \boldsymbol{Z}\mbox{Cov}(\boldsymbol{u},\boldsymbol{u})\\
+&amp;=&amp; \boldsymbol{Z}\mbox{Var}(\boldsymbol{u})= \boldsymbol{Z}\boldsymbol{Q}
+\end{aligned}
+\]</span></p>
+<p>i.e. <span class="math inline">\(\boldsymbol{C}^T= \boldsymbol{Z}\boldsymbol{Q}\)</span> and <span class="math inline">\(\boldsymbol{C}^T= \boldsymbol{Q}\boldsymbol{Z}^T\)</span>.</p>
+<p>Putting everything together we obtain</p>
+<p><span class="math display">\[
+E(\boldsymbol{u}|\boldsymbol{Y})= \boldsymbol{Q} \boldsymbol{Z}^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{Y}-\boldsymbol{X}\boldsymbol{\beta}).
+\]</span>
+Now recall that <span class="math inline">\(\boldsymbol{\Sigma}= \boldsymbol{Z}\boldsymbol{Q}\boldsymbol{Z}^T+\sigma^2\boldsymbol{I}_N= \boldsymbol{\Sigma}(\boldsymbol{\gamma})\)</span> with <span class="math inline">\(\boldsymbol{\gamma}= \{\boldsymbol{Q},\boldsymbol{\sigma^2} \}\)</span>. If <span class="math inline">\(\boldsymbol{\gamma}\)</span> is known and hence <span class="math inline">\(\boldsymbol{Q}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known, then plugging <span class="math inline">\(\hat{\boldsymbol{\beta}}=(\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{Y}\)</span> into the expression for <span class="math inline">\(E(\boldsymbol{u}|\boldsymbol{Y})\)</span> is called the <strong>Best linear unbiased predictor (BLUP)</strong> of <span class="math inline">\(\boldsymbol{u}\)</span>,
+<span class="math display">\[
+\hat{\boldsymbol{u}}= \boldsymbol{Q} \boldsymbol{Z}^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{Y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}).
+\]</span>
+If <span class="math inline">\(\boldsymbol{Q}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> are unknown they can be replaced by estimates, <span class="math inline">\(\boldsymbol{\hat{Q}}\)</span> and <span class="math inline">\(\hat{\boldsymbol{\Sigma}}\)</span>, resulting in
+<span class="math display">\[
+\hat{\boldsymbol{u}}= \hat{\boldsymbol{Q}} \boldsymbol{Z}^T\boldsymbol{\Sigma}^{-1}(\boldsymbol{Y}-\boldsymbol{X}\hat{\boldsymbol{\beta}})
+\]</span>
+which is often still called BLUP (despite not being necessarily unbiased) and which we therefore do not distinguish notationally. Details can be found in <em>McCulloch et al (2008): Generalized, linear, and mixed models. Wiley</em>.</p>
+<hr />
+<p>Based on the predicted random effects <span class="math inline">\(\hat{\boldsymbol{u}}\)</span>, we can also straightforwardly define and compute <em>fitted values</em>
+<span class="math display">\[
+\hat{\boldsymbol{Y}}= \boldsymbol{X}\hat{\boldsymbol{\beta}}+ \boldsymbol{Z}\hat{\boldsymbol{u}}
+\]</span>
+and <em>residuals</em>
+<span class="math display">\[
+\hat{\boldsymbol{\epsilon}}= \boldsymbol{Y}-\hat{\boldsymbol{Y}}=  \boldsymbol{Y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}- \boldsymbol{Z}\hat{\boldsymbol{u}}.
+\]</span></p>
+<div id="example-7.8-mathematics-achievement-data" class="section level3 hasAnchor" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Example 7.8 (Mathematics achievement data)<a href="linear_mixed_models.html#example-7.8-mathematics-achievement-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Random effects (predicted via BLUP) can be extracted from the fitted model via <code>ranef</code>:</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="linear_mixed_models.html#cb230-1" tabindex="-1"></a><span class="co">#hsb.lmm</span></span>
+<span id="cb230-2"><a href="linear_mixed_models.html#cb230-2" tabindex="-1"></a>hsb.ran<span class="ot">&lt;-</span> <span class="fu">ranef</span>(hsb.lmm)</span>
+<span id="cb230-3"><a href="linear_mixed_models.html#cb230-3" tabindex="-1"></a>hsb.ran</span></code></pre></div>
+<pre><code>## $school.id
+##      (Intercept)
+## 1224 -2.00682516
+## 1288  0.29842627
+## 1296 -3.88702782
+## 1308  1.75072442
+## 1317 -0.39423508
+## 1358 -1.37706846
+## 1374 -2.60181956
+## 1433  4.57777678
+## 1436  3.56937021
+## 1461  2.14874621
+## 1462 -0.88339941
+## 1477  0.91911536
+## 1499 -3.82691109
+## 1637 -3.60587318
+## 1906  1.81658824
+## 1909  0.83990262
+## 1942  3.15791804
+## 1946  0.01160886
+## 2030 -1.34191054
+## 2208  1.48034521
+## 2277 -1.80488696
+## 2305 -0.38458386
+## 2336  2.40354897
+## 2458  0.56018478
+## 2467 -1.83847667
+## 2526  3.15768920
+## 2626  0.56310879
+## 2629  2.10286933
+## 2639 -3.72142061
+## 2651 -1.68348489
+## 
+## with conditional variances for &quot;school.id&quot;</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="linear_mixed_models.html#cb232-1" tabindex="-1"></a><span class="fu">plot</span>(hsb.ran)</span></code></pre></div>
+<pre><code>## $school.id</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>A bit nicer:</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="linear_mixed_models.html#cb234-1" tabindex="-1"></a><span class="fu">require</span>(sjPlot)</span></code></pre></div>
+<pre><code>## Loading required package: sjPlot</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="linear_mixed_models.html#cb236-1" tabindex="-1"></a><span class="fu">plot_model</span>(hsb.lmm, <span class="at">type=</span><span class="st">&quot;re&quot;</span>, <span class="at">transform=</span><span class="cn">NULL</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Repeat for random slope model</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="linear_mixed_models.html#cb237-1" tabindex="-1"></a>hsb.slope.lmm<span class="ot">&lt;-</span> <span class="fu">lmer</span>(mathach<span class="sc">~</span>ses<span class="sc">+</span> (ses<span class="sc">|</span>school.id), <span class="at">data=</span>sub_hsb)</span>
+<span id="cb237-2"><a href="linear_mixed_models.html#cb237-2" tabindex="-1"></a>hsb.slope.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: mathach ~ ses + (ses | school.id)
+##    Data: sub_hsb
+## REML criterion at convergence: 8593.115
+## Random effects:
+##  Groups    Name        Std.Dev. Corr
+##  school.id (Intercept) 2.546        
+##            ses         1.253    0.04
+##  Residual              5.951        
+## Number of obs: 1329, groups:  school.id, 30
+## Fixed Effects:
+## (Intercept)          ses  
+##      12.731        2.247</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="linear_mixed_models.html#cb239-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ranef</span>(hsb.slope.lmm))</span></code></pre></div>
+<pre><code>## $school.id</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="linear_mixed_models.html#cb241-1" tabindex="-1"></a><span class="fu">plot_model</span>(hsb.slope.lmm, <span class="at">type=</span><span class="st">&quot;re&quot;</span>, <span class="at">transform=</span><span class="cn">NULL</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+</div>
+</div>
+<div id="inference-for-random-effects" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Inference for random effects<a href="linear_mixed_models.html#inference-for-random-effects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall <span class="math inline">\(\boldsymbol{Y}= \boldsymbol{X}\boldsymbol{\beta}+ \boldsymbol{Z}\boldsymbol{u}+ \boldsymbol{\epsilon}\)</span>
+where</p>
+<p><span class="math display">\[
+\boldsymbol{u}= \left(\begin{array}{c}
+\tilde{\boldsymbol{u}_1}\\ \vdots \\ \tilde{\boldsymbol{u}_n}
+\end{array}\right)
+\]</span>
+with <span class="math inline">\(\tilde{\boldsymbol{u}}_i = (u_i, v_i, \ldots, )^T\)</span> comprising of the <span class="math inline">\(q\)</span> random effects for cluster <span class="math inline">\(i\)</span>, with
+<span class="math display">\[
+\begin{aligned}
+u_i &amp;\sim&amp; N(0, \sigma_u^2)\\
+v_i &amp; \sim &amp; N(0, \sigma_v^2)\\
+&amp;\vdots &amp;
+\end{aligned}
+\]</span></p>
+<p>Usually, the <span class="math inline">\(u_i\)</span>, <span class="math inline">\(i=1,\ldots,n\)</span> will correspond to a random intercept, and the <span class="math inline">\(v_i\)</span> to a random slope for a particular coefficient. In principle, one can have one random slope for each predictor term in the model (but one can also have random slopes just for some or none of them). Let us now assume that we are interested in hypotheses of the type
+<span class="math display">\[
+\begin{aligned}
+H_0^{(u)}: \sigma_u^2=0 &amp; \mbox{  versus  } &amp; H_1^{(u)}: \sigma_u^2\not=0\\
+H_0^{(v)}: \sigma_v^2=0 &amp; \mbox{  versus  } &amp; H_1^{(v)}: \sigma_v^2\not=0.\\
+\vdots
+\end{aligned}
+\]</span></p>
+<p>Clearly, if the null hypothesis say <span class="math inline">\(H_0^{(u)}\)</span> is not rejected, then the random effect for the <span class="math inline">\(u_i\)</span> is not needed, since they do not have randomness! In this case, a fixed effect, that is a traditional intercept, or in case of the <span class="math inline">\(H_0^{(v)}\)</span> a usual fixed slope, are sufficient.</p>
+<p>To carry out these tests,we phrase the test problem again as a model comparison problem. Therefore, denote again</p>
+<ul>
+<li><span class="math inline">\(M_0\)</span> as the “smaller” model excluding the random effect in question;</li>
+<li><span class="math inline">\(M_1\)</span> as the “larger” model including that random effect.</li>
+</ul>
+<p>with <span class="math inline">\(L_0\)</span>, <span class="math inline">\(L_1\)</span>, <span class="math inline">\(D_0\)</span>, and <span class="math inline">\(D_1\)</span> the associated likelihoods and deviances.</p>
+<p>Then consider again the LR statistic</p>
+<p><span class="math display">\[
+D_0-D_1= -2 \log \frac{L_0}{L_1} \stackrel{H_0}{\sim} \chi^2(df)
+\]</span></p>
+<p>Establishing the <span class="math inline">\(df\)</span> does need some care. Since a <span class="math inline">\(q\)</span>-dimensional vector of random effects will induce a <span class="math inline">\(q \times q\)</span> matrix <span class="math inline">\(\tilde{\boldsymbol{Q}}\)</span>, removing one random effect will take one row and one column of <span class="math inline">\(\tilde{\boldsymbol{Q}}\)</span> out; and so the removed number of variance components will be the larger, the more random effects are already in the smaller model, <span class="math inline">\(M_0\)</span>. This is best illustrated by example (see below).</p>
+<p>It is further noted since the REML likelihood was explicitly produced to enable accurate estimation of the variance components <span class="math inline">\((\boldsymbol{\gamma})\)</span>, here one <strong>can</strong> use <em>either</em> REML- or ML- based likelihoods to carry out these tests. In fact, the function <code>ranova</code> which we will use for this purpose, does use REML likelihoods.</p>
+<div id="example-7.9-mathematics-achievement-data" class="section level3 hasAnchor" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> Example 7.9 (Mathematics achievement data)<a href="linear_mixed_models.html#example-7.9-mathematics-achievement-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s begin with the random intercept model. This has only one random effect, namely the random intercept. Let’s firstly look at this model once more.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="linear_mixed_models.html#cb242-1" tabindex="-1"></a>hsb.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: mathach ~ ses + (1 | school.id)
+##    Data: sub_hsb
+## REML criterion at convergence: 8601.028
+## Random effects:
+##  Groups    Name        Std.Dev.
+##  school.id (Intercept) 2.518   
+##  Residual              6.010   
+## Number of obs: 1329, groups:  school.id, 30
+## Fixed Effects:
+## (Intercept)          ses  
+##       12.89         2.12</code></pre>
+<p>Indeed there is only one random effect which can possibly be removed, corresponding to the variance component with value <span class="math inline">\(\sigma_u=2.518\)</span>. We are now testing whether this value can be considered significantly different from 0.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="linear_mixed_models.html#cb244-1" tabindex="-1"></a><span class="fu">require</span>(lmerTest)</span></code></pre></div>
+<pre><code>## Loading required package: lmerTest</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lmerTest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:lme4&#39;:
+## 
+##     lmer</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     step</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="linear_mixed_models.html#cb249-1" tabindex="-1"></a><span class="fu">ranova</span>(hsb.lmm)</span></code></pre></div>
+<pre><code>## ANOVA-like table for random-effects: Single term deletions
+## 
+## Model:
+## mathach ~ ses + (1 | school.id)
+##                 npar  logLik  AIC    LRT Df Pr(&gt;Chisq)    
+## &lt;none&gt;             4 -4300.5 8609                         
+## (1 | school.id)    3 -4351.0 8708 101.02  1  &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Here we clearly just have 1df since <code>hsb.lmm</code> just had one random effect. Note also <span class="math inline">\(-2 \times (-4300.5)= 8601.0\)</span>, corresponding to the value given at <code>REML  criterion</code> above. We also see that <span class="math inline">\(D_0-D_1=101.02\)</span> based on the difference of the values of the REML criterion and so the random intercepts are clearly needed in the model.</p>
+<p>Now let’s do the same with the random slope model.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="linear_mixed_models.html#cb251-1" tabindex="-1"></a>hsb.slope.lmm</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: mathach ~ ses + (ses | school.id)
+##    Data: sub_hsb
+## REML criterion at convergence: 8593.115
+## Random effects:
+##  Groups    Name        Std.Dev. Corr
+##  school.id (Intercept) 2.546        
+##            ses         1.253    0.04
+##  Residual              5.951        
+## Number of obs: 1329, groups:  school.id, 30
+## Fixed Effects:
+## (Intercept)          ses  
+##      12.731        2.247</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="linear_mixed_models.html#cb253-1" tabindex="-1"></a><span class="fu">ranova</span>(hsb.slope.lmm)</span></code></pre></div>
+<pre><code>## ANOVA-like table for random-effects: Single term deletions
+## 
+## Model:
+## mathach ~ ses + (ses | school.id)
+##                          npar  logLik    AIC   LRT Df Pr(&gt;Chisq)  
+## &lt;none&gt;                      6 -4296.6 8605.1                      
+## ses in (ses | school.id)    4 -4300.5 8609.0 7.913  2    0.01913 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Removing the random slope requires removing a variance and a covariance term from <span class="math inline">\(\tilde{\boldsymbol{Q}}\)</span>, hence df=2. Now <span class="math inline">\(D_0-D_1=7.913\)</span> which is significant at the <span class="math inline">\(5\%\)</span> level but not at the <span class="math inline">\(1\%\)</span> level. So, at the <span class="math inline">\(1\%\)</span> level of significance we would decide not to include the random slope for <code>ses</code>.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Green, P. J. 1984. <span>“Iteratively Reweighted Least Squares for Maximum Likelihood Estimation, and Some Robust and Resistant Alternatives.”</span> <em>JRSSB</em> 46 (2): 149–92.
+</div>
+<div class="csl-entry">
+Hauck, W. W., and A. Donner. 1976. <span>“Wald’s Test as Applied to Hypotheses in Logit Analysis.”</span> <em>Journal of the American Statistical Association</em> 72 (360a): 851–53.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="marginal_models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-Linear_mixed_models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
