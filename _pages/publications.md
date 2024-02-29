@@ -26,6 +26,7 @@ redirect_from:
 13. **Nguyen V Cuong**, Nan Ye, Wee Sun Lee, Hai Leong Chieu. [Conditional Random Field with High-order Dependencies for Sequence Labeling and Segmentation](https://jmlr.org/papers/v15/cuong14a.html){:target="_blank"}. *Journal of Machine Learning Research, 2014*. ([code](https://github.com/nvcuong/HOSemiCRF){:target="_blank"}, [data](https://nvcuong.github.io/data/){:target="_blank"})
 14. **Nguyen V Cuong**, Wee Sun Lee, Nan Ye, Kian Ming A Chai, Hai Leong Chieu. [Active Learning for Probabilistic Hypotheses Using the Maximum Gibbs Error Criterion](https://proceedings.neurips.cc/paper/2013/hash/fb89705ae6d743bf1e848c206e16a1d7-Abstract.html){:target="_blank"}. *NIPS, 2013*.
 15. **Nguyen V Cuong**, Lam Ho, Vu Dinh. [Generalization and Robustness of Batched Weighted Average Algorithm with V-geometrically Ergodic Markov Data](https://arxiv.org/abs/1406.3166){:target="_blank"}. *ALT, 2013*.
+16. **Nguyen V Cuong**, Vu Dinh, Lam Ho. [Mel-frequency Cepstral Coefficients for Eye Movement Identification](https://nvcuong.github.io/files/cuong2012mel.pdf){:target="_blank"}. *ICTAI, 2012*. ([code](https://github.com/nvcuong/MfccEMI){:target="_blank"})
 
 ### Patents
 
