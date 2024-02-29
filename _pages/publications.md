@@ -31,4 +31,4 @@ Full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9y
 
 ### Patents
 
-1. Guneet Dhillon, Vijay Mahadevan, Yuting Zhang, Meng Wang, Gangadhar Payyavula, **Viet Cuong Nguyen**, Rahul Bhotika, Stefano Soatto. [Structured Document Analyzer](https://patentimages.storage.googleapis.com/a9/b5/67/1feb04d8e27eeb/US10839245.pdf){:target="_blank"}. US Patent 10,839,245.
+1. Guneet Dhillon, Vijay Mahadevan, Yuting Zhang, Meng Wang, Gangadhar Payyavula, **Viet Cuong Nguyen**, Rahul Bhotika, Stefano Soatto. [Structured Document Analyzer](https://patentimages.storage.googleapis.com/a9/b5/67/1feb04d8e27eeb/US10839245.pdf){:target="_blank"}. US Patent, 2020.
