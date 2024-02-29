@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Publications"
+title: "Selected Publications"
 permalink: /publications/
 author_profile: true
 redirect_from:
@@ -9,9 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-Full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate)
-
-### Selected Publications
+(full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate))
 
 1. Behzad Ousat, Esteban Schafir, Duc C Hoang, Mohammad Ali Tofighi, **Cuong V Nguyen**, Sajjad Arshad, Selcuk Uluagac, Amin Kharraz. [The Matter of Captchas: An Analysis of a Brittle Security Feature on the Modern Web](https://www2024.thewebconf.org/){:target="_blank"}. Accepted to the ACM Web Conference (WWW 2024).
 2. Cuong N Nguyen, Phong Tran, Lam Si Tung Ho, Vu Dinh, Anh T Tran, Tal Hassner, **Cuong V Nguyen**. [Simple Transferability Estimation for Regression Tasks](https://proceedings.mlr.press/v216/nguyen23a.html){:target="_blank"}. Conference on Uncertainty in Artificial Intelligence (UAI 2023). ([code](https://github.com/CuongNN218/regression_transferability){:target="_blank"})
