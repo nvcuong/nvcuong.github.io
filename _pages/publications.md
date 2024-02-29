@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-(full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate){:target="_blank"})
+(Full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate){:target="_blank"})
 
 1. Behzad Ousat, Esteban Schafir, Duc Hoang, Mohammad Tofighi, **Cuong Nguyen**, Sajjad Arshad, Selcuk Uluagac, Amin Kharraz. [The Matter of Captchas: An Analysis of a Brittle Security Feature on the Modern Web](https://www2024.thewebconf.org/){:target="_blank"}. Accepted to *WWW*, 2024.
 2. Cuong Nguyen, Phong Tran, Lam Ho, Vu Dinh, Anh Tran, Tal Hassner, **Cuong Nguyen**. [Simple Transferability Estimation for Regression Tasks](https://proceedings.mlr.press/v216/nguyen23a.html){:target="_blank"}. In *UAI*, 2023. ([code](https://github.com/CuongNN218/regression_transferability){:target="_blank"})
