@@ -11,7 +11,7 @@ redirect_from:
 
 (Full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate){:target="_blank"})
 
-1. Behzad Ousat, Esteban Schafir, Duc Hoang, Mohammad Tofighi, **Cuong Nguyen**, Sajjad Arshad, Selcuk Uluagac, Amin Kharraz. [The Matter of Captchas: An Analysis of a Brittle Security Feature on the Modern Web](https://www2024.thewebconf.org/){:target="_blank"}. Accepted to *WWW*, 2024.
+1. Behzad Ousat, Esteban Schafir, Duc Hoang, Mohammad Tofighi, **Cuong Nguyen**, Sajjad Arshad, Selcuk Uluagac, Amin Kharraz. [The Matter of Captchas: An Analysis of a Brittle Security Feature on the Modern Web](https://sajjadium.github.io/files/www2024captchas_paper.pdf){:target="_blank"}. In *WWW*, 2024.
 2. Cuong N Nguyen, Phong Tran, Lam Ho, Vu Dinh, Anh Tran, Tal Hassner, **Cuong Nguyen**. [Simple Transferability Estimation for Regression Tasks](https://proceedings.mlr.press/v216/nguyen23a.html){:target="_blank"}. In *UAI*, 2023. ([code](https://github.com/CuongNN218/regression_transferability){:target="_blank"})
 3. **Cuong Nguyen**, Lam Ho, Huan Xu, Vu Dinh, Binh Nguyen. [Bayesian active learning with abstention feedbacks](https://www.sciencedirect.com/science/article/pii/S0925231221017045){:target="_blank"}. In *Neurocomputing*, 2022. ([preprint](https://arxiv.org/abs/1906.02179){:target="_blank"})
 4. **Cuong Nguyen**, Tal Hassner, Cedric Archambeau, Matthias Seeger. [LEEP: A New Measure to Evaluate Transferability of Learned Representations](http://proceedings.mlr.press/v119/nguyen20b.html){:target="_blank"}. In *ICML*, 2020.
