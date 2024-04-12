@@ -82,9 +82,9 @@ analytics:
 author:
   name             : "Cuong V. Nguyen"
   avatar           : "profile.jpg"
-  bio              : "Assistant Professor @ Durham University"
+  bio              : 
   location         : "Durham, UK"
-  employer         :
+  employer         : "Durham University"
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=CG9yOXoAAAAJ"
   email            : "viet.c.nguyen@domain where domain = durham.ac.uk"
