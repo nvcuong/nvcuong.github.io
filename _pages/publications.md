@@ -9,7 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
-Full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate){:target="_blank"}
+### Full list: 
+- [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate){:target="_blank"}
 
 ### Preprints:
 - Duc Hoang, Behzad Ousat, Amin Kharraz, **Cuong Nguyen**. [EnSolver: Uncertainty-Aware Ensemble CAPTCHA Solvers with Theoretical Guarantees](https://arxiv.org/abs/2307.15180){:target="_blank"}. *Under review*.
