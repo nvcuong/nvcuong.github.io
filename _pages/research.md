@@ -11,7 +11,7 @@ redirect_from:
 
 ### Projects: 
 - AI/ML for coastal environmental science in Southeast Florida ([website](https://climate-tech.fiu.edu/about/){:target="_blank"})
-- Cost effective and robust machine learning ([talk](https://youtu.be/o9qjQkvT9Ds?feature=shared){:target="_blank"}, [blog post](https://www.amazon.science/blog/when-does-transfer-learning-work){:target="_blank"})
+- Cost effective and robust machine learning ([talk](https://youtu.be/o9qjQkvT9Ds?feature=shared){:target="_blank"}, [blog](https://www.amazon.science/blog/when-does-transfer-learning-work){:target="_blank"})
 
 ### Talks:
 - Toward building a cost effective and robust machine learning system ([FIU version](https://youtu.be/o9qjQkvT9Ds?feature=shared){:target="_blank"}, [VinAI version](https://youtu.be/zO2RTEdhQk0?feature=shared){:target="_blank"})
