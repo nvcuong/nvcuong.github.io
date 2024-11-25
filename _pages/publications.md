@@ -16,7 +16,7 @@ redirect_from:
 
 ### Selected publications:
 
-1. Vu Dinh, Lam Ho, **Cuong Nguyen**. [Hamiltonian Monte Carlo on ReLU Neural Networks is Inefficient](https://arxiv.org/pdf/2410.22065){:target="_blank"}. In *NeurIPS*, 2024.
+1. Vu Dinh, Lam Ho, **Cuong Nguyen**. [Hamiltonian Monte Carlo on ReLU neural networks is inefficient](https://arxiv.org/pdf/2410.22065){:target="_blank"}. In *NeurIPS*, 2024.
 2. **Cuong Nguyen**, Siddharth Swaroop, Thang Bui, Yingzhen Li, Richard Turner. [Lifelong learning for deep neural networks with Bayesian principles](https://books.google.co.uk/books?id=5O4GEQAAQBAJ){:target="_blank"}. Book chapter in *Towards Human Brain Inspired Lifelong Learning*, 2024.
 3. Behzad Ousat, Esteban Schafir, Duc Hoang, Mohammad Tofighi, **Cuong Nguyen**, Sajjad Arshad, Selcuk Uluagac, Amin Kharraz. [The matter of Captchas: An analysis of a brittle security feature on the modern web](https://dl.acm.org/doi/pdf/10.1145/3589334.3645619){:target="_blank"}. In *WWW*, 2024.
 4. Cuong N Nguyen, Phong Tran, Lam Ho, Vu Dinh, Anh Tran, Tal Hassner, **Cuong V Nguyen**. [Simple transferability estimation for regression tasks](https://proceedings.mlr.press/v216/nguyen23a.html){:target="_blank"}. In *UAI*, 2023. ([code](https://github.com/CuongNN218/regression_transferability){:target="_blank"})
