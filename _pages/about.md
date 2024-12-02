@@ -10,7 +10,7 @@ redirect_from:
 
 {% include base_path %}
 
-I am an Assistant Professor in Statistics in the Department of Mathematical Sciences, Durham University. My research interests are statistical machine learning and artificial intelligence. See my [research](https://nvcuong.github.io/research/){:target="_blank"} and [publications](https://nvcuong.github.io/publications/){:target="_blank"} for more details of my work.
+I am an Assistant Professor in Statistics in the Department of Mathematical Sciences, Durham University. My research interests are statistical machine learning and artificial intelligence. See my [publications](https://nvcuong.github.io/publications/){:target="_blank"} for more details of my work.
 
 **Previous positions:** 
 - 2021--2023: Assistant Professor in Computer Science at Florida International University
