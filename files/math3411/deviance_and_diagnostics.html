@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Deviance | Advanced Statistical Modelling III (second term)</title>
+  <meta name="description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Deviance | Advanced Statistical Modelling III (second term)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Deviance | Advanced Statistical Modelling III (second term)" />
+  
+  <meta name="twitter:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  
+
+<meta name="author" content="Department of Mathematical Sciences at Durham University" />
+
+
+<meta name="date" content="2024-03-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="prediction_and_inference.html"/>
+<link rel="next" href="quasi_likelihood.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Statistical Modelling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>General Information</a></li>
+<li class="chapter" data-level="1" data-path="generalised_linear_models.html"><a href="generalised_linear_models.html"><i class="fa fa-check"></i><b>1</b> Review of Generalised Linear Models</a></li>
+<li class="chapter" data-level="2" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>2</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estimation.html"><a href="estimation.html#likelihood"><i class="fa fa-check"></i><b>2.1</b> Likelihood</a></li>
+<li class="chapter" data-level="2.2" data-path="estimation.html"><a href="estimation.html#loglike"><i class="fa fa-check"></i><b>2.2</b> Log-Likelihood</a></li>
+<li class="chapter" data-level="2.3" data-path="estimation.html"><a href="estimation.html#score-function-and-equation"><i class="fa fa-check"></i><b>2.3</b> Score Function and Equation</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="estimation.html"><a href="estimation.html#natural-link"><i class="fa fa-check"></i><b>2.3.1</b> Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="estimation.html"><a href="estimation.html#fisherinformation"><i class="fa fa-check"></i><b>2.4</b> Fisher Information</a></li>
+<li class="chapter" data-level="2.5" data-path="estimation.html"><a href="estimation.html#example-poisson-regression"><i class="fa fa-check"></i><b>2.5</b> Example: Poisson Regression</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="estimation.html"><a href="estimation.html#with-natural-link"><i class="fa fa-check"></i><b>2.5.1</b> With Natural Link</a></li>
+<li class="chapter" data-level="2.5.2" data-path="estimation.html"><a href="estimation.html#with-identity-link"><i class="fa fa-check"></i><b>2.5.2</b> With Identity Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="estimation.html"><a href="estimation.html#properties-of-boldsymbolsboldsymbolbeta-and-boldsymbolfboldsymbolbeta"><i class="fa fa-check"></i><b>2.6</b> Properties of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span> and <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="estimation.html"><a href="estimation.html#expectation-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.1</b> Expectation of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.2" data-path="estimation.html"><a href="estimation.html#variance-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.2</b> Variance of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.3" data-path="estimation.html"><a href="estimation.html#boldsymbolfboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.3</b> <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="estimation.html"><a href="estimation.html#matrix-notation"><i class="fa fa-check"></i><b>2.7</b> Matrix Notation</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="estimation.html"><a href="estimation.html#matrixform"><i class="fa fa-check"></i><b>2.7.1</b> Score Function and Fisher Information</a></li>
+<li class="chapter" data-level="2.7.2" data-path="estimation.html"><a href="estimation.html#natural-link-2"><i class="fa fa-check"></i><b>2.7.2</b> Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="estimation.html"><a href="estimation.html#iterativesolution"><i class="fa fa-check"></i><b>2.8</b> Iterative Solution of <span class="math inline">\(\boldsymbol{S}(\hat{\boldsymbol{\beta}}) = 0\)</span></a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="estimation.html"><a href="estimation.html#irls-pseudo-code"><i class="fa fa-check"></i><b>2.8.1</b> IRLS Pseudo-Code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="estimation.html"><a href="estimation.html#practical-example-us-polio-data"><i class="fa fa-check"></i><b>2.9</b> Practical Example: US Polio Data</a></li>
+<li class="chapter" data-level="2.10" data-path="estimation.html"><a href="estimation.html#estimation-of-phi"><i class="fa fa-check"></i><b>2.10</b> Estimation of <span class="math inline">\(\phi\)</span></a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="estimation.html"><a href="estimation.html#special-cases"><i class="fa fa-check"></i><b>2.10.1</b> Special Cases</a></li>
+<li class="chapter" data-level="2.10.2" data-path="estimation.html"><a href="estimation.html#practical-example-hospital-stay-data"><i class="fa fa-check"></i><b>2.10.2</b> Practical Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="estimation.html"><a href="estimation.html#asymptotic-properties-of-hatboldsymbolbeta"><i class="fa fa-check"></i><b>2.11</b> Asymptotic Properties of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="estimation.html"><a href="estimation.html#fisher-scoring"><i class="fa fa-check"></i><b>2.11.1</b> Fisher Scoring</a></li>
+<li class="chapter" data-level="2.11.2" data-path="estimation.html"><a href="estimation.html#expectation"><i class="fa fa-check"></i><b>2.11.2</b> Expectation</a></li>
+<li class="chapter" data-level="2.11.3" data-path="estimation.html"><a href="estimation.html#variance"><i class="fa fa-check"></i><b>2.11.3</b> Variance</a></li>
+<li class="chapter" data-level="2.11.4" data-path="estimation.html"><a href="estimation.html#asymptotic-normality"><i class="fa fa-check"></i><b>2.11.4</b> Asymptotic Normality</a></li>
+<li class="chapter" data-level="2.11.5" data-path="estimation.html"><a href="estimation.html#closing-the-circle"><i class="fa fa-check"></i><b>2.11.5</b> Closing The Circle</a></li>
+<li class="chapter" data-level="2.11.6" data-path="estimation.html"><a href="estimation.html#next-step"><i class="fa fa-check"></i><b>2.11.6</b> Next Step</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html"><i class="fa fa-check"></i><b>3</b> Prediction and Inference</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#prediction2"><i class="fa fa-check"></i><b>3.1</b> Prediction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#example-hospital-stay-data"><i class="fa fa-check"></i><b>3.1.1</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#hypothesis-tests"><i class="fa fa-check"></i><b>3.2</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#simple-tests"><i class="fa fa-check"></i><b>3.2.1</b> Simple Tests</a></li>
+<li class="chapter" data-level="3.2.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#generalisation-to-nested-models"><i class="fa fa-check"></i><b>3.2.2</b> Generalisation to Nested Models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#example-hospital-stay-data-1"><i class="fa fa-check"></i><b>3.2.3</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#confidence-regions-for-hatboldsymbolbeta"><i class="fa fa-check"></i><b>3.3</b> Confidence Regions for <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#alpha-hessian-cr"><i class="fa fa-check"></i><b>3.3.1</b> <span class="math inline">\((1 - \alpha)\)</span> Hessian CR</a></li>
+<li class="chapter" data-level="3.3.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#alpha-method-of-support-cr"><i class="fa fa-check"></i><b>3.3.2</b> <span class="math inline">\((1 - \alpha)\)</span> <em>method of support</em> CR</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#issues-with-glms-and-the-wald-test"><i class="fa fa-check"></i><b>3.4</b> Issues with GLMs and the Wald Test</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#separation"><i class="fa fa-check"></i><b>3.4.1</b> Separation</a></li>
+<li class="chapter" data-level="3.4.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#hauck-donner-effect"><i class="fa fa-check"></i><b>3.4.2</b> Hauck-Donner Effect</a></li>
+<li class="chapter" data-level="3.4.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#next-step-1"><i class="fa fa-check"></i><b>3.4.3</b> Next Step</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html"><i class="fa fa-check"></i><b>4</b> Deviance</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#goodness-of-fit"><i class="fa fa-check"></i><b>4.1</b> Goodness-of-Fit</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#the-saturated-model"><i class="fa fa-check"></i><b>4.1.1</b> The Saturated Model</a></li>
+<li class="chapter" data-level="4.1.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#deviance"><i class="fa fa-check"></i><b>4.1.2</b> Deviance</a></li>
+<li class="chapter" data-level="4.1.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-special-cases"><i class="fa fa-check"></i><b>4.1.3</b> Example Special Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#asymptotic-properties"><i class="fa fa-check"></i><b>4.2</b> Asymptotic Properties</a></li>
+<li class="chapter" data-level="4.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#pearson-statistic"><i class="fa fa-check"></i><b>4.3</b> Pearson Statistic</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#relation-to-deviance"><i class="fa fa-check"></i><b>4.3.1</b> Relation to Deviance</a></li>
+<li class="chapter" data-level="4.3.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#pearson-residuals"><i class="fa fa-check"></i><b>4.3.2</b> Pearson Residuals</a></li>
+<li class="chapter" data-level="4.3.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-us-polio-data"><i class="fa fa-check"></i><b>4.3.3</b> Example: US Polio Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#residuals-and-diagnostics"><i class="fa fa-check"></i><b>4.4</b> Residuals and Diagnostics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-hospital-stay-data-2"><i class="fa fa-check"></i><b>4.4.1</b> Example: Hospital Stay Data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-us-polio-data-1"><i class="fa fa-check"></i><b>4.4.2</b> Example: US Polio Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#analysis-of-deviance"><i class="fa fa-check"></i><b>4.5</b> Analysis of Deviance</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#interpretation-and-testing"><i class="fa fa-check"></i><b>4.5.1</b> Interpretation and Testing</a></li>
+<li class="chapter" data-level="4.5.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#general-case"><i class="fa fa-check"></i><b>4.5.2</b> General Case</a></li>
+<li class="chapter" data-level="4.5.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-hospital-stay-data-3"><i class="fa fa-check"></i><b>4.5.3</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html"><i class="fa fa-check"></i><b>5</b> Quasi-Likelihood Methods</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#dispersion"><i class="fa fa-check"></i><b>5.1</b> Dispersion</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-hospital-stay-data-4"><i class="fa fa-check"></i><b>5.1.1</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#overdispersion"><i class="fa fa-check"></i><b>5.2</b> Overdispersion</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-us-polio-data-2"><i class="fa fa-check"></i><b>5.2.1</b> Example: US Polio Data</a></li>
+<li class="chapter" data-level="5.2.2" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-us-polio-data-3"><i class="fa fa-check"></i><b>5.2.2</b> Example: US Polio Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#generalized-estimating-equations"><i class="fa fa-check"></i><b>5.3</b> Generalized Estimating Equations</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#uspolioexample"><i class="fa fa-check"></i><b>5.3.1</b> Example: US Polio Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="marginal_models.html"><a href="marginal_models.html"><i class="fa fa-check"></i><b>6</b> Marginal models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="marginal_models.html"><a href="marginal_models.html#repeated-measures-data"><i class="fa fa-check"></i><b>6.1</b> Repeated measures data</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="marginal_models.html"><a href="marginal_models.html#oxfordboysdata"><i class="fa fa-check"></i><b>6.1.1</b> Example: Oxford boys data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="marginal_models.html"><a href="marginal_models.html#mathsdata"><i class="fa fa-check"></i><b>6.1.2</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="marginal_models.html"><a href="marginal_models.html#modeldef"><i class="fa fa-check"></i><b>6.2</b> The marginal model for repeated measures</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="marginal_models.html"><a href="marginal_models.html#some-examples"><i class="fa fa-check"></i><b>6.2.1</b> Some examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="marginal_models.html"><a href="marginal_models.html#mmestimation"><i class="fa fa-check"></i><b>6.3</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="marginal_models.html"><a href="marginal_models.html#example-1"><i class="fa fa-check"></i><b>6.3.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html"><i class="fa fa-check"></i><b>7</b> Linear mixed models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#random-intercept-models"><i class="fa fa-check"></i><b>7.1</b> Random intercept models</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-oxford-boys-data"><i class="fa fa-check"></i><b>7.1.1</b> Example: Oxford boys data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-oxford-boys-data-1"><i class="fa fa-check"></i><b>7.1.2</b> Example: Oxford boys data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#random-slope-models"><i class="fa fa-check"></i><b>7.2</b> Random slope models</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-oxford-boys-data-2"><i class="fa fa-check"></i><b>7.2.1</b> Example: Oxford boys data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#the-linear-mixed-model-lmm"><i class="fa fa-check"></i><b>7.3</b> The linear mixed model (LMM)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#examples"><i class="fa fa-check"></i><b>7.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#estimation-of-fixed-effects"><i class="fa fa-check"></i><b>7.4</b> Estimation of fixed effects</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#remlexamples"><i class="fa fa-check"></i><b>7.4.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#inference-for-fixed-effects"><i class="fa fa-check"></i><b>7.5</b> Inference for fixed effects</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data"><i class="fa fa-check"></i><b>7.5.1</b> Example: Mathematics achievement data</a></li>
+<li class="chapter" data-level="7.5.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data-1"><i class="fa fa-check"></i><b>7.5.2</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#prediction-of-random-effects"><i class="fa fa-check"></i><b>7.6</b> Prediction of random effects</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data-2"><i class="fa fa-check"></i><b>7.6.1</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#inference-for-random-effects"><i class="fa fa-check"></i><b>7.7</b> Inference for random effects</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data-3"><i class="fa fa-check"></i><b>7.7.1</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Statistical Modelling III (second term)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="deviance_and_diagnostics" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Deviance<a href="deviance_and_diagnostics.html#deviance_and_diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="goodness-of-fit" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Goodness-of-Fit<a href="deviance_and_diagnostics.html#goodness-of-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We would like to find a measure for <span style="color: red;">goodness-of-fit</span>, or, to put it another way, a measure for the <span style="color: red;">discrepancy</span> between the data <span class="math inline">\(\boldsymbol{y} \in \mathbb{R}^n\)</span> and the <span style="color: blue;">fit</span> <span class="math inline">\(\hat{\boldsymbol\mu} = (\hat{\mu}_1, \hat{\mu}_2, \ldots, \hat{\mu}_n) \in \mathbb{R}^n\)</span>, where <span class="math inline">\(\hat{\mu}_i = h(\boldsymbol\beta^T \boldsymbol{x}_i)\)</span>.</p>
+<p>First we need to understand how well any GLM could be expected to fit.</p>
+<div id="the-saturated-model" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> The Saturated Model<a href="deviance_and_diagnostics.html#the-saturated-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The log likelihood at the MLE <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> is</p>
+<p><span class="math display" id="eq:maxloglikelihood">\[
+\ell(\hat{\boldsymbol\beta}) = \sum_i \left( \frac{y_i \hat{\theta}_i - b(\hat{\theta}_i)}{\phi_i} + c(y_i, \phi_i) \right).
+\tag{4.1}
+\]</span></p>
+<p>The larger <span class="math inline">\(\ell(\hat{\boldsymbol\beta})\)</span>, the better the fit, but what is <em>large</em>? Consider the following. In the GLM, <span class="math inline">\(\boldsymbol\mu\)</span>, or equivalently <span class="math inline">\(\boldsymbol\theta = (\theta_1, \ldots, \theta_n)\)</span>, takes values in <span class="math inline">\(\mathbb{R}^n\)</span>. However, <span class="math inline">\(\mu_i = h(\boldsymbol\beta^T \boldsymbol{x}_i)\)</span>. Thus, as <span class="math inline">\(\boldsymbol\beta \in \mathbb{R}^n\)</span> varies, <span class="math inline">\(\boldsymbol\mu = \{\mu_i\}\)</span> can only trace out a <span class="math inline">\(p\)</span>-dimensional submanifold of <span class="math inline">\(\mathbb{R}^n\)</span>: the possible values are constrained by the model structure. (Indeed, as we saw at the beginning, this is the whole point of the model in the first place.)</p>
+<p>An upper bound for <span class="math inline">\(\ell(\hat{\boldsymbol{\beta}})\)</span> would therefore be attained by a model that placed less constraints on <span class="math inline">\(\boldsymbol\mu\)</span> (since maximisation over a superset necessarily produces a larger value). This can be achieved by simply allowing <span class="math inline">\(\boldsymbol\mu\)</span> to range over all of <span class="math inline">\({\mathbb R}^{n}\)</span>, or in other words by allowing as many parameters as there are data points. This means intuitively that we end up `joining the dots’.</p>
+<p>The maximum likelihood problem then breaks down into <span class="math inline">\(n\)</span> simpler problems, as each term in equation <a href="deviance_and_diagnostics.html#eq:maxloglikelihood">(4.1)</a> can be maximised separately. Differentiation with respect to <span class="math inline">\(\theta_{i}\)</span> then gives
+<span class="math display">\[\begin{equation}
+        \ell_{i}&#39;(\theta_{i})
+          =
+            \frac{y_{i} - b&#39;(\theta_{i})}{\phi_{i}}
+    \end{equation}\]</span></p>
+<p>leading to the MLE <span class="math inline">\(\hat{\boldsymbol\theta}\)</span>, or equivalently, <span class="math inline">\(\hat{\boldsymbol\mu}\)</span>, given by
+<span class="math display">\[\begin{equation}
+        y_{i} = b&#39;(\hat{\theta}_{i}) = \hat{\mu}_{i}
+        \end{equation}\]</span></p>
+<p>This model, in which <span class="math inline">\(\boldsymbol\mu\)</span> may vary over the whole of <span class="math inline">\({\mathbb R}^{n}\)</span>, and there is thus one parameter for each data point, is known as the <span style="color: red;">saturated model</span>. Its log likelihood at the MLE value <span class="math inline">\(\hat{\boldsymbol\mu}_{\text{sat}}\)</span> is denoted <span class="math inline">\(\ell_{\text{sat}}\)</span>.</p>
+<p>This then leads us to the notion of <em>deviance</em>.</p>
+</div>
+<div id="deviance" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Deviance<a href="deviance_and_diagnostics.html#deviance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <span style="color: red;">deviance</span> of a GLM is defined as follows:
+<span class="math display">\[\begin{equation}
+D(\boldsymbol{Y}, \hat{\boldsymbol{\mu}}) = 2\;\phi\;
+\left(
+  \ell_{\text{sat}} - \ell(\hat{\boldsymbol{\beta}})
+  \right)
+\end{equation}\]</span></p>
+<p>while the <span style="color: red;">scaled deviance</span> is defined as
+<span class="math display">\[\begin{equation}
+D_{\text{sc}}(\boldsymbol{Y}, \hat{\boldsymbol{\mu}}) = 2\;
+\left(
+  \ell_{\text{sat}} - \ell(\hat{\boldsymbol{\beta}})
+  \right)
+\end{equation}\]</span></p>
+<p>Now,
+<span class="math display">\[\begin{equation}
+\ell(\hat{\boldsymbol{\beta}})
+=
+  \frac{1}{\phi}
+\sum_{i}
+m_{i}\;
+\left(
+  y_{i}\hat\theta_{i} - b(\hat\theta_{i})
+  \right)
++
+  \sum_{i}
+c(y_{i}, \phi_{i})
+\end{equation}\]</span></p>
+<p>with <span class="math inline">\(\hat{\theta}_{i} = (b&#39;)^{-1}(\hat{\mu}_{i})\)</span>, and <span class="math inline">\(\phi_{i} = \frac{\phi}{m_{i}}\)</span>; and
+<span class="math display">\[\begin{equation}
+\ell_{\text{sat}}
+=
+\frac{1}{\phi}
+\sum_{i}
+m_{i}\;
+\left(
+    y_{i}\hat\theta_{\text{sat},i} - b(\hat{\theta}_{\text{sat},i})
+\right)
++
+\sum_{i}
+c(y_{i}, \phi_{i})
+\end{equation}\]</span></p>
+<p>with <span class="math inline">\(\hat{\theta}_{\text{sat},i} = (b&#39;)^{-1}(y_{i})\)</span>, that is, <span class="math inline">\(\hat{\mu}_{\text{sat},i} = y_{i}\)</span>. We thus have that
+<span class="math display" id="eq:deviance">\[\begin{equation}
+D(\boldsymbol{Y}, \hat{\boldsymbol{\mu}})
+=
+  2
+\sum_{i}
+m_{i}
+\left\{
+  y_{i}
+  \left(
+    \hat\theta_{\text{sat},i} - \hat\theta_{i}
+    \right)
+  -
+    \left(
+      b(\hat\theta_{\text{sat},i}) - b(\hat\theta_{i})
+      \right)
+  \right\}
+\tag{4.2}
+\end{equation}\]</span></p>
+<p>The deviance is thus independent of <span class="math inline">\(\phi\)</span>.</p>
+</div>
+<div id="example-special-cases" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Example Special Cases<a href="deviance_and_diagnostics.html#example-special-cases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We now consider some examples. In these examples, we assume non-grouped data; that is, <span class="math inline">\(m_i=1\)</span> and <span class="math inline">\(n=M\)</span>, where <span class="math inline">\(M\)</span> is the number of groups. The results can easily be generalised to grouped data.</p>
+<div id="gaussian-1" class="section level4 hasAnchor" number="4.1.3.1">
+<h4><span class="header-section-number">4.1.3.1</span> Gaussian<a href="deviance_and_diagnostics.html#gaussian-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We have</p>
+<ul>
+<li><span class="math inline">\(b(\theta_i) = \frac{1}{2}\theta_i^{2}\)</span></li>
+<li><span class="math inline">\(\theta_i = (b&#39;)^{-1}(\mu_i) = \mu_i\)</span></li>
+</ul>
+<p>We thus find that
+<span class="math display">\[\begin{align}
+D(\boldsymbol{Y}, \hat{\boldsymbol{\mu}})
+&amp; =
+2
+\sum_{i}
+\left(
+    y_{i}(y_{i} - \hat{\mu}_{i})
+    -
+    \left(
+        \frac{1}{2} y_{i}^{2} - \frac{1}{2} \hat{\mu}_{i}^{2}
+    \right)
+\right)
+\\
+&amp; =
+2
+\sum_{i}
+\left(
+    \frac{1}{2} y_{i}^{2} - y_{i}\hat{\mu}_{i} + \frac{1}{2} \hat{\mu}_{i}^{2}
+\right)
+\\
+&amp; =
+\sum_{i}
+(y_{i} - \hat{\mu}_{i})^{2}
+\end{align}\]</span></p>
+<p>But this is just the residual sum of squares (RSS)!</p>
+</div>
+<div id="poisson" class="section level4 hasAnchor" number="4.1.3.2">
+<h4><span class="header-section-number">4.1.3.2</span> Poisson<a href="deviance_and_diagnostics.html#poisson" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We have</p>
+<ul>
+<li><span class="math inline">\(b(\theta_i) = e^{\theta_i}\)</span></li>
+<li><span class="math inline">\(\theta_i = (b&#39;)^{-1}(\mu_i) = \log \mu_i\)</span>.</li>
+</ul>
+<p>We thus find that
+<span class="math display">\[\begin{align}
+D(\boldsymbol{Y}, \hat{\boldsymbol{\mu}})
+&amp; =
+  2
+\sum_{i}
+\left(
+  y_{i}(\log y_{i} - \log \hat{\mu}_{i})
+  -
+    (y_{i} - \hat{\mu}_{i})
+  \right)
+\\
+&amp; =
+  2
+\sum_{i}
+\left(
+  y_{i}
+  \log
+  \left(
+    \frac{y_{i}}{\hat{\mu}_{i}}
+    \right)
+  -
+    (y_{i} - \hat{\mu}_{i})
+  \right)
+\end{align}\]</span></p>
+</div>
+<div id="bernoulli" class="section level4 hasAnchor" number="4.1.3.3">
+<h4><span class="header-section-number">4.1.3.3</span> Bernoulli<a href="deviance_and_diagnostics.html#bernoulli" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We have</p>
+<ul>
+<li><p><span class="math inline">\(b(\theta_i) = \log(1 + e^{\theta_i})\)</span></p></li>
+<li><p><span class="math inline">\(\mu_i = \frac{e^{\theta_i}}{1 + e^{\theta_i}}\)</span>.</p></li>
+<li><p><span class="math inline">\(\theta_i = \log \frac{\mu_i}{1-\mu_i}\)</span></p>
+<p>However, there is a problem. We have
+<span class="math display">\[\begin{equation}
+\hat\theta_{\text{sat},i}
+=
+\log
+\left(
+\frac{y_{i}}{1 - y_{i}}
+\right)
+\end{equation}\]</span></p></li>
+</ul>
+<p>for <span class="math inline">\(y_{i}\in\left\{0, 1\right\}\)</span>: the MLE <span class="math inline">\(\hat{\boldsymbol{\theta}}_{\text{sat}}\)</span> is apparently not defined. However, this is easily solved. It is easiest to see if we write the maximum likelihood in terms of <span class="math inline">\(\hat{\boldsymbol{\mu}}\)</span>:</p>
+<p><span class="math display">\[
+\ell(\hat{\boldsymbol{\mu}}) = \sum_i \left( y_i \log\hat{\mu}_i + (1 - y_i) \log(1 - \hat{\mu}_i) \right).
+\]</span></p>
+<p>The saturated log likelihood is therefore
+<span class="math display">\[
+\ell_{\text{sat}} = \sum_i \left( y_i \log y_i + (1 - y_i) \log(1 - y_i) \right) = 0
+\]</span></p>
+<p>for <span class="math inline">\(y_{i}\in \left\{0, 1\right\}\)</span> by continuity.</p>
+<p>We thus have</p>
+<p><span class="math display">\[
+\begin{aligned}
+  D(\boldsymbol{Y}, \hat{\boldsymbol{\mu}})
+  &amp;= -2 \, \ell(\hat{\boldsymbol\beta}) \\
+  &amp;= -2 \sum_i \left( y_i \log\hat{\mu}_i + (1 - y_i)\log(1 - \hat{\mu}_i) \right) \\
+  &amp;= -2 \left( \sum_{i : y_i = 0} \log(1 - \hat{\mu}_i) + \sum_{i : y_i = 1} \log\hat{\mu}_i \right).
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="asymptotic-properties" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Asymptotic Properties<a href="deviance_and_diagnostics.html#asymptotic-properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to use deviance effectively as a measure of goodness-of-fit, we need to be able to analyse its probabilistic behaviour, in order to perform tests, etc.
+Does deviance have, at least asymptotically, a nice distribution that we can use?</p>
+<p>Looking at the form of the deviance,
+<span class="math display">\[
+\frac{D(\boldsymbol{Y}, \hat{\boldsymbol\mu})}{\phi} = 2 \; (\ell_{\text{sat}} - \ell(\hat{\boldsymbol\beta}) ),
+\]</span></p>
+<p>one might suppose that, to be analogous with the quantities used in likelihood ratio tests, it would be <span class="math inline">\(\chi^2(n-p)\)</span>-distributed asymptotically, since the saturated model has <span class="math inline">\(n\)</span> parameters, and the model in which we are interested has <span class="math inline">\(p\)</span>. <em>If</em> this were the case, then we could say that if</p>
+<p><span class="math display" id="eq:devtest">\[
+\frac{D(\boldsymbol{Y}, \hat{\boldsymbol\mu})}{\phi} &gt; \chi^2_{p, \alpha}
+\tag{4.3}
+\]</span></p>
+<p>then the model <em>does not fit well</em>.</p>
+<p>Unfortunately, it is not true that <span class="math inline">\(\frac{D(\boldsymbol{Y}, \hat{\boldsymbol\mu})}{\phi}\)</span> is asymptotically <span class="math inline">\(\chi^2\)</span>-distributed in general. This is because the limit theorems that give the <span class="math inline">\(\chi^2\)</span> distribution do not apply when the number of parameters varies as the amount of data increases. Here that is the case, as the dimensionality of the saturated model is not fixed, but <span class="math inline">\(n\)</span>.</p>
+<p>In special cases, most notably for the Poisson distribution, or when the <span class="math inline">\(m_i \gg 1\)</span>, the asymptotics do hold, and we can use Equation <a href="deviance_and_diagnostics.html#eq:devtest">(4.3)</a> as a test of goodness-of-fit. In general, however, this is <em>not</em> the case.</p>
+<p>Thus, as promising as deviance appears, it cannot serve as a complete replacement for the RSS, even though this is a special case. We will see, however, that deviance is still extremely useful.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+</div>
+<div id="pearson-statistic" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Pearson Statistic<a href="deviance_and_diagnostics.html#pearson-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We now take a slight detour to discuss an alternative measure of goodness-of-fit. This bears the same relationship to deviance that the Wald test bears to the likelihood ratio test: one works in the domain of the probability distribution; and one in its codomain, or in other words, in terms of probability itself.</p>
+<p>The <span style="color: red;">Pearson statistic</span> is defined as
+<span class="math display">\[
+\chi^2_P = \sum_i m_i \frac{ (y_i - \hat{\mu}_i)^2 } { \mathcal{V}(\hat{\mu}_i) }.
+\]</span></p>
+<p>We then see that
+<span class="math display">\[
+\begin{aligned}
+  \frac{\chi^2_P}{\phi}
+  &amp;= \sum_i \frac{ (y_i - \hat{\mu}_i)^2 } { \frac{\phi}{m_i} \mathcal{V}(\hat{\mu}_i) } \\
+  &amp;= \sum_i \frac{ (y_i - \hat{\mu}_i)^2 } { \widehat{\text{Var}}[y_i]} \\
+  &amp;\stackrel{a}{\sim} \chi^2(n - p).
+\end{aligned}
+\]</span></p>
+<p>Hence,
+<span class="math display">\[
+\chi^2_P \stackrel{a}{\sim} \phi \; \chi^2(n - p).
+\]</span></p>
+<p>Thus <span class="math inline">\(\chi^2_P\)</span> can be used to measure goodness-of-fit.</p>
+<div id="relation-to-deviance" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Relation to Deviance<a href="deviance_and_diagnostics.html#relation-to-deviance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider <span class="math inline">\(D(\boldsymbol{Y}, \hat{\boldsymbol\mu})\)</span> for the Poisson model:
+<span class="math display">\[
+D(\boldsymbol{Y}, \hat{\boldsymbol\mu}) = 2 \sum_i \left( y_i \log \frac{y_i}{\hat{\mu}_i} - (y_i - \hat{\mu}_i) \right).
+\]</span></p>
+<p>Expanding this as a function of <span class="math inline">\(\boldsymbol{y}\)</span> around <span class="math inline">\(\hat{\boldsymbol\mu}\)</span>, we find
+<span class="math display">\[
+D(\boldsymbol{Y}, \hat{\boldsymbol\mu}) \simeq \sum_i \frac{(y_i - \hat{\mu}_i)^2}{\hat{\mu}_i}.
+\]</span></p>
+<p>This is just the normal Pearson statistic for the Poisson distribution.</p>
+</div>
+<div id="pearson-residuals" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Pearson Residuals<a href="deviance_and_diagnostics.html#pearson-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will see soon that we can define several types of residual for GLMs. One is defined based on the Pearson statistic, the `Pearson residual’:
+<span class="math display">\[
+r^P_i
+= \sqrt{m_i} \frac{y_i - \hat{\mu}_i}{\sqrt{\mathcal{V}(\hat{\mu}_i)}}
+= \sqrt{\hat{\phi}} \frac{y_i - \hat{\mu}_i}{ \sqrt{\widehat{\text{Var}}[y_i]}}.
+\]</span></p>
+<p>If <span class="math inline">\(y_i \sim \mathcal{N}(\mu_i, \sigma^2)\)</span>, with <span class="math inline">\(m_i = 1\)</span>, then <span class="math inline">\(\mathcal{V}(\mu_i) = 1\)</span>, so that
+<span class="math display">\[
+r^P_i = y_i - \hat{\mu}_i = \epsilon_i.
+\]</span></p>
+<p>Thus in a linear model, the Pearson residuals are just the `usual’ residuals.</p>
+</div>
+<div id="example-us-polio-data" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Example: US Polio Data<a href="deviance_and_diagnostics.html#example-us-polio-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This example concerns a Poisson model, so we can use deviance as a goodness-of-fit measure. We will use deviance and Pearson statistic to test if the model is a good fit.</p>
+<p>The R code for this example is presented here:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="deviance_and_diagnostics.html#cb44-1" tabindex="-1"></a><span class="co"># Load and plot the data</span></span>
+<span id="cb44-2"><a href="deviance_and_diagnostics.html#cb44-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;gamlss.data&quot;</span>)</span>
+<span id="cb44-3"><a href="deviance_and_diagnostics.html#cb44-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;polio&quot;</span>)</span>
+<span id="cb44-4"><a href="deviance_and_diagnostics.html#cb44-4" tabindex="-1"></a>uspolio <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">168</span>, <span class="fu">t</span>(polio)), <span class="at">ncol=</span><span class="dv">2</span>))</span>
+<span id="cb44-5"><a href="deviance_and_diagnostics.html#cb44-5" tabindex="-1"></a><span class="fu">colnames</span>(uspolio) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;cases&quot;</span>)</span>
+<span id="cb44-6"><a href="deviance_and_diagnostics.html#cb44-6" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="deviance_and_diagnostics.html#cb44-7" tabindex="-1"></a><span class="fu">plot</span>(uspolio, <span class="at">type=</span><span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/readdatC-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="deviance_and_diagnostics.html#cb45-1" tabindex="-1"></a><span class="co"># Create Poisson GLM which includes time, six-month cycles </span></span>
+<span id="cb45-2"><a href="deviance_and_diagnostics.html#cb45-2" tabindex="-1"></a><span class="co"># and twelve-month cycles (see Estimation chapter)</span></span>
+<span id="cb45-3"><a href="deviance_and_diagnostics.html#cb45-3" tabindex="-1"></a>polio2.glm<span class="ot">&lt;-</span> <span class="fu">glm</span>(cases<span class="sc">~</span>time <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">12</span>)) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">12</span>))</span>
+<span id="cb45-4"><a href="deviance_and_diagnostics.html#cb45-4" tabindex="-1"></a>                 <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">6</span>)) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">6</span>)), </span>
+<span id="cb45-5"><a href="deviance_and_diagnostics.html#cb45-5" tabindex="-1"></a>                 <span class="at">family=</span><span class="fu">poisson</span>(<span class="at">link=</span>log), <span class="at">data=</span>uspolio)</span>
+<span id="cb45-6"><a href="deviance_and_diagnostics.html#cb45-6" tabindex="-1"></a><span class="fu">summary</span>(polio2.glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = cases ~ time + I(cos(2 * pi * time/12)) + I(sin(2 * 
+##     pi * time/12)) + I(cos(2 * pi * time/6)) + I(sin(2 * pi * 
+##     time/6)), family = poisson(link = log), data = uspolio)
+## 
+## Coefficients:
+##                           Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)               0.557241   0.127303   4.377 1.20e-05 ***
+## time                     -0.004799   0.001403  -3.421 0.000625 ***
+## I(cos(2 * pi * time/12))  0.137132   0.089479   1.533 0.125384    
+## I(sin(2 * pi * time/12)) -0.534985   0.115476  -4.633 3.61e-06 ***
+## I(cos(2 * pi * time/6))   0.458797   0.101467   4.522 6.14e-06 ***
+## I(sin(2 * pi * time/6))  -0.069627   0.098123  -0.710 0.477957    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for poisson family taken to be 1)
+## 
+##     Null deviance: 343.00  on 167  degrees of freedom
+## Residual deviance: 288.85  on 162  degrees of freedom
+## AIC: 557.9
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="deviance_and_diagnostics.html#cb47-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1970</span> <span class="sc">+</span> ((uspolio<span class="sc">$</span>time<span class="dv">-1</span>)<span class="sc">/</span><span class="dv">12</span>), uspolio<span class="sc">$</span>cases, <span class="at">type=</span><span class="st">&quot;h&quot;</span>)</span>
+<span id="cb47-2"><a href="deviance_and_diagnostics.html#cb47-2" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">1970</span> <span class="sc">+</span> ((uspolio<span class="sc">$</span>time<span class="dv">-1</span>)<span class="sc">/</span><span class="dv">12</span>), polio2.glm<span class="sc">$</span>fitted,<span class="at">col=</span><span class="dv">4</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/readdatC-2.png" width="672" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="deviance_and_diagnostics.html#cb48-1" tabindex="-1"></a><span class="co"># Deviance</span></span>
+<span id="cb48-2"><a href="deviance_and_diagnostics.html#cb48-2" tabindex="-1"></a>polio2.glm<span class="sc">$</span>dev</span></code></pre></div>
+<pre><code>## [1] 288.8549</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="deviance_and_diagnostics.html#cb50-1" tabindex="-1"></a><span class="co"># Pearson statistic</span></span>
+<span id="cb50-2"><a href="deviance_and_diagnostics.html#cb50-2" tabindex="-1"></a><span class="fu">sum</span>((uspolio<span class="sc">$</span>cases<span class="sc">-</span>polio2.glm<span class="sc">$</span>fitted)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> polio2.glm<span class="sc">$</span>fitted)</span></code></pre></div>
+<pre><code>## [1] 318.7216</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="deviance_and_diagnostics.html#cb52-1" tabindex="-1"></a><span class="co"># Either way, critical value at 5% level</span></span>
+<span id="cb52-2"><a href="deviance_and_diagnostics.html#cb52-2" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">162</span>)</span></code></pre></div>
+<pre><code>## [1] 192.7001</code></pre>
+<p>The deviance is <span class="math inline">\(288.86\)</span>, while the Pearson statistic is <span class="math inline">\(318.72\)</span>. We have that <span class="math inline">\(\chi^2_{162, 0.05} = 192.7\)</span>, so either way we reject <span class="math inline">\(\mathcal{H}_0\)</span>, which is that the model is adequate, at <span class="math inline">\(5\%\)</span>. (The test is of a model with <span class="math inline">\(6\)</span> parameters against a model with <span class="math inline">\(168\)</span> parameters, hence the <span class="math inline">\(\chi^2\)</span> distribution has <span class="math inline">\(162\)</span> degrees of freedom.)</p>
+<p>We can also test the model with temperature data.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="deviance_and_diagnostics.html#cb54-1" tabindex="-1"></a><span class="co"># Read in temperature data and scale it</span></span>
+<span id="cb54-2"><a href="deviance_and_diagnostics.html#cb54-2" tabindex="-1"></a>temp_data <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="fl">5.195</span>, <span class="fl">5.138</span>, <span class="fl">5.316</span>, <span class="fl">5.242</span>, <span class="fl">5.094</span>, <span class="fl">5.108</span>, <span class="fl">5.260</span>, <span class="fl">5.153</span>, </span>
+<span id="cb54-3"><a href="deviance_and_diagnostics.html#cb54-3" tabindex="-1"></a>                   <span class="fl">5.155</span>, <span class="fl">5.231</span>, <span class="fl">5.234</span>, <span class="fl">5.142</span>, <span class="fl">5.173</span>, <span class="fl">5.167</span>), <span class="at">each =</span> <span class="dv">12</span> )</span>
+<span id="cb54-4"><a href="deviance_and_diagnostics.html#cb54-4" tabindex="-1"></a>scaled_temp <span class="ot">=</span> <span class="dv">10</span> <span class="sc">*</span> (temp_data <span class="sc">-</span> <span class="fu">min</span>(temp_data))<span class="sc">/</span>(<span class="fu">max</span>(temp_data) <span class="sc">-</span> <span class="fu">min</span>(temp_data))</span>
+<span id="cb54-5"><a href="deviance_and_diagnostics.html#cb54-5" tabindex="-1"></a>uspolio<span class="sc">$</span>temp <span class="ot">=</span> scaled_temp</span>
+<span id="cb54-6"><a href="deviance_and_diagnostics.html#cb54-6" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="deviance_and_diagnostics.html#cb54-7" tabindex="-1"></a><span class="co"># Construct GLM</span></span>
+<span id="cb54-8"><a href="deviance_and_diagnostics.html#cb54-8" tabindex="-1"></a>polio3.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(cases<span class="sc">~</span>time <span class="sc">+</span> temp </span>
+<span id="cb54-9"><a href="deviance_and_diagnostics.html#cb54-9" tabindex="-1"></a>                  <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">12</span>)) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">12</span>))</span>
+<span id="cb54-10"><a href="deviance_and_diagnostics.html#cb54-10" tabindex="-1"></a>                  <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">6</span>)) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>time<span class="sc">/</span><span class="dv">6</span>)), </span>
+<span id="cb54-11"><a href="deviance_and_diagnostics.html#cb54-11" tabindex="-1"></a>                  <span class="at">family=</span><span class="fu">poisson</span>(<span class="at">link=</span>log), <span class="at">data=</span>uspolio)</span>
+<span id="cb54-12"><a href="deviance_and_diagnostics.html#cb54-12" tabindex="-1"></a><span class="fu">summary</span>(polio3.glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = cases ~ time + temp + I(cos(2 * pi * time/12)) + 
+##     I(sin(2 * pi * time/12)) + I(cos(2 * pi * time/6)) + I(sin(2 * 
+##     pi * time/6)), family = poisson(link = log), data = uspolio)
+## 
+## Coefficients:
+##                           Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)               0.129643   0.186352   0.696 0.486623    
+## time                     -0.003972   0.001439  -2.761 0.005770 ** 
+## temp                      0.080308   0.023139   3.471 0.000519 ***
+## I(cos(2 * pi * time/12))  0.136094   0.089489   1.521 0.128314    
+## I(sin(2 * pi * time/12)) -0.531668   0.115466  -4.605 4.13e-06 ***
+## I(cos(2 * pi * time/6))   0.457487   0.101435   4.510 6.48e-06 ***
+## I(sin(2 * pi * time/6))  -0.068345   0.098149  -0.696 0.486218    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for poisson family taken to be 1)
+## 
+##     Null deviance: 343.00  on 167  degrees of freedom
+## Residual deviance: 276.84  on 161  degrees of freedom
+## AIC: 547.88
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="deviance_and_diagnostics.html#cb56-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1970</span> <span class="sc">+</span> ((uspolio<span class="sc">$</span>time<span class="dv">-1</span>)<span class="sc">/</span><span class="dv">12</span>), uspolio<span class="sc">$</span>cases, <span class="at">type=</span><span class="st">&quot;h&quot;</span>)</span>
+<span id="cb56-2"><a href="deviance_and_diagnostics.html#cb56-2" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">1970</span> <span class="sc">+</span> ((uspolio<span class="sc">$</span>time<span class="dv">-1</span>)<span class="sc">/</span><span class="dv">12</span>), polio3.glm<span class="sc">$</span>fitted, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="deviance_and_diagnostics.html#cb57-1" tabindex="-1"></a><span class="co"># Deviance</span></span>
+<span id="cb57-2"><a href="deviance_and_diagnostics.html#cb57-2" tabindex="-1"></a>polio3.glm<span class="sc">$</span>dev</span></code></pre></div>
+<pre><code>## [1] 276.8357</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="deviance_and_diagnostics.html#cb59-1" tabindex="-1"></a><span class="co"># Pearson statistic</span></span>
+<span id="cb59-2"><a href="deviance_and_diagnostics.html#cb59-2" tabindex="-1"></a><span class="fu">sum</span>((uspolio<span class="sc">$</span>cases<span class="sc">-</span>polio3.glm<span class="sc">$</span>fitted)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> polio3.glm<span class="sc">$</span>fitted)</span></code></pre></div>
+<pre><code>## [1] 279.2618</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="deviance_and_diagnostics.html#cb61-1" tabindex="-1"></a><span class="co"># Now, critical value at 5% level</span></span>
+<span id="cb61-2"><a href="deviance_and_diagnostics.html#cb61-2" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">161</span>)</span></code></pre></div>
+<pre><code>## [1] 191.6084</code></pre>
+<p>Note here that the <span class="math inline">\(\chi^2\)</span> distribution has <span class="math inline">\(161\)</span> degrees of freedom. From the results, we still reject <span class="math inline">\(\mathcal{H}_{0}\)</span>, although the deviance and Pearson statistic both reduced.</p>
+</div>
+</div>
+<div id="residuals-and-diagnostics" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Residuals and Diagnostics<a href="deviance_and_diagnostics.html#residuals-and-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Just as there were two types of hypothesis test, and two measures of goodness-of-fit, there are two types of residual typically used for GLMs. These are as follows:</p>
+<p><span class="math display">\[\begin{align*}
+\textrm{Deviance residuals} &amp; \qquad  &amp; \textrm{Pearson residuals} \\
+D = \sum_i d_i &amp; \qquad &amp; \chi^2_P = \sum_i m_i\frac{(y_i - \hat{\mu}_i)^2}{\mathcal{V}(\hat{\mu}_i)}
+\\
+r^D_i = \textrm{sign}(y_i - \hat{\mu}_i)\sqrt{d_i} &amp; &amp; r^P_i = \sqrt{m_i}\frac{y_i - \hat{\mu}_i} { \sqrt{\mathcal{V}(\hat{\mu}_i)}}
+\end{align*}\]</span></p>
+<p>Here <span class="math inline">\(d_i\)</span> is the contribution of point (or data group) <span class="math inline">\(i\)</span> to the overall deviance. That is,
+<span class="math display">\[
+d_i = 2 \, m_i \, \left\{ y_i
+  \left( \hat{\theta}_{\text{sat}, i} - \hat{\theta}_i \right) -
+  \left( b(\hat{\theta}_{\text{sat}, i}) - b(\hat{\theta}_i) \right) \right\}
+\]</span>
+in Equation <a href="deviance_and_diagnostics.html#eq:deviance">(4.2)</a>.</p>
+<p>Just as in a linear model, the <span class="math inline">\(r^D_i\)</span> or <span class="math inline">\(r^P_i\)</span> can be plotted against <span class="math inline">\(i\)</span> or against individual predictors, to detect violations of model assumptions. There is a problem though: neither <span class="math inline">\(r^D_i\)</span> nor <span class="math inline">\(r^P_i\)</span> is Gaussian. This makes `knowing what to look for’ in such plots somewhat tricky.</p>
+<p>As a result, many modifications and transformations have been suggested: ‘adjusted deviance residuals’, ‘Anscombe residuals’, etc. We will not study these, but content ourselves with checking plots for suspicious looking patterns.</p>
+<div id="example-hospital-stay-data-2" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Example: Hospital Stay Data<a href="deviance_and_diagnostics.html#example-hospital-stay-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="deviance_and_diagnostics.html#cb63-1" tabindex="-1"></a><span class="fu">data</span>(hosp, <span class="at">package=</span><span class="st">&quot;npmlreg&quot;</span>)</span>
+<span id="cb63-2"><a href="deviance_and_diagnostics.html#cb63-2" tabindex="-1"></a>hosp.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(duration<span class="sc">~</span>age<span class="sc">+</span>temp1, <span class="at">data=</span>hosp, <span class="at">family=</span><span class="fu">Gamma</span>(<span class="at">link=</span>log))</span>
+<span id="cb63-3"><a href="deviance_and_diagnostics.html#cb63-3" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="deviance_and_diagnostics.html#cb63-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb63-5"><a href="deviance_and_diagnostics.html#cb63-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>))</span>
+<span id="cb63-6"><a href="deviance_and_diagnostics.html#cb63-6" tabindex="-1"></a><span class="fu">plot</span>(hosp.glm<span class="sc">$</span>fitted, <span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;pearson&quot;</span>))</span>
+<span id="cb63-7"><a href="deviance_and_diagnostics.html#cb63-7" tabindex="-1"></a><span class="fu">plot</span>(hosp<span class="sc">$</span>age, <span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>))</span>
+<span id="cb63-8"><a href="deviance_and_diagnostics.html#cb63-8" tabindex="-1"></a><span class="fu">plot</span>(hosp<span class="sc">$</span>temp1, <span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/Eg72-1.png" width="672" /></p>
+<p>There are no obvious patterns here, but the sample size is quite small, which makes it more difficult. We can also compute and check autocorrelations.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="deviance_and_diagnostics.html#cb64-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>], <span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">25</span>])</span></code></pre></div>
+<pre><code>## [1] 0.1430499</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="deviance_and_diagnostics.html#cb66-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;pearson&quot;</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>], <span class="fu">residuals</span>(hosp.glm, <span class="at">type=</span><span class="st">&quot;pearson&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">25</span>])</span></code></pre></div>
+<pre><code>## [1] 0.1444896</code></pre>
+<p>Note that there are still some positive autocorrelations here, but again, the sample size is quite small for an accurate interpretation.</p>
+</div>
+<div id="example-us-polio-data-1" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Example: US Polio Data<a href="deviance_and_diagnostics.html#example-us-polio-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="deviance_and_diagnostics.html#cb68-1" tabindex="-1"></a><span class="co"># For polio2 model</span></span>
+<span id="cb68-2"><a href="deviance_and_diagnostics.html#cb68-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb68-3"><a href="deviance_and_diagnostics.html#cb68-3" tabindex="-1"></a><span class="fu">plot</span>(uspolio<span class="sc">$</span>time, uspolio<span class="sc">$</span>cases, <span class="at">type=</span><span class="st">&quot;h&quot;</span>)</span>
+<span id="cb68-4"><a href="deviance_and_diagnostics.html#cb68-4" tabindex="-1"></a><span class="fu">lines</span>(uspolio<span class="sc">$</span>time, polio2.glm<span class="sc">$</span>fitted, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb68-5"><a href="deviance_and_diagnostics.html#cb68-5" tabindex="-1"></a><span class="fu">plot</span>(uspolio<span class="sc">$</span>time, <span class="fu">residuals</span>(polio2.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>), <span class="at">type=</span><span class="st">&quot;b&quot;</span>)</span>
+<span id="cb68-6"><a href="deviance_and_diagnostics.html#cb68-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/Eg73-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="deviance_and_diagnostics.html#cb69-1" tabindex="-1"></a><span class="co"># For polio3 model</span></span>
+<span id="cb69-2"><a href="deviance_and_diagnostics.html#cb69-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb69-3"><a href="deviance_and_diagnostics.html#cb69-3" tabindex="-1"></a><span class="fu">plot</span>(uspolio<span class="sc">$</span>time, uspolio<span class="sc">$</span>cases, <span class="at">type=</span><span class="st">&quot;h&quot;</span>)</span>
+<span id="cb69-4"><a href="deviance_and_diagnostics.html#cb69-4" tabindex="-1"></a><span class="fu">lines</span>(uspolio<span class="sc">$</span>time, polio3.glm<span class="sc">$</span>fitted, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb69-5"><a href="deviance_and_diagnostics.html#cb69-5" tabindex="-1"></a><span class="fu">plot</span>(uspolio<span class="sc">$</span>time, <span class="fu">residuals</span>(polio3.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>), <span class="at">type=</span><span class="st">&quot;b&quot;</span>)</span>
+<span id="cb69-6"><a href="deviance_and_diagnostics.html#cb69-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/Eg73-2.png" width="672" /></p>
+<p>Here there is clearly residual autocorrelation present, so that the independence of different <span class="math inline">\(y_i\)</span> is violated. We also compute the autocorrelations.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="deviance_and_diagnostics.html#cb70-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">residuals</span>(polio2.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">168</span>], <span class="fu">residuals</span>(polio2.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">167</span>])</span></code></pre></div>
+<pre><code>## [1] 0.1677067</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="deviance_and_diagnostics.html#cb72-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">residuals</span>(polio3.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">168</span>], <span class="fu">residuals</span>(polio3.glm, <span class="at">type=</span><span class="st">&quot;deviance&quot;</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">167</span>])</span></code></pre></div>
+<pre><code>## [1] 0.1235241</code></pre>
+<p>Note that the autocorrelation reduced in the second model but is still high.</p>
+</div>
+</div>
+<div id="analysis-of-deviance" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Analysis of Deviance<a href="deviance_and_diagnostics.html#analysis-of-deviance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The analysis of deviance is based on comparing the deviance of a model, not with the `perfect’ saturated model (which in practice is not perfect, since it overfits), but with the deviance of other competing models. These differences of deviances are much more useful in practice than the deviance itself.</p>
+<p>Consider two nested GLMs <span class="math inline">\(\tilde{\mathcal{M}}\subset \mathcal{M}\)</span>.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> For example, <span class="math inline">\(\tilde{\mathcal{M}}\)</span> could be the null model with <span class="math inline">\(g(\mu) = \beta_{1}\)</span> and <span class="math inline">\(\mathcal{M}\)</span> could be our model with <span class="math inline">\(g(\mu) = \boldsymbol{\beta}^{T}\boldsymbol{x}\)</span>, where <span class="math inline">\(\boldsymbol{\beta}\in{\mathbb R}^{p}\)</span>. More generally:</p>
+<ul>
+<li><p>Let <span class="math inline">\(\mathcal{M}\)</span> be a GLM, the `full’ model;</p></li>
+<li><p>Let <span class="math inline">\(\tilde{\mathcal{M}}\)</span> be a GLM nested in <span class="math inline">\(\mathcal{M}\)</span>, the `reduced’ model, with
+<span class="math display">\[\begin{equation}
+      C\boldsymbol{\beta} = \gamma
+\end{equation}\]</span>
+with <span class="math inline">\(C \in {\mathbb R}^{s\times p}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> be the MLE under <span class="math inline">\(\mathcal{M}\)</span>;</p></li>
+<li><p>Let <span class="math inline">\(\tilde{\boldsymbol{\beta}}\)</span> be the MLE under <span class="math inline">\(\tilde{\mathcal{M}}\)</span>.</p></li>
+</ul>
+<p>Then we define
+<span class="math display">\[\begin{align}
+        D(\tilde{\mathcal{M}}, \mathcal{M})
+        &amp; =
+        D(\tilde{\mathcal{M}}) - D(\mathcal{M})
+        \\
+        &amp; =
+        2\;\phi\;
+        \big(
+            \ell_{\text{sat}} - \ell(\tilde{\boldsymbol{\beta}})
+        \bigr)
+        -
+        2\;\phi\;
+        \bigl(
+            \ell_{\text{sat}} - \ell(\hat{\boldsymbol{\beta}})
+        \bigr)
+        \\
+        &amp; =
+        2\;\phi\;
+        \bigl(
+            \ell(\hat{\boldsymbol{\beta}}) - \ell(\tilde{\boldsymbol{\beta}})
+        \bigr)
+    \end{align}\]</span></p>
+<p>Note that
+<span class="math display">\[\begin{equation}
+        \frac{1 }{ \phi} D(\tilde{\mathcal{M}}, \mathcal{M})
+        =
+        2\bigl(\ell(\hat{\boldsymbol{\beta}}) - \ell(\tilde{\boldsymbol{\beta}})\bigr)
+    \end{equation}\]</span></p>
+<p>This is just the likelihood ratio statistics, and thus
+<span class="math display">\[\begin{equation}
+        \frac{1 }{ \phi} D(\tilde{\mathcal{M}}, \mathcal{M})
+        \stackrel{a}{\sim}
+        \chi^{2}(s)
+\end{equation}\]</span>
+where <span class="math inline">\(s\)</span> is the number of constraints, that is, the difference in the dimensions of the parameter spaces, or the difference in the number of parameters.</p>
+<p>From the definition of <span class="math inline">\(D(\tilde{\mathcal{M}}, \mathcal{M})\)</span>, we have that
+<span class="math display">\[\begin{equation}
+        D(\tilde{\mathcal{M}}) = D(\tilde{\mathcal{M}}, \mathcal{M}) + D(\mathcal{M})
+\end{equation}\]</span></p>
+<p>In words, “the discrepancy between the data and <span class="math inline">\(\tilde{\mathcal{M}}\)</span> is equal to the discrepancy between the data and <span class="math inline">\(\mathcal{M}\)</span> plus the discrepancy between <span class="math inline">\(\mathcal{M}\)</span> and <span class="math inline">\(\tilde{\mathcal{M}}\)</span>.”</p>
+<div id="interpretation-and-testing" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Interpretation and Testing<a href="deviance_and_diagnostics.html#interpretation-and-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider applying this idea in the linear model case. There we have the following:
+<span class="math display">\[\begin{equation}
+        \sum_{i}(y_{i} - \tilde{\boldsymbol{\beta}}^{T}\boldsymbol{x}_i)^{2}
+        =
+        D(\tilde{\mathcal{M}}, \mathcal{M})
+        +
+        \sum_{i}(y_{i} - \hat{\boldsymbol{\beta}}^{T}\boldsymbol{x}_i)^{2}
+\end{equation}\]</span></p>
+<p>The left-hand side is the RSS of the reduced model, while the second term on the right-hand side is the RSS of the full model.</p>
+<p>In this context, we know we have the partial <span class="math inline">\(F\)</span>-test, based on the statistic:
+<span class="math display">\[\begin{equation}
+        F
+        =
+        \frac{
+        \bigl(
+            \text{RSS reduced} - \text{RSS full}
+        \bigr) / s
+        }{
+        \bigl(
+            \text{RSS full} / (n - p)
+        \bigr)}
+        \sim
+        F(s, n - p)
+    \end{equation}\]</span></p>
+<p>We then apply this as follows: if <span class="math inline">\(F &gt; F_{s, n - p, \alpha}\)</span>, we reject <span class="math inline">\(\mathcal{H}_{0}: \tilde{\mathcal{M}}\)</span> in favour of <span class="math inline">\(\mathcal{H}_{1}: \mathcal{M}\)</span> at level <span class="math inline">\(\alpha\)</span>.</p>
+<p>How should we adapt this to the GLM case? By strict analogy, we have
+<span class="math display">\[\begin{equation}
+        F
+        =
+        \frac{D(\tilde{\mathcal{M}}, \mathcal{M}) / s }{ \hat\phi}
+        =
+        \frac{1}{s}
+        \frac{D(\tilde{\mathcal{M}}, \mathcal{M}) }{ \hat\phi}
+        \sim
+        \frac{1}{s}
+        \chi^{2}(s)
+\end{equation}\]</span>
+where the latter, distributional result is true if we know <span class="math inline">\(\phi\)</span>, or if we simply ignore the extra variability introduced by estimating it.</p>
+<p>In practice, we compute <span class="math inline">\(s F = \frac{D(\tilde{\mathcal{M}}, \mathcal{M})}{\hat\phi}\)</span> and reject <span class="math inline">\(\mathcal{H}_{0}: \tilde{\mathcal{M}}\)</span> if <span class="math inline">\(\frac{D(\tilde{\mathcal{M}}, \mathcal{M})}{\hat\phi} &gt; \chi^{2}_{s, \alpha}\)</span>.</p>
+</div>
+<div id="general-case" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> General Case<a href="deviance_and_diagnostics.html#general-case" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>More generally we may have a series of nest models: <span class="math inline">\(\mathcal{M}_{1}\subset \mathcal{M}_{2}\subset \dotsb \subset \mathcal{M}_{N}\)</span>, that is, <span class="math inline">\(\mathcal{M}_{i}\subset \mathcal{M}_{i + 1}\)</span> for <span class="math inline">\(i\in [1.. (N - 1)]\)</span>. We can then write down the following telescoping sum:
+<span class="math display">\[\begin{align}
+    D(\mathcal{M}_{1})
+    &amp; =
+    \sum_{i = 1}^{N - 1} D(\mathcal{M}_{i}, \mathcal{M}_{i + 1}) + D(\mathcal{M}_{N})
+    \\
+    &amp; =
+    \sum_{i = 1}^{N - 1}
+    \bigl(
+        D(\mathcal{M}_{i}) - D(\mathcal{M}_{i + 1})
+    \bigr)
+    + D(\mathcal{M}_{N})
+    \\
+    &amp; =
+    \sum_{i = 1}^{N - 1} D(\mathcal{M}_{i})
+    -
+    \sum_{i = 2}^{N} D(\mathcal{M}_{i})
+    + D(\mathcal{M}_{N})
+    \\
+    &amp; = D(\mathcal{M}_{1}) - D(\mathcal{M}_{N}) + D(\mathcal{M}_{N})
+    \\
+    &amp; = D(\mathcal{M}_{1})
+\end{align}\]</span></p>
+<p>A tabular representation of this sum is produced in R when the <code>anova</code> command is applies to a fitted GLM, as the next example demonstrates.</p>
+</div>
+<div id="example-hospital-stay-data-3" class="section level3 hasAnchor" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Example: Hospital Stay Data<a href="deviance_and_diagnostics.html#example-hospital-stay-data-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here analysis of deviance is applied to the full model for the hospital data, with the linear predictor:
+<span class="math display">\[\begin{equation}
+        \eta
+        =
+        \beta_{1} + \beta_{2}\texttt{age} + \beta_{3}\texttt{temp1}
+        + \beta_{4}\texttt{wbc1} + \beta_{5}\texttt{antib}
+        + \beta_{6}\texttt{bact} + \beta_{7}\texttt{serv},
+\end{equation}\]</span>
+Gamma family, and log link, as shown below:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="deviance_and_diagnostics.html#cb74-1" tabindex="-1"></a><span class="fu">data</span>(hosp, <span class="at">package=</span><span class="st">&quot;npmlreg&quot;</span>)</span>
+<span id="cb74-2"><a href="deviance_and_diagnostics.html#cb74-2" tabindex="-1"></a></span>
+<span id="cb74-3"><a href="deviance_and_diagnostics.html#cb74-3" tabindex="-1"></a><span class="co"># Full model</span></span>
+<span id="cb74-4"><a href="deviance_and_diagnostics.html#cb74-4" tabindex="-1"></a>fit1<span class="ot">&lt;-</span> <span class="fu">glm</span>(duration<span class="sc">~</span>age<span class="sc">+</span>temp1<span class="sc">+</span>wbc1<span class="sc">+</span>antib<span class="sc">+</span>bact<span class="sc">+</span>serv, <span class="at">data=</span>hosp,</span>
+<span id="cb74-5"><a href="deviance_and_diagnostics.html#cb74-5" tabindex="-1"></a>           <span class="at">family=</span><span class="fu">Gamma</span>(<span class="at">link=</span>log))</span>
+<span id="cb74-6"><a href="deviance_and_diagnostics.html#cb74-6" tabindex="-1"></a></span>
+<span id="cb74-7"><a href="deviance_and_diagnostics.html#cb74-7" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = duration ~ age + temp1 + wbc1 + antib + bact + 
+##     serv, family = Gamma(link = log), data = hosp)
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) -18.925401  17.540130  -1.079    0.295
+## age           0.010026   0.006636   1.511    0.148
+## temp1         0.219006   0.178154   1.229    0.235
+## wbc1          0.001654   0.044930   0.037    0.971
+## antib        -0.346060   0.242145  -1.429    0.170
+## bact          0.075859   0.280639   0.270    0.790
+## serv         -0.291875   0.255843  -1.141    0.269
+## 
+## (Dispersion parameter for Gamma family taken to be 0.2661922)
+## 
+##     Null deviance: 8.1722  on 24  degrees of freedom
+## Residual deviance: 5.1200  on 18  degrees of freedom
+## AIC: 147.57
+## 
+## Number of Fisher Scoring iterations: 10</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="deviance_and_diagnostics.html#cb76-1" tabindex="-1"></a><span class="co"># Get the dispersion</span></span>
+<span id="cb76-2"><a href="deviance_and_diagnostics.html#cb76-2" tabindex="-1"></a><span class="fu">summary</span>(fit1)<span class="sc">$</span>dispersion</span></code></pre></div>
+<pre><code>## [1] 0.2661922</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="deviance_and_diagnostics.html#cb78-1" tabindex="-1"></a><span class="co"># Get the deviance table</span></span>
+<span id="cb78-2"><a href="deviance_and_diagnostics.html#cb78-2" tabindex="-1"></a><span class="fu">anova</span>(fit1)</span></code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model: Gamma, link: log
+## 
+## Response: duration
+## 
+## Terms added sequentially (first to last)
+## 
+## 
+##       Df Deviance Resid. Df Resid. Dev
+## NULL                     24     8.1722
+## age    1  1.38428        23     6.7879
+## temp1  1  1.00299        22     5.7849
+## wbc1   1  0.03236        21     5.7526
+## antib  1  0.31246        20     5.4401
+## bact   1  0.00017        19     5.4400
+## serv   1  0.31995        18     5.1200</code></pre>
+<p>The resulting anova table has the significance shown in the table in Figure <a href="deviance_and_diagnostics.html#fig:anovatab">4.1</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:anovatab"></span>
+<img src="Figures/Section_10/anovatab.png" alt="R output from an `anova` command on a GLM." width="60%" />
+<p class="caption">
+Figure 4.1: R output from an <code>anova</code> command on a GLM.
+</p>
+</div>
+<ul>
+<li><p>Each row represents the model containing the predictors in that row and all the previous rows.</p></li>
+<li><p>From the definition of <span class="math inline">\(D(\tilde{\mathcal{M}}, \mathcal{M})\)</span>, in each row, the sum of the <span class="math inline">\(\texttt{Resid. deviance}\)</span> and the <span class="math inline">\(\texttt{Deviance}\)</span> gives the <span class="math inline">\(\texttt{Resid. deviance}\)</span> in the row above.</p></li>
+<li><p>If the <code>anova</code> command is run with the argument <code>test = "Chisq"</code>, then there will be an extra column in the table (see the code below). This represents the <span class="math inline">\(p\)</span> value of a <span class="math inline">\(\chi^{2}\)</span> test applied to the <span class="math inline">\(\texttt{deviance}\)</span> in that row. It therefore tests the model in row above against the model in the row in which it appears.</p></li>
+</ul>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="deviance_and_diagnostics.html#cb80-1" tabindex="-1"></a><span class="fu">anova</span>(fit1, <span class="at">test=</span><span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model: Gamma, link: log
+## 
+## Response: duration
+## 
+## Terms added sequentially (first to last)
+## 
+## 
+##       Df Deviance Resid. Df Resid. Dev Pr(&gt;Chi)  
+## NULL                     24     8.1722           
+## age    1  1.38428        23     6.7879  0.02258 *
+## temp1  1  1.00299        22     5.7849  0.05224 .
+## wbc1   1  0.03236        21     5.7526  0.72735  
+## antib  1  0.31246        20     5.4401  0.27862  
+## bact   1  0.00017        19     5.4400  0.97990  
+## serv   1  0.31995        18     5.1200  0.27293  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We can use the results in the deviance table to perform different tests. Below are some examples.</p>
+<div id="test-problem-1" class="section level4 hasAnchor" number="4.5.3.1">
+<h4><span class="header-section-number">4.5.3.1</span> Test Problem 1<a href="deviance_and_diagnostics.html#test-problem-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Test <span class="math inline">\(\mathcal{H}_0: \mathcal{M}_1\)</span>, the null model where <span class="math inline">\(g(\eta) = \beta_1\)</span>, against <span class="math inline">\(\mathcal{H}_1: \mathcal{M}_7\)</span>, the full model. This is the analogue of a full <span class="math inline">\(F\)</span> test.</p>
+<p>From the table we read that <span class="math inline">\(D(\mathcal{M}_1) = 8.17\)</span> while <span class="math inline">\(D(\mathcal{M}_7) = 5.12\)</span>. We also see from the R output that <span class="math inline">\(\hat{\phi} = 0.27\)</span>. We therefore have
+<span class="math display">\[
+\frac{D(\mathcal{M}_1, \mathcal{M}_7)}{\hat{\phi}} = \frac{8.17 - 5.12}{ 0.27} = \frac{3.05}{0.27} = 11.47.
+\]</span></p>
+<p>This quantity is approximately <span class="math inline">\(\chi^2(6)\)</span> distributed as <span class="math inline">\(\mathcal{M}_7\)</span> has <span class="math inline">\(6\)</span> more parameters than <span class="math inline">\(\mathcal{M}_1\)</span>. We find the <span class="math inline">\(p\)</span> value using <span class="math inline">\(\texttt{R}\)</span>:
+<span class="math display">\[
+p = 1 - \texttt{pchisq}(11.47, 6) = 0.075.
+\]</span></p>
+<p>We would thus just reject <span class="math inline">\(\mathcal{H}_0\)</span> at the <span class="math inline">\(7.5\%\)</span> level, quite weak evidence that the model explains anything at all.</p>
+<p><strong>Note the intuition here</strong>. If <span class="math inline">\(D(\tilde{\mathcal{M}}, \mathcal{M})\)</span> is large, it means that the more complex model <span class="math inline">\(\mathcal{M}\)</span> is doing a much better job at explaining the data than the simpler model <span class="math inline">\(\tilde{\mathcal{M}}\)</span>. If it is enough better, then we will reject <span class="math inline">\(\mathcal{H}_{0}: \tilde{\mathcal{M}}\)</span>. At the same time, when <span class="math inline">\(D(\tilde{\mathcal{M}}, \mathcal{M})\)</span> is large, it means that the <span class="math inline">\(\chi^{2}\)</span> value will be large and thus that the <span class="math inline">\(p\)</span> value will be small, meaning that there is a small probability of finding our value of <span class="math inline">\(D(\tilde{\mathcal{M}}, \mathcal{M})\)</span> or greater, if <span class="math inline">\(\mathcal{H}_{0}\)</span> is true and <span class="math inline">\(\tilde{\mathcal{M}}\)</span> is the correct model. Thus the smaller the <span class="math inline">\(p\)</span> value, the less favourably we look on the null hypothesis and the more significant the level at which we can reject (more significance but smaller level number: we need <span class="math inline">\(p &lt; 0.05\)</span> to reject at <span class="math inline">\(5\%\)</span>, but <span class="math inline">\(p &lt; 0.01\)</span> to reject at <span class="math inline">\(1\%\)</span>).</p>
+</div>
+<div id="test-problem-2" class="section level4 hasAnchor" number="4.5.3.2">
+<h4><span class="header-section-number">4.5.3.2</span> Test Problem 2<a href="deviance_and_diagnostics.html#test-problem-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Now we take <span class="math inline">\(\mathcal{H}_0: \mathcal{M}_2\)</span>, with <span class="math inline">\(\eta = \beta_1 + \beta_2\texttt{age}\)</span>, and <span class="math inline">\(\mathcal{H}_1: \mathcal{M}_3\)</span>, with <span class="math inline">\(\eta = \beta_1 + \beta_2\texttt{age} + \beta_3\texttt{temp1}\)</span>. These correspond to successive levels in the table, and so we can read the deviance directly from the table. We then find
+<span class="math display">\[
+\frac{D(\mathcal{M}_2, \mathcal{M}_3)}{\hat{\phi}} = \frac{1.003}{0.27} = 3.77.
+\]</span></p>
+<p>This quantity is (approximately) <span class="math inline">\(\chi^2(1)\)</span> distributed, as there is one parameter difference between the two models. The <span class="math inline">\(p\)</span> value is
+<span class="math display">\[
+p = 1 - \texttt{pchisq}(3.77, 1) = 0.052.
+\]</span></p>
+<p>Thus, <em>given</em> <span class="math inline">\(\texttt{age}\)</span>, there is some weak evidence to support adding <span class="math inline">\(\texttt{temp1}\)</span> to the model: we can reject <span class="math inline">\(\mathcal{H}_0\)</span> at the <span class="math inline">\(5.2\%\)</span> level.</p>
+</div>
+<div id="test-problem-3" class="section level4 hasAnchor" number="4.5.3.3">
+<h4><span class="header-section-number">4.5.3.3</span> Test Problem 3<a href="deviance_and_diagnostics.html#test-problem-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Now we take <span class="math inline">\(\mathcal{H}_0: \mathcal{M}_3\)</span>, with <span class="math inline">\(\eta = \beta_1 + \beta_2\texttt{age} + \beta_3\texttt{temp1}\)</span>, and <span class="math inline">\(\mathcal{H}_1: \mathcal{M}_7\)</span>. Reading from the table, we find <span class="math inline">\(D(\mathcal{M}_7) = 5.12\)</span>, while <span class="math inline">\(D(\mathcal{M}_3) = 5.79\)</span>. This gives
+<span class="math display">\[
+\frac{D(\mathcal{M}_3, \mathcal{M}_7)}{\hat{\phi}} = \frac{5.79 - 5.12}{ 0.27} = 2.50.
+\]</span></p>
+<p>This quantity is (approximately) <span class="math inline">\(\chi^2(4)\)</span> distributed. The <span class="math inline">\(p\)</span> value is
+<span class="math display">\[
+p = 1 - \texttt{pchisq}(2.50, 4) = 0.65.
+\]</span></p>
+<p>There is thus no evidence at all for including any variable beyond <span class="math inline">\(\texttt{age}\)</span> and <span class="math inline">\(\texttt{temp1}\)</span>.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>One could argue that it is a good thing that deviance cannot be used as a general measure of <em>goodness-of-fit</em>, as it forces one to consider comparing one model against another. The idea that there is a measure of goodness-of-fit that applies in the absence of an alternative model is quite a dubious one.<a href="deviance_and_diagnostics.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Model <span class="math inline">\(\tilde{\mathcal{M}}\)</span> is `nested’ in model <span class="math inline">\(\mathcal{M}\)</span> when the parameter space of <span class="math inline">\(\tilde{\mathcal{M}}\)</span> is a subset of the parameter space of <span class="math inline">\(\mathcal{M}\)</span>.<a href="deviance_and_diagnostics.html#fnref11" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="prediction_and_inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="quasi_likelihood.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-Deviance.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

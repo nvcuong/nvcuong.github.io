@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction and Review | Advanced Statistical Modelling III (Epiphany term)</title>
+  <meta name="description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction and Review | Advanced Statistical Modelling III (Epiphany term)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction and Review | Advanced Statistical Modelling III (Epiphany term)" />
+  
+  <meta name="twitter:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  
+
+<meta name="author" content="Department of Mathematical Sciences at Durham University" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="estimation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Statistical Modelling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>General Information</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction and Review</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#introduction-1"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#ranmat"><i class="fa fa-check"></i><b>1.2</b> Random Vectors and Random Matrices: A Review</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#generalised-linear-models-a-review"><i class="fa fa-check"></i><b>1.3</b> Generalised Linear Models: A Review</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>2</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estimation.html"><a href="estimation.html#likelihood-function"><i class="fa fa-check"></i><b>2.1</b> Likelihood Function</a></li>
+<li class="chapter" data-level="2.2" data-path="estimation.html"><a href="estimation.html#loglike"><i class="fa fa-check"></i><b>2.2</b> Log-Likelihood Function</a></li>
+<li class="chapter" data-level="2.3" data-path="estimation.html"><a href="estimation.html#score-function-and-score-equation"><i class="fa fa-check"></i><b>2.3</b> Score Function and Score Equation</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="estimation.html"><a href="estimation.html#special-case-natural-link"><i class="fa fa-check"></i><b>2.3.1</b> Special Case: Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="estimation.html"><a href="estimation.html#fisherinformation"><i class="fa fa-check"></i><b>2.4</b> Fisher Information</a></li>
+<li class="chapter" data-level="2.5" data-path="estimation.html"><a href="estimation.html#example-poisson-regression"><i class="fa fa-check"></i><b>2.5</b> Example: Poisson Regression</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="estimation.html"><a href="estimation.html#with-natural-link"><i class="fa fa-check"></i><b>2.5.1</b> With Natural Link</a></li>
+<li class="chapter" data-level="2.5.2" data-path="estimation.html"><a href="estimation.html#with-identity-link"><i class="fa fa-check"></i><b>2.5.2</b> With Identity Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="estimation.html"><a href="estimation.html#properties"><i class="fa fa-check"></i><b>2.6</b> Properties of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span> and <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="estimation.html"><a href="estimation.html#expectation-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.1</b> Expectation of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.2" data-path="estimation.html"><a href="estimation.html#variance-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.2</b> Variance of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.3" data-path="estimation.html"><a href="estimation.html#properties-of-boldsymbolfboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.3</b> Properties of <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="estimation.html"><a href="estimation.html#matrix-notation"><i class="fa fa-check"></i><b>2.7</b> Matrix Notation</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="estimation.html"><a href="estimation.html#matrixform"><i class="fa fa-check"></i><b>2.7.1</b> Score Function and Fisher Information</a></li>
+<li class="chapter" data-level="2.7.2" data-path="estimation.html"><a href="estimation.html#natural-link"><i class="fa fa-check"></i><b>2.7.2</b> Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="estimation.html"><a href="estimation.html#iterativesolution"><i class="fa fa-check"></i><b>2.8</b> Iterative Solution of <span class="math inline">\(\boldsymbol{S}(\hat{\boldsymbol{\beta}}) = 0\)</span></a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="estimation.html"><a href="estimation.html#iteratively-reweighted-least-squares-irls"><i class="fa fa-check"></i><b>2.8.1</b> Iteratively Reweighted Least Squares (IRLS)</a></li>
+<li class="chapter" data-level="2.8.2" data-path="estimation.html"><a href="estimation.html#irls-pseudo-code"><i class="fa fa-check"></i><b>2.8.2</b> IRLS Pseudo-Code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="estimation.html"><a href="estimation.html#practical-example-us-polio-data"><i class="fa fa-check"></i><b>2.9</b> Practical Example: US Polio Data</a></li>
+<li class="chapter" data-level="2.10" data-path="estimation.html"><a href="estimation.html#estimation-of-dispersion-parameter-phi"><i class="fa fa-check"></i><b>2.10</b> Estimation of Dispersion Parameter <span class="math inline">\(\phi\)</span></a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="estimation.html"><a href="estimation.html#special-cases"><i class="fa fa-check"></i><b>2.10.1</b> Special Cases</a></li>
+<li class="chapter" data-level="2.10.2" data-path="estimation.html"><a href="estimation.html#practical-example-hospital-stay-data"><i class="fa fa-check"></i><b>2.10.2</b> Practical Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="estimation.html"><a href="estimation.html#asymptotic"><i class="fa fa-check"></i><b>2.11</b> Asymptotic Properties of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="estimation.html"><a href="estimation.html#fisher-scoring"><i class="fa fa-check"></i><b>2.11.1</b> Fisher Scoring</a></li>
+<li class="chapter" data-level="2.11.2" data-path="estimation.html"><a href="estimation.html#expectation"><i class="fa fa-check"></i><b>2.11.2</b> Expectation</a></li>
+<li class="chapter" data-level="2.11.3" data-path="estimation.html"><a href="estimation.html#variance"><i class="fa fa-check"></i><b>2.11.3</b> Variance</a></li>
+<li class="chapter" data-level="2.11.4" data-path="estimation.html"><a href="estimation.html#asymptotic-normality"><i class="fa fa-check"></i><b>2.11.4</b> Asymptotic Normality</a></li>
+<li class="chapter" data-level="2.11.5" data-path="estimation.html"><a href="estimation.html#closing-the-circle"><i class="fa fa-check"></i><b>2.11.5</b> Closing The Circle</a></li>
+<li class="chapter" data-level="2.11.6" data-path="estimation.html"><a href="estimation.html#next-step"><i class="fa fa-check"></i><b>2.11.6</b> Next Step</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="estimation.html"><a href="estimation.html#exercises-1"><i class="fa fa-check"></i><b>2.12</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Statistical Modelling III (Epiphany term)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction and Review<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-1" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction<a href="introduction.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the first term, we have learned about categorical data analysis and some basics of generalised linear models (GLMs). In this term, we will continue to explore GLMs in more detail and study some of its more general variants. In particular, we will learn:</p>
+<ul>
+<li><p>How to estimate the parameters of a GLM from data.</p></li>
+<li><p>How to make a prediction and do inference once a GLM has been fitted.</p></li>
+<li><p>How to perform deviance analysis with GLMs.</p></li>
+<li><p>How to reduce overdispersion using quasi-likelihood methods.</p></li>
+<li><p>How to model repeated measures data using marginal models.</p></li>
+<li><p>How to model mixed effects using linear mixed models (LMMs) and generalised linear mixed models (GLMMs).</p></li>
+</ul>
+<p>For the rest of this chapter, we will review some random vector and random matrix identities that will be useful later. Then we will review the basics of GLMs.</p>
+</div>
+<div id="ranmat" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Random Vectors and Random Matrices: A Review<a href="introduction.html#ranmat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>A <span style="color: blue;">random vector</span> is a vector of random variables:</li>
+</ul>
+<p><span class="math display">\[\boldsymbol{X} = \left(\begin{array}{c} X_1 \\ \vdots \\ X_n \end{array}\right).\]</span></p>
+<ul>
+<li>The mean or expectation of <span class="math inline">\(\boldsymbol{X}\)</span> is defined as:</li>
+</ul>
+<p><span class="math display">\[E[\boldsymbol{X}] = \left(\begin{array}{c} E[X_1] \\ \vdots \\ E[X_n] \end{array}\right).\]</span></p>
+<ul>
+<li>A <span style="color: blue;">random matrix</span> is a matrix of random variables:</li>
+</ul>
+<p><span class="math display">\[
+\boldsymbol{Z} = (Z_{ij}) =
+\left(\begin{array}{ccc} Z_{11} &amp; \ldots &amp; Z_{1m} \\
+                         \vdots &amp; \ddots &amp; \vdots \\
+                         Z_{n1} &amp; \ldots &amp; Z_{nm} \end{array}\right).
+\]</span></p>
+<ul>
+<li>The expectation of <span class="math inline">\(\boldsymbol{Z}\)</span> is defined as:</li>
+</ul>
+<p><span class="math display">\[
+E[\boldsymbol{Z}] = (E[Z_{ij}]) =
+\left(\begin{array}{ccc} E[Z_{11}] &amp; \ldots &amp; E[Z_{1m}] \\
+                         \vdots    &amp; \ddots &amp; \vdots    \\
+                         E[Z_{n1}] &amp; \ldots &amp; E[Z_{nm}] \end{array}\right).
+\]</span></p>
+<ul>
+<li><p>Some properties of random vectors and random matrices:</p>
+<ul>
+<li><p>If <span class="math inline">\(\boldsymbol{a}\)</span> is a constant (i.e., non-random) vector, <span class="math inline">\(E[\boldsymbol{a}] = \boldsymbol{a}\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\boldsymbol{A}\)</span> is a constant matrix, <span class="math inline">\(E[\boldsymbol{A}] = \boldsymbol{A}\)</span>.</p></li>
+<li><p><span class="math inline">\(E[\boldsymbol{X} + \boldsymbol{Y}] = E[\boldsymbol{X}] + E[\boldsymbol{Y}]\)</span> for any random matrices <span class="math inline">\(\boldsymbol{X}\)</span> and <span class="math inline">\(\boldsymbol{Y}\)</span>.</p></li>
+<li><p><span class="math inline">\(E[\boldsymbol{A}\boldsymbol{X}] = \boldsymbol{A} E[\boldsymbol{X}]\)</span> for a constant matrix <span class="math inline">\(\boldsymbol{A}\)</span> and a random matrix <span class="math inline">\(\boldsymbol{X}\)</span>.</p></li>
+<li><p>More generally, <span class="math inline">\(E[\boldsymbol{A}\boldsymbol{X}\boldsymbol{B} + \boldsymbol{C}] = \boldsymbol{A}E[\boldsymbol{X}]\boldsymbol{B} + \boldsymbol{C}\)</span> for constant matrices <span class="math inline">\(\boldsymbol{A}\)</span>, <span class="math inline">\(\boldsymbol{B}\)</span> and <span class="math inline">\(\boldsymbol{C}\)</span>.</p></li>
+</ul></li>
+<li><p>Let <span class="math inline">\(\boldsymbol{X}\)</span> be a random vector. The <span style="color: blue;">covariance matrix</span> of <span class="math inline">\(\boldsymbol{X}\)</span> is defined as:</p></li>
+</ul>
+<p><span class="math display">\[
+cov(\boldsymbol{X}) = (cov(X_i, X_j)) =
+\left(\begin{array}{cccc} var(X_1)      &amp; cov(X_1, X_2) &amp; \ldots &amp; cov(X_1, X_n) \\
+                          cov(X_2, X_1) &amp; var(X_2)      &amp; \ldots &amp; cov(X_2, X_n) \\
+                          \vdots        &amp; \vdots        &amp; \ddots &amp; \vdots        \\
+                          cov(X_n, X_1) &amp; cov(X_n, X_2) &amp; \ldots &amp; var(X_n) \end{array}\right).
+\]</span></p>
+<ul>
+<li>We can also write:</li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+cov(\boldsymbol{X}) &amp;= E[(\boldsymbol{X} - E[\boldsymbol{X}])(\boldsymbol{X} - E[\boldsymbol{X}])^T] \\
+&amp;= E\left[ \left(\begin{array}{c} X_1 - E[X_1] \\ \vdots \\ X_n - E[X_n] \end{array}\right) \left( X_1 - E[X_1], \ldots, X_n - E[X_n] \right) \right].
+\end{aligned}\]</span></p>
+<ul>
+<li><p>Some properties of covariance matrices:</p>
+<ul>
+<li><p>They are symmetric: <span class="math inline">\(cov(\boldsymbol{X}) = cov(\boldsymbol{X})^T\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\boldsymbol{a}\)</span> is a constant vector, <span class="math inline">\(cov(\boldsymbol{X} + \boldsymbol{a}) = cov(\boldsymbol{X})\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\boldsymbol{A}\)</span> is a constant matrix, <span class="math inline">\(cov(\boldsymbol{A} \boldsymbol{X}) = \boldsymbol{A} cov(\boldsymbol{X}) \boldsymbol{A}^T\)</span>.</p></li>
+<li><p><span class="math inline">\(cov(\boldsymbol{X}) = E[\boldsymbol{X} \boldsymbol{X}^T] - E[\boldsymbol{X}]  E[\boldsymbol{X}]^T\)</span>.</p></li>
+</ul></li>
+<li><p>Let <span class="math inline">\(\boldsymbol{X}_{n \times 1}\)</span> and <span class="math inline">\(\boldsymbol{Y}_{m \times 1}\)</span> be random vectors where <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> could be different. The covariance matrix of <span class="math inline">\(\boldsymbol{X}\)</span> and <span class="math inline">\(\boldsymbol{Y}\)</span> is defined as:</p></li>
+</ul>
+<p><span class="math display">\[
+cov(\boldsymbol{X}, \boldsymbol{Y}) = (cov(X_i, Y_j)) =
+\left(\begin{array}{cccc} cov(X_1, Y_1) &amp; cov(X_1, Y_2) &amp; \ldots &amp; cov(X_1, Y_m) \\
+                          cov(X_2, Y_1) &amp; cov(X_2, Y_2) &amp; \ldots &amp; cov(X_2, Y_m) \\
+                          \vdots        &amp; \vdots        &amp; \ddots &amp; \vdots        \\
+                          cov(X_n, Y_1) &amp; cov(X_n, Y_2) &amp; \ldots &amp; cov(X_n, Y_m) \end{array}\right).
+\]</span></p>
+<ul>
+<li>We can also write:</li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+cov(\boldsymbol{X}, \boldsymbol{Y}) &amp;= E[(\boldsymbol{X} - E[\boldsymbol{X}])(\boldsymbol{Y} - E[\boldsymbol{Y}])^T] \\
+&amp;= E\left[ \left(\begin{array}{c} X_1 - E[X_1] \\ \vdots \\ X_n - E[X_n] \end{array}\right) \left( Y_1 - E[Y_1], \ldots, Y_m - E[Y_m] \right) \right].
+\end{aligned}\]</span></p>
+<ul>
+<li><p>Some properties of covariance matrices between two vectors:</p>
+<ul>
+<li><p>If <span class="math inline">\(\boldsymbol{A}\)</span> and <span class="math inline">\(\boldsymbol{B}\)</span> are constant matrices, <span class="math inline">\(cov(\boldsymbol{A} \boldsymbol{X}, \boldsymbol{B} \boldsymbol{Y}) = \boldsymbol{A} cov(\boldsymbol{X},  \boldsymbol{Y}) \boldsymbol{B}^T.\)</span></p></li>
+<li><p>If <span class="math inline">\(\boldsymbol{Z} = \left(\begin{array}{c} \boldsymbol{X} \\ \boldsymbol{Y} \end{array}\right)\)</span>, then <span class="math inline">\(cov(\boldsymbol{Z}) = \left(\begin{array}{cc} cov(\boldsymbol{X}) &amp; cov(\boldsymbol{X}, \boldsymbol{Y}) \\ cov(\boldsymbol{Y}, \boldsymbol{X}) &amp; cov(\boldsymbol{Y}) \end{array}\right)\)</span>.</p></li>
+</ul></li>
+<li><p>Let <span class="math inline">\(\boldsymbol{X}\)</span> be a random vector. The <span style="color: blue;">correlation matrix</span> of <span class="math inline">\(\boldsymbol{X}\)</span> is defined as:</p></li>
+</ul>
+<p><span class="math display">\[
+corr(\boldsymbol{X}) = (corr(X_i, X_j)) =
+\left(\begin{array}{cccc} 1              &amp; corr(X_1, X_2) &amp; \ldots &amp; corr(X_1, X_n) \\
+                          corr(X_2, X_1) &amp; 1              &amp; \ldots &amp; corr(X_2, X_n) \\
+                          \vdots         &amp; \vdots         &amp; \ddots &amp; \vdots         \\
+                          corr(X_n, X_1) &amp; corr(X_n, X_2) &amp; \ldots &amp; 1 \end{array}\right),
+\]</span>
+where</p>
+<p><span class="math display">\[corr(X_i, X_j) = \frac{cov(X_i, X_j)}{\sqrt{var(X_i) var(X_j)}}.\]</span></p>
+</div>
+<div id="generalised-linear-models-a-review" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Generalised Linear Models: A Review<a href="introduction.html#generalised-linear-models-a-review" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Generalised linear models (GLMs) are developed by <span class="citation">Nelder and Wedderburn (<a href="#ref-nelder1972generalized">1972</a>)</span> as a way to unify other statistical models as well as the statistical methods operated on these models. In this section, we will briefly review the definition of GLMs. Please refer to the last term’s lecture notes for more detailed derivations and examples.</p>
+<p><strong>Definition.</strong> A GLM is specified through the following components:</p>
+<ul>
+<li><p>A <span style="color: blue;">linear predictor</span>: <span class="math inline">\(\eta = \boldsymbol{\beta}^{T}\boldsymbol{x}\)</span>.</p></li>
+<li><p>An <span style="color: blue;">injective response function</span> <span class="math inline">\(h\)</span>, such that <span class="math inline">\(\mu = {\mathrm E}[Y |\boldsymbol{x}, \boldsymbol{\beta}] = h(\eta) = h(\boldsymbol{\beta}^{T}\boldsymbol{x})\)</span>.<br />
+Equivalently, one can write <span class="math inline">\(g(\mu) = \boldsymbol{\beta}^{T}\boldsymbol{x}\)</span>, where <span class="math inline">\(g = h^{-1}\)</span> is the <span style="color: blue;">link</span> function.</p></li>
+<li><p>The <span style="color: blue;">distributional assumption</span>: <span class="math inline">\(P_{}\left(Y |\boldsymbol{x}, \boldsymbol{\beta}\right)\)</span> is an EDF, that is:
+<span class="math display">\[\begin{equation}
+      P_{}\left(y |\boldsymbol{x}, \boldsymbol{\beta}\right)
+      =
+      P_{}\left(y |\theta(\boldsymbol{x}, \boldsymbol{\beta}), \phi(\boldsymbol{x}, \boldsymbol{\beta})\right)
+      = \exp
+      \Big(
+          \frac{y\theta - b(\theta)}{\phi} + c(y, \phi)
+      \Big).
+  \end{equation}\]</span>
+From the properties of the EDF, the mean and variance of this distribution are:
+<span class="math display">\[\begin{align}
+  {\mathrm E}[Y |\theta, \phi] &amp;= \mu = b&#39;(\theta)
+  \\
+  {\mathrm{Var}}[Y |\theta, \phi] &amp;= \phi \, b&#39;&#39;(\theta) = \phi \, b&#39;&#39;((b&#39;)^{-1}(\mu)) = \phi \, \mathcal{V}(\mu).
+\end{align}\]</span></p></li>
+<li><p>We also assume <span style="color: blue;">independent data</span>, that is:
+<span class="math display">\[\begin{equation}
+      P_{}\left(\left\{y_{i}\right\} |\left\{\boldsymbol{x}_{i}\right\}, \boldsymbol{\beta}\right)
+      =
+      \prod_{i=1}^n
+      P_{}\left(y_{i} |\boldsymbol{x}_{i}, \boldsymbol{\beta}\right)
+  \end{equation}\]</span>
+where <span class="math inline">\(\left\{y_{i}, i = 1,...,n\right\}\)</span> are response data given the <span class="math inline">\(\left\{\boldsymbol{x}_i, i = 1,...,n\right\}\)</span>.</p></li>
+</ul>
+<p><strong>The Natural/Canonical Link.</strong> Recall that we have both:
+<span class="math display" id="eq:meanh" id="eq:meanbtheta">\[\begin{alignat}{4}
+\mu &amp; =  {\mathrm E}[Y |\theta, \phi] &amp;&amp; =  b&#39;(\theta)
+\tag{1.1}
+\\
+\mu &amp; =  {\mathrm E}[Y |\boldsymbol{x}, \boldsymbol{\beta}] &amp;&amp; =  h(\boldsymbol{\beta}^T\boldsymbol{x})  =  h(\eta)
+\tag{1.2}
+\end{alignat}\]</span>
+with Equation <a href="introduction.html#eq:meanbtheta">(1.1)</a> holding as a result of
+<span class="math inline">\(P_{}\left(y |\theta, \phi\right)\)</span>
+following an EDF distribution, and Equation <a href="introduction.html#eq:meanh">(1.2)</a> holding by definition for a GLM.</p>
+<p>The <span style="color: blue;">natural link</span> is the choice <span class="math inline">\(h = b&#39;\)</span>, or equivalently <span class="math inline">\(g = (b&#39;)^{-1}\)</span>, resulting in the equation
+<span class="math display">\[\begin{equation}
+\theta = \boldsymbol{\beta}^T\boldsymbol{x} = \eta.
+\end{equation}\]</span></p>
+</div>
+<div id="exercises" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Exercises<a href="introduction.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Prove the identities in Section <a href="introduction.html#ranmat">1.2</a>.</p></li>
+<li><p>The table below gives some common link functions for GLMs. In the table, <span class="math inline">\(\Phi(\cdot)\)</span> is the cdf of the standard normal distribution. Find their inverses (i.e., the response function <span class="math inline">\(h\)</span>).</p></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Link function</th>
+<th><span class="math inline">\(\eta_i = g(\mu_i)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identity</td>
+<td><span class="math inline">\(\mu_i\)</span></td>
+</tr>
+<tr class="even">
+<td>Log</td>
+<td><span class="math inline">\(\log(\mu_i)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Inverse</td>
+<td><span class="math inline">\(\mu_i^{-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>Inverse-square</td>
+<td><span class="math inline">\(\mu_i^{-2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Square-root</td>
+<td><span class="math inline">\(\sqrt{\mu_i}\)</span></td>
+</tr>
+<tr class="even">
+<td>Logit</td>
+<td><span class="math inline">\(\log\frac{\mu_i}{1-\mu_i}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Probit</td>
+<td><span class="math inline">\(\Phi^{-1}(\mu_i)\)</span></td>
+</tr>
+<tr class="even">
+<td>Log-log</td>
+<td><span class="math inline">\(-\log(-\log\mu_i)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Complementary log-log</td>
+<td><span class="math inline">\(\log(-\log(1-\mu_i))\)</span></td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: decimal">
+<li>Write down the GLM components and the corresponding natural link when the response variable <span class="math inline">\(Y\)</span> is assumed to follow each distribution below. Note that the values of <span class="math inline">\(y_i\)</span> have to be in the correct range for each distribution.</li>
+</ol>
+<ul>
+<li><p>Gaussian: <span class="math inline">\(y_i |\boldsymbol{x}_i, \boldsymbol{\beta} \sim \mathcal{N}(\mu_i, \sigma^2)\)</span>.</p></li>
+<li><p>Bernoulli: <span class="math inline">\(y_i |\boldsymbol{x}_i, \boldsymbol{\beta} \sim Bernoulli(\mu_i)\)</span>.</p></li>
+<li><p>Binomial: <span class="math inline">\(y_i |\boldsymbol{x}_i, \boldsymbol{\beta} \sim Bin(n_i, \mu_i)\)</span>. Note that here <span class="math inline">\(y_i\)</span> is the proportion of successes in <span class="math inline">\(n_i\)</span> independent trials with probability of success <span class="math inline">\(\mu_i\)</span>. Thus, the range of <span class="math inline">\(y_i\)</span> is <span class="math inline">\(\{ \frac{0}{n_i}, \frac{1}{n_i}, \ldots, \frac{n_i}{n_i} \}\)</span>.</p></li>
+<li><p>Poisson: <span class="math inline">\(y_i |\boldsymbol{x}_i, \boldsymbol{\beta} \sim Poi(\mu_i)\)</span>.</p></li>
+<li><p>Gamma: <span class="math inline">\(y_i |\boldsymbol{x}_i, \boldsymbol{\beta} \sim Gamma(\nu, \alpha_i)\)</span>, where <span class="math inline">\(\nu\)</span> and <span class="math inline">\(\alpha_i\)</span> are the shape and rate parameters of the Gamma distribution.</p></li>
+<li><p>Inverse-Gaussian: <span class="math inline">\(y_i |\boldsymbol{x}_i, \boldsymbol{\beta} \sim IG(\mu_i, \lambda)\)</span>.</p></li>
+</ul>
+<p>From these results, show that the linear regression model, logistic regression model, and Poisson regression model are all special cases of GLMs.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>In <span class="math inline">\(\texttt{R}\)</span>, find the default link function for each GLM family. Are they the natural link for the corresponding family?</li>
+</ol>
+<!-- 5. Question about grouped data. -->
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-nelder1972generalized" class="csl-entry">
+Nelder, John A, and Robert WM Wedderburn. 1972. <span>“Generalized Linear Models.”</span> <em>Journal of the Royal Statistical Society Series A: Statistics in Society</em> 135 (3): 370–84.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-Introduction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

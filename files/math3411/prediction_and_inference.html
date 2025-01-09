@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Prediction and Inference | Advanced Statistical Modelling III (second term)</title>
+  <meta name="description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Prediction and Inference | Advanced Statistical Modelling III (second term)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Prediction and Inference | Advanced Statistical Modelling III (second term)" />
+  
+  <meta name="twitter:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  
+
+<meta name="author" content="Department of Mathematical Sciences at Durham University" />
+
+
+<meta name="date" content="2024-03-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimation.html"/>
+<link rel="next" href="deviance_and_diagnostics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Statistical Modelling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>General Information</a></li>
+<li class="chapter" data-level="1" data-path="generalised_linear_models.html"><a href="generalised_linear_models.html"><i class="fa fa-check"></i><b>1</b> Review of Generalised Linear Models</a></li>
+<li class="chapter" data-level="2" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>2</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estimation.html"><a href="estimation.html#likelihood"><i class="fa fa-check"></i><b>2.1</b> Likelihood</a></li>
+<li class="chapter" data-level="2.2" data-path="estimation.html"><a href="estimation.html#loglike"><i class="fa fa-check"></i><b>2.2</b> Log-Likelihood</a></li>
+<li class="chapter" data-level="2.3" data-path="estimation.html"><a href="estimation.html#score-function-and-equation"><i class="fa fa-check"></i><b>2.3</b> Score Function and Equation</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="estimation.html"><a href="estimation.html#natural-link"><i class="fa fa-check"></i><b>2.3.1</b> Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="estimation.html"><a href="estimation.html#fisherinformation"><i class="fa fa-check"></i><b>2.4</b> Fisher Information</a></li>
+<li class="chapter" data-level="2.5" data-path="estimation.html"><a href="estimation.html#example-poisson-regression"><i class="fa fa-check"></i><b>2.5</b> Example: Poisson Regression</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="estimation.html"><a href="estimation.html#with-natural-link"><i class="fa fa-check"></i><b>2.5.1</b> With Natural Link</a></li>
+<li class="chapter" data-level="2.5.2" data-path="estimation.html"><a href="estimation.html#with-identity-link"><i class="fa fa-check"></i><b>2.5.2</b> With Identity Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="estimation.html"><a href="estimation.html#properties-of-boldsymbolsboldsymbolbeta-and-boldsymbolfboldsymbolbeta"><i class="fa fa-check"></i><b>2.6</b> Properties of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span> and <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="estimation.html"><a href="estimation.html#expectation-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.1</b> Expectation of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.2" data-path="estimation.html"><a href="estimation.html#variance-of-boldsymbolsboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.2</b> Variance of <span class="math inline">\(\boldsymbol{S}(\boldsymbol{\beta})\)</span></a></li>
+<li class="chapter" data-level="2.6.3" data-path="estimation.html"><a href="estimation.html#boldsymbolfboldsymbolbeta"><i class="fa fa-check"></i><b>2.6.3</b> <span class="math inline">\(\boldsymbol{F}(\boldsymbol{\beta})\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="estimation.html"><a href="estimation.html#matrix-notation"><i class="fa fa-check"></i><b>2.7</b> Matrix Notation</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="estimation.html"><a href="estimation.html#matrixform"><i class="fa fa-check"></i><b>2.7.1</b> Score Function and Fisher Information</a></li>
+<li class="chapter" data-level="2.7.2" data-path="estimation.html"><a href="estimation.html#natural-link-2"><i class="fa fa-check"></i><b>2.7.2</b> Natural Link</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="estimation.html"><a href="estimation.html#iterativesolution"><i class="fa fa-check"></i><b>2.8</b> Iterative Solution of <span class="math inline">\(\boldsymbol{S}(\hat{\boldsymbol{\beta}}) = 0\)</span></a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="estimation.html"><a href="estimation.html#irls-pseudo-code"><i class="fa fa-check"></i><b>2.8.1</b> IRLS Pseudo-Code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="estimation.html"><a href="estimation.html#practical-example-us-polio-data"><i class="fa fa-check"></i><b>2.9</b> Practical Example: US Polio Data</a></li>
+<li class="chapter" data-level="2.10" data-path="estimation.html"><a href="estimation.html#estimation-of-phi"><i class="fa fa-check"></i><b>2.10</b> Estimation of <span class="math inline">\(\phi\)</span></a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="estimation.html"><a href="estimation.html#special-cases"><i class="fa fa-check"></i><b>2.10.1</b> Special Cases</a></li>
+<li class="chapter" data-level="2.10.2" data-path="estimation.html"><a href="estimation.html#practical-example-hospital-stay-data"><i class="fa fa-check"></i><b>2.10.2</b> Practical Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="estimation.html"><a href="estimation.html#asymptotic-properties-of-hatboldsymbolbeta"><i class="fa fa-check"></i><b>2.11</b> Asymptotic Properties of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="estimation.html"><a href="estimation.html#fisher-scoring"><i class="fa fa-check"></i><b>2.11.1</b> Fisher Scoring</a></li>
+<li class="chapter" data-level="2.11.2" data-path="estimation.html"><a href="estimation.html#expectation"><i class="fa fa-check"></i><b>2.11.2</b> Expectation</a></li>
+<li class="chapter" data-level="2.11.3" data-path="estimation.html"><a href="estimation.html#variance"><i class="fa fa-check"></i><b>2.11.3</b> Variance</a></li>
+<li class="chapter" data-level="2.11.4" data-path="estimation.html"><a href="estimation.html#asymptotic-normality"><i class="fa fa-check"></i><b>2.11.4</b> Asymptotic Normality</a></li>
+<li class="chapter" data-level="2.11.5" data-path="estimation.html"><a href="estimation.html#closing-the-circle"><i class="fa fa-check"></i><b>2.11.5</b> Closing The Circle</a></li>
+<li class="chapter" data-level="2.11.6" data-path="estimation.html"><a href="estimation.html#next-step"><i class="fa fa-check"></i><b>2.11.6</b> Next Step</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html"><i class="fa fa-check"></i><b>3</b> Prediction and Inference</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#prediction2"><i class="fa fa-check"></i><b>3.1</b> Prediction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#example-hospital-stay-data"><i class="fa fa-check"></i><b>3.1.1</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#hypothesis-tests"><i class="fa fa-check"></i><b>3.2</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#simple-tests"><i class="fa fa-check"></i><b>3.2.1</b> Simple Tests</a></li>
+<li class="chapter" data-level="3.2.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#generalisation-to-nested-models"><i class="fa fa-check"></i><b>3.2.2</b> Generalisation to Nested Models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#example-hospital-stay-data-1"><i class="fa fa-check"></i><b>3.2.3</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#confidence-regions-for-hatboldsymbolbeta"><i class="fa fa-check"></i><b>3.3</b> Confidence Regions for <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#alpha-hessian-cr"><i class="fa fa-check"></i><b>3.3.1</b> <span class="math inline">\((1 - \alpha)\)</span> Hessian CR</a></li>
+<li class="chapter" data-level="3.3.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#alpha-method-of-support-cr"><i class="fa fa-check"></i><b>3.3.2</b> <span class="math inline">\((1 - \alpha)\)</span> <em>method of support</em> CR</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#issues-with-glms-and-the-wald-test"><i class="fa fa-check"></i><b>3.4</b> Issues with GLMs and the Wald Test</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#separation"><i class="fa fa-check"></i><b>3.4.1</b> Separation</a></li>
+<li class="chapter" data-level="3.4.2" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#hauck-donner-effect"><i class="fa fa-check"></i><b>3.4.2</b> Hauck-Donner Effect</a></li>
+<li class="chapter" data-level="3.4.3" data-path="prediction_and_inference.html"><a href="prediction_and_inference.html#next-step-1"><i class="fa fa-check"></i><b>3.4.3</b> Next Step</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html"><i class="fa fa-check"></i><b>4</b> Deviance</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#goodness-of-fit"><i class="fa fa-check"></i><b>4.1</b> Goodness-of-Fit</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#the-saturated-model"><i class="fa fa-check"></i><b>4.1.1</b> The Saturated Model</a></li>
+<li class="chapter" data-level="4.1.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#deviance"><i class="fa fa-check"></i><b>4.1.2</b> Deviance</a></li>
+<li class="chapter" data-level="4.1.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-special-cases"><i class="fa fa-check"></i><b>4.1.3</b> Example Special Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#asymptotic-properties"><i class="fa fa-check"></i><b>4.2</b> Asymptotic Properties</a></li>
+<li class="chapter" data-level="4.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#pearson-statistic"><i class="fa fa-check"></i><b>4.3</b> Pearson Statistic</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#relation-to-deviance"><i class="fa fa-check"></i><b>4.3.1</b> Relation to Deviance</a></li>
+<li class="chapter" data-level="4.3.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#pearson-residuals"><i class="fa fa-check"></i><b>4.3.2</b> Pearson Residuals</a></li>
+<li class="chapter" data-level="4.3.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-us-polio-data"><i class="fa fa-check"></i><b>4.3.3</b> Example: US Polio Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#residuals-and-diagnostics"><i class="fa fa-check"></i><b>4.4</b> Residuals and Diagnostics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-hospital-stay-data-2"><i class="fa fa-check"></i><b>4.4.1</b> Example: Hospital Stay Data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-us-polio-data-1"><i class="fa fa-check"></i><b>4.4.2</b> Example: US Polio Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#analysis-of-deviance"><i class="fa fa-check"></i><b>4.5</b> Analysis of Deviance</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#interpretation-and-testing"><i class="fa fa-check"></i><b>4.5.1</b> Interpretation and Testing</a></li>
+<li class="chapter" data-level="4.5.2" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#general-case"><i class="fa fa-check"></i><b>4.5.2</b> General Case</a></li>
+<li class="chapter" data-level="4.5.3" data-path="deviance_and_diagnostics.html"><a href="deviance_and_diagnostics.html#example-hospital-stay-data-3"><i class="fa fa-check"></i><b>4.5.3</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html"><i class="fa fa-check"></i><b>5</b> Quasi-Likelihood Methods</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#dispersion"><i class="fa fa-check"></i><b>5.1</b> Dispersion</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-hospital-stay-data-4"><i class="fa fa-check"></i><b>5.1.1</b> Example: Hospital Stay Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#overdispersion"><i class="fa fa-check"></i><b>5.2</b> Overdispersion</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-us-polio-data-2"><i class="fa fa-check"></i><b>5.2.1</b> Example: US Polio Data</a></li>
+<li class="chapter" data-level="5.2.2" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#example-us-polio-data-3"><i class="fa fa-check"></i><b>5.2.2</b> Example: US Polio Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#generalized-estimating-equations"><i class="fa fa-check"></i><b>5.3</b> Generalized Estimating Equations</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="quasi_likelihood.html"><a href="quasi_likelihood.html#uspolioexample"><i class="fa fa-check"></i><b>5.3.1</b> Example: US Polio Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="marginal_models.html"><a href="marginal_models.html"><i class="fa fa-check"></i><b>6</b> Marginal models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="marginal_models.html"><a href="marginal_models.html#repeated-measures-data"><i class="fa fa-check"></i><b>6.1</b> Repeated measures data</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="marginal_models.html"><a href="marginal_models.html#oxfordboysdata"><i class="fa fa-check"></i><b>6.1.1</b> Example: Oxford boys data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="marginal_models.html"><a href="marginal_models.html#mathsdata"><i class="fa fa-check"></i><b>6.1.2</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="marginal_models.html"><a href="marginal_models.html#modeldef"><i class="fa fa-check"></i><b>6.2</b> The marginal model for repeated measures</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="marginal_models.html"><a href="marginal_models.html#some-examples"><i class="fa fa-check"></i><b>6.2.1</b> Some examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="marginal_models.html"><a href="marginal_models.html#mmestimation"><i class="fa fa-check"></i><b>6.3</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="marginal_models.html"><a href="marginal_models.html#example-1"><i class="fa fa-check"></i><b>6.3.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html"><i class="fa fa-check"></i><b>7</b> Linear mixed models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#random-intercept-models"><i class="fa fa-check"></i><b>7.1</b> Random intercept models</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-oxford-boys-data"><i class="fa fa-check"></i><b>7.1.1</b> Example: Oxford boys data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-oxford-boys-data-1"><i class="fa fa-check"></i><b>7.1.2</b> Example: Oxford boys data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#random-slope-models"><i class="fa fa-check"></i><b>7.2</b> Random slope models</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-oxford-boys-data-2"><i class="fa fa-check"></i><b>7.2.1</b> Example: Oxford boys data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#the-linear-mixed-model-lmm"><i class="fa fa-check"></i><b>7.3</b> The linear mixed model (LMM)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#examples"><i class="fa fa-check"></i><b>7.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#estimation-of-fixed-effects"><i class="fa fa-check"></i><b>7.4</b> Estimation of fixed effects</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#remlexamples"><i class="fa fa-check"></i><b>7.4.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#inference-for-fixed-effects"><i class="fa fa-check"></i><b>7.5</b> Inference for fixed effects</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data"><i class="fa fa-check"></i><b>7.5.1</b> Example: Mathematics achievement data</a></li>
+<li class="chapter" data-level="7.5.2" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data-1"><i class="fa fa-check"></i><b>7.5.2</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#prediction-of-random-effects"><i class="fa fa-check"></i><b>7.6</b> Prediction of random effects</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data-2"><i class="fa fa-check"></i><b>7.6.1</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#inference-for-random-effects"><i class="fa fa-check"></i><b>7.7</b> Inference for random effects</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="linear_mixed_models.html"><a href="linear_mixed_models.html#example-mathematics-achievement-data-3"><i class="fa fa-check"></i><b>7.7.1</b> Example: Mathematics achievement data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Statistical Modelling III (second term)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="prediction_and_inference" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Prediction and Inference<a href="prediction_and_inference.html#prediction_and_inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="prediction2" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Prediction<a href="prediction_and_inference.html#prediction2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Assume a GLM has been fitted, yielding <span class="math inline">\(\hat{\boldsymbol{\beta}}\in{\mathbb R}^{p}\)</span>. If we are given a new predictor vector <span class="math inline">\(\boldsymbol{x}_{0}\)</span>, we can compute
+<span class="math display">\[\begin{equation}
+        \hat{\eta}_{0} = \hat{\boldsymbol{\beta}}^{T}\boldsymbol{x}_{0}
+    \end{equation}\]</span></p>
+<p>Now,
+<span class="math display">\[\begin{equation}
+        {\mathrm{Var}}[\hat{\boldsymbol{\beta}}] \stackrel{a}{=} F^{-1}(\hat{\boldsymbol{\beta}})
+    \end{equation}\]</span></p>
+<p>so
+<span class="math display">\[\begin{equation}
+        {\mathrm{Var}}[\hat{\eta}_{0}]
+        \stackrel{a}{=}
+        \boldsymbol{x}_{0}^{T}\;{\mathrm{Var}}[\hat{\boldsymbol{\beta}}] \;\boldsymbol{x}_{0}
+        \stackrel{a}{=}
+        \boldsymbol{x}_{0}^{T}\;F^{-1}(\hat{\boldsymbol{\beta}})\;\boldsymbol{x}_{0}
+    \end{equation}\]</span></p>
+<p>or, alternatively,
+<span class="math display">\[\begin{equation}
+       \text{SE}[\hat{\eta}_{0}]
+       \stackrel{a}{=}
+       \sqrt{x_{0}^{T}\;F^{-1}(\hat{\boldsymbol{\beta}})\;x_{0}}
+    \end{equation}\]</span></p>
+<p>A prediction for a new, unobserved <span class="math inline">\(y_{0}\)</span> is then
+<span class="math display">\[\begin{equation}
+        \hat{y}_{0}
+        =
+        {\mathrm E}[Y |\hat{\boldsymbol{\beta}}, x_{0}]
+        =
+        h(\hat{\boldsymbol{\beta}}^{T}x_{0})
+    \end{equation}\]</span></p>
+<p>An approximate <span class="math inline">\((1 - \alpha)\)</span> confidence interval for <span class="math inline">\({\mathrm E}[Y |\boldsymbol{\beta}, x_{0}]\)</span> is then
+<span class="math display">\[\begin{equation}
+        CI
+        =
+        \left[
+            h
+            \left(
+                \hat{\boldsymbol{\beta}}^{T} x_{0} - z_\frac{\alpha}{2}
+                \sqrt{x_{0}^{T}\;F^{-1}(\hat{\boldsymbol{\beta}})\;x_{0}}
+            \right) \;, \;
+            h
+            \left(
+                \hat{\boldsymbol{\beta}}^{T} x_{0} + z_\frac{\alpha}{2}
+                \sqrt{x_{0}^{T}\;F^{-1}(\hat{\boldsymbol{\beta}})\;x_{0}}
+            \right)
+        \right]
+    \end{equation}\]</span></p>
+<p>Note that this is not, in general, symmetric about <span class="math inline">\(h(\hat{\boldsymbol{\beta}}^{T}x_{0})\)</span>.</p>
+<p>What about predictive intervals for <span class="math inline">\(y_{0}\)</span>, by analogy with the linear model case? These are more complicated, as they depend on the response distribution, and we do not consider them here.</p>
+<div id="example-hospital-stay-data" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Example: Hospital Stay Data<a href="prediction_and_inference.html#example-hospital-stay-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Predict the duration of stay for a new individual with age <span class="math inline">\(60\)</span>, and temperature <span class="math inline">\(99\)</span>.</p>
+<p>We could try</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="prediction_and_inference.html#cb25-1" tabindex="-1"></a><span class="fu">predict</span>(hosp.glm, <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">age=</span><span class="dv">60</span>, <span class="at">temp1=</span><span class="dv">99</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 2.595732</code></pre>
+<p>But this is not what we want - for GLMs, the predict function gives by default the value
+of the linear predictor.</p>
+<p>To predict on the scale of the response, one needs</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="prediction_and_inference.html#cb27-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">predict</span>(hosp.glm, <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">age=</span><span class="dv">60</span>, <span class="at">temp1=</span><span class="dv">99</span>)))</span></code></pre></div>
+<pre><code>##       1 
+## 13.4064</code></pre>
+<p>or</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="prediction_and_inference.html#cb29-1" tabindex="-1"></a><span class="fu">predict</span>(hosp.glm, <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">age=</span><span class="dv">60</span>, <span class="at">temp1=</span><span class="dv">99</span>), <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<pre><code>##       1 
+## 13.4064</code></pre>
+<p>Similarly we aim to achieve a 95% confidence interval for the expected mean function at age 60 and temperature 99 as for the linear model as follows:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="prediction_and_inference.html#cb31-1" tabindex="-1"></a><span class="co"># Attempt, as for lm:</span></span>
+<span id="cb31-2"><a href="prediction_and_inference.html#cb31-2" tabindex="-1"></a><span class="fu">predict</span>(hosp.glm, <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">age=</span><span class="dv">60</span>, <span class="at">temp1=</span><span class="dv">99</span>), <span class="at">type=</span><span class="st">&quot;response&quot;</span>,</span>
+<span id="cb31-3"><a href="prediction_and_inference.html#cb31-3" tabindex="-1"></a><span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<pre><code>##       1 
+## 13.4064</code></pre>
+<p>This does not work, so we need to do it manually!</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="prediction_and_inference.html#cb33-1" tabindex="-1"></a><span class="co"># Compute the predicted linear predictor as above.</span></span>
+<span id="cb33-2"><a href="prediction_and_inference.html#cb33-2" tabindex="-1"></a>lphat  <span class="ot">&lt;-</span> <span class="fu">predict</span>(hosp.glm, <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">age=</span><span class="dv">60</span>, <span class="at">temp1=</span><span class="dv">99</span>))</span>
+<span id="cb33-3"><a href="prediction_and_inference.html#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="prediction_and_inference.html#cb33-4" tabindex="-1"></a><span class="co"># Extract the covariance.</span></span>
+<span id="cb33-5"><a href="prediction_and_inference.html#cb33-5" tabindex="-1"></a>varhat <span class="ot">&lt;-</span> <span class="fu">summary</span>(hosp.glm)<span class="sc">$</span>cov.scaled     <span class="co"># = F^(-1)(betahat)</span></span>
+<span id="cb33-6"><a href="prediction_and_inference.html#cb33-6" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="prediction_and_inference.html#cb33-7" tabindex="-1"></a><span class="co"># Define new data point</span></span>
+<span id="cb33-8"><a href="prediction_and_inference.html#cb33-8" tabindex="-1"></a>x0 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">60</span>, <span class="dv">99</span>)</span>
+<span id="cb33-9"><a href="prediction_and_inference.html#cb33-9" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="prediction_and_inference.html#cb33-10" tabindex="-1"></a><span class="co"># Compute the width of the interval for the linear predictor.</span></span>
+<span id="cb33-11"><a href="prediction_and_inference.html#cb33-11" tabindex="-1"></a>span   <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> <span class="fu">sqrt</span>( x0 <span class="sc">%*%</span>  varhat <span class="sc">%*%</span>  x0)</span>
+<span id="cb33-12"><a href="prediction_and_inference.html#cb33-12" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="prediction_and_inference.html#cb33-13" tabindex="-1"></a><span class="co"># Compute the interval for the mean.</span></span>
+<span id="cb33-14"><a href="prediction_and_inference.html#cb33-14" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">exp</span>(lphat<span class="sc">-</span>span), <span class="fu">exp</span>(lphat<span class="sc">+</span>span))</span></code></pre></div>
+<pre><code>## [1]  8.836973 20.338601</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="prediction_and_inference.html#cb35-1" tabindex="-1"></a><span class="co"># Note that this is quite large, as the dataset is small!</span></span></code></pre></div>
+</div>
+</div>
+<div id="hypothesis-tests" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Hypothesis Tests<a href="prediction_and_inference.html#hypothesis-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We wish to test the values of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>, just as for linear models.</p>
+<div id="simple-tests" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Simple Tests<a href="prediction_and_inference.html#simple-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We take as hypotheses <span class="math inline">\(\mathcal{H}_{0}: \boldsymbol{\beta} = \boldsymbol{b}\)</span> and <span class="math inline">\(\mathcal{H}_{1}: \boldsymbol{\beta} \neq \boldsymbol{b}\)</span>.</p>
+<div id="wald-test" class="section level4 hasAnchor" number="3.2.1.1">
+<h4><span class="header-section-number">3.2.1.1</span> Wald Test<a href="prediction_and_inference.html#wald-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>An obvious candidate for a test statistic is the <span style="color: red;">Mahalanobis</span> distance of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> from <span class="math inline">\(\boldsymbol{\beta}\)</span>, otherwise know as the <span style="color: red;">Wald statistic</span>. Under <span class="math inline">\(\mathcal{H}_{0}\)</span>,
+<span class="math display">\[\begin{equation}
+        W
+        =
+        (\hat{\boldsymbol{\beta}}- \boldsymbol{b})^{T}\;F(\hat{\boldsymbol{\beta}})\;(\hat{\boldsymbol{\beta}}- \boldsymbol{b})
+        \stackrel{a}{\sim}
+        \chi^{2}(p)
+    \end{equation}\]</span></p>
+<p>The test is then:</p>
+<ul>
+<li><em>Reject <span class="math inline">\(\mathcal{H}_{0}\)</span> at significance level <span class="math inline">\(\alpha\)</span> if <span class="math inline">\(W &gt; \chi^{2}_{p, \alpha}\)</span>.</em></li>
+</ul>
+</div>
+<div id="likelihood-ratio-test" class="section level4 hasAnchor" number="3.2.1.2">
+<h4><span class="header-section-number">3.2.1.2</span> Likelihood Ratio Test<a href="prediction_and_inference.html#likelihood-ratio-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>An alternative is a likelihood ratio test. Define
+<span class="math display">\[\begin{equation}
+        \Lambda
+        =
+        2\log
+        \left(
+            \frac{L(\hat{\boldsymbol{\beta}})}{L(\boldsymbol{\beta})}
+        \right)
+        =
+        2(\ell(\hat{\boldsymbol{\beta}}) - \ell(\boldsymbol{\beta}))
+    \end{equation}\]</span></p>
+<p>What is the distribution of <span class="math inline">\(\Lambda\)</span>? Taylor-expanding <span class="math inline">\(\ell\)</span>, we find
+<span class="math display">\[\begin{equation}
+        \ell(\boldsymbol{\beta})
+        \stackrel{a}{=}
+        \ell(\hat{\boldsymbol{\beta}})
+        +
+        (\boldsymbol{\beta} - \hat{\boldsymbol{\beta}})^{T}S(\hat{\boldsymbol{\beta}})
+        -
+        \frac{1}{2}
+        (\boldsymbol{\beta} - \hat{\boldsymbol{\beta}})^{T}\;F(\hat{\boldsymbol{\beta}})\;(\boldsymbol{\beta} - \hat{\boldsymbol{\beta}})
+    \end{equation}\]</span></p>
+<p>But <span class="math inline">\(S(\hat{\boldsymbol{\beta}}) = 0\)</span>, so we have
+<span class="math display">\[\begin{equation}
+        2(\ell(\hat{\boldsymbol{\beta}}) - \ell(\boldsymbol{\beta}))
+        \stackrel{a}{=}
+        (\boldsymbol{\beta} - \hat{\boldsymbol{\beta}})^{T}\;F(\hat{\boldsymbol{\beta}})\;(\boldsymbol{\beta} - \hat{\boldsymbol{\beta}})
+        \stackrel{a}{\sim}
+        \chi^{2}(p)
+    \end{equation}\]</span></p>
+<p>Under <span class="math inline">\(\mathcal{H}_{0}\)</span>, <span class="math inline">\(\boldsymbol{\beta} = \boldsymbol{b}\)</span>, so we have
+<span class="math display">\[\begin{equation}
+        \Lambda = 2(\ell(\hat{\boldsymbol{\beta}}) - \ell(\boldsymbol{b}))
+        \stackrel{a}{\sim}
+        \chi^{2}(p)
+    \end{equation}\]</span></p>
+<p>We then</p>
+<ul>
+<li><em>Reject <span class="math inline">\(\mathcal{H}_{0}\)</span> at significance level <span class="math inline">\(\alpha\)</span> if <span class="math inline">\(\Lambda &gt; \chi^{2}_{p, \alpha}\)</span>.</em></li>
+</ul>
+</div>
+</div>
+<div id="generalisation-to-nested-models" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Generalisation to Nested Models<a href="prediction_and_inference.html#generalisation-to-nested-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our hypotheses are now
+<span class="math display">\[\begin{align}
+    \mathcal{H}_{0}&amp;: C\boldsymbol{\beta} = \gamma \\
+    \mathcal{H}_{1}&amp;: C\boldsymbol{\beta} \neq \gamma
+    \end{align}\]</span></p>
+<p>where: <span class="math inline">\(C\in{\mathbb R}^{s\times p}\)</span>; <span class="math inline">\(\dim(\text{image}(C)) = s\)</span>; <span class="math inline">\(\gamma\in{\mathbb R}^{s}\)</span>.</p>
+<p>The equation <span class="math inline">\(C\boldsymbol{\beta} = \gamma\)</span> constrains the possible values of <span class="math inline">\(\boldsymbol{\beta}\)</span>, reducing the dimensionality of the space of possible solutions by <span class="math inline">\(s\)</span>. The set of <span class="math inline">\(\boldsymbol{\beta}\in{\mathbb R}^{p}\)</span> satisfying <span class="math inline">\(C\boldsymbol{\beta} = \gamma\)</span> forms a <span class="math inline">\((p - s)\)</span>-dimensional affine subspace of <span class="math inline">\({\mathbb R}^{p}\)</span>. This therefore corresponds to a <span style="color: blue;">restricted</span> or <span style="color: blue;">reduced</span> model, as against <span class="math inline">\(\mathcal{H}_{1}\)</span>, which corresponds to the <span style="color: blue;">full</span> model. We may sometimes say that <span class="math inline">\(\mathcal{H}_{0}\)</span> is a <em>submodel</em> of <span class="math inline">\(\mathcal{H}_{1}\)</span> because the parameter space of <span class="math inline">\(\mathcal{H}_{0}\)</span> is a subset of the parameter space of <span class="math inline">\(\mathcal{H}_{1}\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:waldlikelihood"></span>
+<img src="Figures/Section_9/Lec14Fig1.jpg" alt="Illustration of the relationship between the Wald test and the likelihood ratio test." width="60%" />
+<p class="caption">
+Figure 3.1: Illustration of the relationship between the Wald test and the likelihood ratio test.
+</p>
+</div>
+<div id="example" class="section level4 hasAnchor" number="3.2.2.1">
+<h4><span class="header-section-number">3.2.2.1</span> Example<a href="prediction_and_inference.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let
+<span class="math display">\[\begin{align}
+        C
+        &amp; =
+        \begin{pmatrix}
+            1 &amp; 0 &amp; 0 &amp; \ldots &amp; 0 \\
+            0 &amp; 1 &amp; 0 &amp; \ldots &amp; 0
+        \end{pmatrix}
+        \in {\mathbb R}^{2\times p} \\
+        \gamma
+        &amp; =
+        0
+        \in {\mathbb R}^{2}
+    \end{align}\]</span></p>
+<p>with <span class="math inline">\(\boldsymbol{\beta} \in{\mathbb R}^{p}\)</span>. Then
+<span class="math display">\[\begin{equation}
+        \mathcal{H}_{0}:
+        \begin{cases}
+            \beta_{1} = 0 &amp; \\
+            \beta_{2} = 0 &amp;
+        \end{cases}
+    \end{equation}\]</span></p>
+<p>whereas <span class="math inline">\(\mathcal{H}_{1}\)</span> has <span class="math inline">\(\beta_{1}\)</span> and <span class="math inline">\(\beta_{2}\)</span> unrestricted.</p>
+</div>
+<div id="wald-test-1" class="section level4 hasAnchor" number="3.2.2.2">
+<h4><span class="header-section-number">3.2.2.2</span> Wald Test<a href="prediction_and_inference.html#wald-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We have
+<span class="math display">\[\begin{equation}
+        W =
+        (C\hat{\boldsymbol{\beta}} - \gamma)^{T}\;
+        \left(
+            C \;F^{-1}(\hat{\boldsymbol{\beta}})\;C^{T}
+        \right)^{-1} \;
+        (C\hat{\boldsymbol{\beta}} - \gamma)
+        \stackrel{a}{\sim}
+        \chi^{2}(s)
+    \end{equation}\]</span></p>
+<p>where, recall, <span class="math inline">\(s\)</span> is the number of constraints; or, equivalently, the difference in the number of parameters; or, more abstractly, the difference in the dimensions of the parameter spaces.</p>
+</div>
+<div id="likelihood-ratio-test-1" class="section level4 hasAnchor" number="3.2.2.3">
+<h4><span class="header-section-number">3.2.2.3</span> Likelihood Ratio Test<a href="prediction_and_inference.html#likelihood-ratio-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We have
+<span class="math display">\[\begin{equation}
+        \Lambda
+        =
+        2(\ell(\hat{\boldsymbol{\beta}}) - \ell(\tilde{\boldsymbol{\beta}}))
+        \stackrel{a}{\sim}
+        \chi^{2}(s)
+    \end{equation}\]</span></p>
+<p>where <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> is the MLE under <span class="math inline">\(\mathcal{H}_{1}\)</span>, while <span class="math inline">\(\tilde{\boldsymbol{\beta}}\)</span> is the MLE under <span class="math inline">\(\mathcal{H}_{0}\)</span>, that is, the MLE for the restricted model.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+</div>
+</div>
+<div id="example-hospital-stay-data-1" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Example: Hospital Stay Data<a href="prediction_and_inference.html#example-hospital-stay-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider the hospital data. Construct a Gamma GLM with log link for the <code>duration</code> of hospital stay as a function of <code>age</code> and <code>temp1</code>, the temperature at admission, as follows</p>
+<p><span class="math display">\[\begin{equation}
+\eta = \beta_{1} + \beta_{2}\texttt{age} + \beta_{3}\texttt{temp1}
+\end{equation}\]</span></p>
+<p>where
+<span class="math display">\[\begin{equation}
+\texttt{duration} |\texttt{age}, \texttt{temp1} \sim \text{Gamma}(\nu, \nu e^{-\eta})
+\end{equation}\]</span></p>
+<p>which can be coded in R as follows:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="prediction_and_inference.html#cb36-1" tabindex="-1"></a><span class="fu">data</span>(hosp, <span class="at">package=</span><span class="st">&quot;npmlreg&quot;</span>)</span>
+<span id="cb36-2"><a href="prediction_and_inference.html#cb36-2" tabindex="-1"></a>hosp.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(duration<span class="sc">~</span>age <span class="sc">+</span> temp1, <span class="at">data=</span>hosp, <span class="at">family=</span><span class="fu">Gamma</span>(<span class="at">link=</span>log))</span></code></pre></div>
+<p>Note that the parameterisation chosen means that, from properties of the Gamma distribution:
+<span class="math display">\[\begin{align}
+        \textrm{E}[\texttt{duration} |\texttt{age}, \texttt{temp1}]
+        &amp; =
+        {\nu \over \nu e^{-\eta}}
+        = e^{\eta} \\
+        \textrm{Var}[\texttt{duration} |\texttt{age}, \texttt{temp1}]
+        &amp; =
+        {\nu \over (\nu e^{-\eta})^{2}}
+        = {e^{2\eta} \over \nu}
+\end{align}\]</span></p>
+<p>The first equation says that we are using a log link, i.e. an exponential response; the second equation identifies <span class="math inline">\(\phi = \tfrac{1}{\nu}\)</span> and <span class="math inline">\(\mathcal{V}(\mu) = \mu^{2}\)</span>.</p>
+<p>We now wish to test
+<span class="math display">\[\begin{equation}
+        \mathcal{H}_{0}: \beta_{3} = 0
+\end{equation}\]</span>
+against
+<span class="math display">\[\begin{equation}
+        \mathcal{H}_{1}: \beta_{3} \neq 0
+\end{equation}\]</span></p>
+<p>We note that
+<span class="math display">\[\begin{equation}
+        C =
+        \begin{pmatrix}
+            0 &amp; 0 &amp; 1
+        \end{pmatrix}
+        \in {\mathbb R}^{1 \times 3}
+\end{equation}\]</span></p>
+<p>while <span class="math inline">\(\gamma = 0\)</span>, so that the constraint equation can be written
+<span class="math display">\[\begin{equation}
+        \begin{pmatrix}
+            0 &amp; 0 &amp; 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            \beta_{1} \\ \beta_{2} \\ \beta_{3}
+        \end{pmatrix}
+        =
+        0
+    \end{equation}\]</span></p>
+<p>The variance we are looking for is
+<span class="math display">\[\begin{equation}
+        C\;F^{-1}(\hat{\boldsymbol{\beta}})\;C^{T}
+        =
+        \begin{pmatrix}
+            0 &amp; 0 &amp; 1
+        \end{pmatrix}
+        F^{-1}(\hat{\boldsymbol{\beta}})
+        \begin{pmatrix}
+            0 \\ 0 \\ 1
+        \end{pmatrix}
+        =
+        \text{Var}[\hat{\boldsymbol{\beta}}_{3}]
+        =
+        0.028
+\end{equation}\]</span></p>
+<p>which can be obtained from R as follows:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="prediction_and_inference.html#cb37-1" tabindex="-1"></a>( varhat <span class="ot">&lt;-</span> <span class="fu">summary</span>(hosp.glm)<span class="sc">$</span>cov.scaled )</span></code></pre></div>
+<pre><code>##              (Intercept)           age         temp1
+## (Intercept) 276.25822713 -3.728838e-02 -2.7943778049
+## age          -0.03728838  3.246846e-05  0.0003656812
+## temp1        -2.79437780  3.656812e-04  0.0282713219</code></pre>
+<p>The Wald statistic is then given by
+<span class="math display">\[\begin{equation}
+        W
+        =
+        {\hat{\boldsymbol{\beta}}_{3}^{2} \over \textrm{Var}[\hat{\boldsymbol{\beta}}_{3}]}
+        =
+        {(0.31)^{2} \over 0.028}
+        =
+        3.32
+\end{equation}\]</span></p>
+<p>Since <span class="math inline">\(\chi^{2}_{1, 0.05} = 3.84\)</span> and <span class="math inline">\(\chi^{2}_{1, 0.1} = 2.71\)</span>, we see that we do not reject <span class="math inline">\(\mathcal{H}_{0}\)</span> at the <span class="math inline">\(5\%\)</span> level, but do reject at the <span class="math inline">\(10\%\)</span> level.</p>
+<div id="does-r-give-what-one-expects" class="section level4 hasAnchor" number="3.2.3.1">
+<h4><span class="header-section-number">3.2.3.1</span> Does R give what one expects?<a href="prediction_and_inference.html#does-r-give-what-one-expects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Notice that when <span class="math inline">\(\phi\)</span> has to be estimated as well as <span class="math inline">\(\boldsymbol{\beta}\)</span>, we have a situation similar to an unknown variance in the testing of means, going under the title `small sample t-tests’.</p>
+<p>For the example we are looking at, we have
+<span class="math display">\[\begin{equation}
+        \sqrt{W}
+        =
+        {\hat{\boldsymbol{\beta}}_{3} \over \text{SE}(\hat{\boldsymbol{\beta}}_{3})}
+        =
+        {0.31 \over 0.17}
+        =
+        1.82
+\end{equation}\]</span></p>
+<p>This is the same as the number in the `<span class="math inline">\(t\)</span>-value’ column in the R summary:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="prediction_and_inference.html#cb39-1" tabindex="-1"></a><span class="fu">summary</span>(hosp.glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = duration ~ age + temp1, family = Gamma(link = log), 
+##     data = hosp)
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept) -28.654096  16.621018  -1.724   0.0987 .
+## age           0.014900   0.005698   2.615   0.0158 *
+## temp1         0.306624   0.168141   1.824   0.0818 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for Gamma family taken to be 0.2690233)
+## 
+##     Null deviance: 8.1722  on 24  degrees of freedom
+## Residual deviance: 5.7849  on 22  degrees of freedom
+## AIC: 142.73
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<p>However, if <span class="math inline">\(W \sim \chi^{2}(1)\)</span>, then <span class="math inline">\(\sqrt{W} \sim {\mathcal N}(0, 1)\)</span>, leading to
+<span class="math display">\[\begin{equation}
+        p
+        =
+        2(1 - \Phi(1.82))
+        =
+        0.068
+\end{equation}\]</span></p>
+<p>This number does not appear in the R summary. The explanation is that if <span class="math inline">\(\phi\)</span> is estimated, R uses <span class="math inline">\(t_{n - p}\)</span> rather than <span class="math inline">\({\mathcal N}(0, 1)\)</span>, leading to
+<span class="math display">\[\begin{equation}
+        p
+        =
+        2(1 - \Phi_{t}(1.82))
+        =
+        0.082
+\end{equation}\]</span></p>
+<p>and this number does appear in the R summary.</p>
+<p>The use of the <span class="math inline">\(t\)</span> distribution rather than the Gaussian distribution accounts for the extra variability introduced by estimating <span class="math inline">\(\phi\)</span>. It still uses asymptotic normality as a foundation. In fact, R also allows one to assume the dispersion is known:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="prediction_and_inference.html#cb41-1" tabindex="-1"></a><span class="fu">summary</span>(hosp.glm, <span class="at">dispersion=</span>  <span class="fl">0.2690233</span>)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = duration ~ age + temp1, family = Gamma(link = log), 
+##     data = hosp)
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)   
+## (Intercept) -28.654096  16.621017  -1.724  0.08471 . 
+## age           0.014900   0.005698   2.615  0.00892 **
+## temp1         0.306624   0.168141   1.824  0.06821 . 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for Gamma family taken to be 0.2690233)
+## 
+##     Null deviance: 8.1722  on 24  degrees of freedom
+## Residual deviance: 5.7849  on 22  degrees of freedom
+## AIC: 142.73
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<p>The resulting summary talks of a <span class="math inline">\(z\)</span>-value rather than a <span class="math inline">\(t\)</span>-value, and computes the corresponding <span class="math inline">\(p\)</span> using a Gaussian distribution.</p>
+<p>We will use <span class="math inline">\(\chi^{2}\)</span> tests exclusively, thereby ignoring the variability introduced by the estimation of <span class="math inline">\(\phi\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="confidence-regions-for-hatboldsymbolbeta" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Confidence Regions for <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span><a href="prediction_and_inference.html#confidence-regions-for-hatboldsymbolbeta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>These follow from standard maximum likelihood theory. There are two popular types, which in general are not equivalent.</p>
+<div id="alpha-hessian-cr" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> <span class="math inline">\((1 - \alpha)\)</span> Hessian CR<a href="prediction_and_inference.html#alpha-hessian-cr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is:
+<span class="math display">\[\begin{equation*}
+    R^{H}_{1 - \alpha} =
+    \left\{\boldsymbol{\beta} :\,(\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})^{T}F(\hat{\boldsymbol{\beta}})(\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})
+    \leq
+    \chi^{2}_{p,\alpha}\right\}
+\end{equation*}\]</span></p>
+</div>
+<div id="alpha-method-of-support-cr" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> <span class="math inline">\((1 - \alpha)\)</span> <em>method of support</em> CR<a href="prediction_and_inference.html#alpha-method-of-support-cr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is:
+<span class="math display">\[\begin{equation*}
+R_{1 - \alpha} =
+\left\{\boldsymbol{\beta} :\,\ell(\boldsymbol{\beta}) \geq \ell(\hat{\boldsymbol{\beta}}) - \frac{1}{2} \chi^{2}_{p,\alpha}\right\}
+\end{equation*}\]</span></p>
+</div>
+</div>
+<div id="issues-with-glms-and-the-wald-test" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Issues with GLMs and the Wald Test<a href="prediction_and_inference.html#issues-with-glms-and-the-wald-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="separation" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Separation<a href="prediction_and_inference.html#separation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a logistic regression problem with linear predictor: <span class="math inline">\(\eta = \beta_{1} + \beta_{2} x\)</span>. Suppose that the data has the following property (not so unreasonable): the <span class="math inline">\(x\)</span> values of all the points with <span class="math inline">\(y = 0\)</span> are less than the <span class="math inline">\(x\)</span> values of all the points with <span class="math inline">\(y = 1\)</span>. This is illustrated in Figure <a href="prediction_and_inference.html#fig:separation">3.2</a>.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="prediction_and_inference.html#cb43-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>( <span class="at">n =</span> <span class="dv">21</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span> )</span>
+<span id="cb43-2"><a href="prediction_and_inference.html#cb43-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>( x <span class="sc">&gt;</span> <span class="fl">1.8</span> )</span>
+<span id="cb43-3"><a href="prediction_and_inference.html#cb43-3" tabindex="-1"></a><span class="fu">plot</span>( x, y, <span class="at">pch =</span> <span class="dv">16</span> )</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:separation"></span>
+<img src="_main_files/figure-html/separation-1.png" alt="Illustration of `separated' binary data." width="70%" />
+<p class="caption">
+Figure 3.2: Illustration of `separated’ binary data.
+</p>
+</div>
+<p><strong>Problem</strong></p>
+<p>What will be the estimated value <span class="math inline">\(\hat{\beta}_{2}\)</span> of <span class="math inline">\(\beta_{2}\)</span>? This question seems unanswerable, but in fact it has a very simple answer.
+First, consider reparameterising the linear predictor. Define
+<span class="math display">\[\begin{align}
+        \omega &amp; = \beta_{2} \\
+        x_{0} &amp; = - \frac{\beta_{1}}{\beta_{2}}
+    \end{align}\]</span></p>
+<p>The linear predictor is thus:
+<span class="math display">\[\begin{equation}
+        \eta = \omega (x - x_{0})
+    \end{equation}\]</span></p>
+<p>The expression for the mean, that is, the probability that <span class="math inline">\(y = 1\)</span> given <span class="math inline">\(x\)</span>, is then
+<span class="math display">\[\begin{equation}
+        \pi(x) = \frac{e^{\omega (x - x_{0})}}{1 + e^{\omega (x - x_{0})}}
+    \end{equation}\]</span></p>
+<p>The estimation task is to pick values of <span class="math inline">\(\omega\)</span> and <span class="math inline">\(x_{0}\)</span> that maximize the probability of the data. Clearly, if we can choose the parameters so that <span class="math inline">\(\pi(x) = 1\)</span> for those points with <span class="math inline">\(y = 1\)</span> and <span class="math inline">\(\pi(x) = 0\)</span> for those points with <span class="math inline">\(y = 0\)</span>, we cannot do better: this is the maximum achievable with the model, equivalent to the saturated model in fact. Call this a <em>perfect fit</em>.</p>
+<p>Now consider the following. Pick <span class="math inline">\(x_{0}\)</span> so that it lies between the <span class="math inline">\(x\)</span> with <span class="math inline">\(y = 0\)</span> and the <span class="math inline">\(x\)</span> with <span class="math inline">\(y = 1\)</span>. This must be possible because of the initial assumption about the data. Now note that for all the <span class="math inline">\(x\)</span> with <span class="math inline">\(y = 0\)</span>, <span class="math inline">\((x - x_{0}) &lt; 0\)</span>. If we let <span class="math inline">\(\omega\rightarrow\infty\)</span>, then <span class="math inline">\(\pi(x)\rightarrow 0\)</span>. On the other hand, for all the <span class="math inline">\(x\)</span> with <span class="math inline">\(y = 1\)</span>, <span class="math inline">\((x - x_{0}) &gt; 0\)</span>, so that as <span class="math inline">\(\omega\rightarrow\infty\)</span>, <span class="math inline">\(\pi(x)\rightarrow 1\)</span>. The limiting solution is thus a step function with the step at <span class="math inline">\(x_{0}\)</span>.</p>
+<p>We can therefore achieve a <em>perfect fit</em> by allowing <span class="math inline">\(\omega\rightarrow\infty\)</span>. Unfortunately, this means that the linear predictor is not defined, and, practically speaking, the estimation algorithm will not converge.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>Of course, in this simple case, we can see what is happening, and can anticipate that a step function might be a solution. In general, however, this situation might be hard to detect, and hard to correct, at least within the framework of GLMs. So what is to be done?</p>
+<p><strong>Solution</strong></p>
+<p>Remember that we set out to model functional relationships. GLMs are one way to do this, by constraining the form of the function in a useful way. In this case, however, they seem to be too limiting. There are two reasons why this might be the case.</p>
+<p>One is that the step function solution is appropriate for the data and context with which we are dealing. In this case, the main problem is that our set of functions is poorly parameterised, and includes the step function only as a singular limiting case. There is no real solution for this in the context of GLMs, although more general models could be used.</p>
+<p>The other is that the step function solution is not appropriate, and that we really would expect a smoother solution. This is much harder to deal with in the context of classical statistics. We are saying that we expect the value of <span class="math inline">\(\omega\)</span> to be finite, larger values becoming less and less probable, until in the limit, an infinite value is impossible. The only real way to deal with this situation is via a prior probability distribution on <span class="math inline">\(\omega\)</span> or by imposing some regularising constraint, but those are another story and another course. Within the GLM world, one has simply to be aware of the possibility of separation, and that it may be caused by overly subdividing the data via categorical variables, that is, essentially by overfitting.</p>
+</div>
+<div id="hauck-donner-effect" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Hauck-Donner Effect<a href="prediction_and_inference.html#hauck-donner-effect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A related but independent effect was noted by <span class="citation">Hauck and Donner (<a href="#ref-hauck1976wta">1976</a>)</span>.</p>
+<p>Consider
+<span class="math display">\[\begin{equation}
+        W = \frac{\hat{\boldsymbol{\beta}}^{2} }{{\mathrm{Var}}[\hat{\boldsymbol{\beta}}]}
+    \end{equation}\]</span></p>
+<p>If <span class="math inline">\(\hat{\boldsymbol{\beta}}\rightarrow\infty\)</span> (e.g. in cases of separation), then it is quite likely that <span class="math inline">\({\mathrm{Var}}[\hat{\boldsymbol{\beta}}]\rightarrow\infty\)</span> also. The result can be that the test statistic becomes very small, and in fact tends to zero! Hauck and Donner showed that:</p>
+<ul>
+<li><em>Wald’s statistic decreased to zero as the distance between the
+parameter estimate and the null value increased.</em></li>
+</ul>
+<p>So, as one’s null hypothesis gets more and more wrong, the Wald statistic gets smaller and smaller, and one is decreasingly able to reject the increasingly wrong null.</p>
+</div>
+<div id="next-step-1" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Next Step<a href="prediction_and_inference.html#next-step-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We have seen how to set up and describe GLMs, and how to estimate their parameters. We have also seen how to use these parameters to make predictions and generate confidence intervals. We now move on to study how we can evaluate the effectiveness of our models.</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-hauck1976wta" class="csl-entry">
+Hauck, W. W., and A. Donner. 1976. <span>“Wald’s Test as Applied to Hypotheses in Logit Analysis.”</span> <em>Journal of the American Statistical Association</em> 72 (360a): 851–53.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="8">
+<li id="fn8"><p>Note that the Wald test does not require the MLE under <span class="math inline">\(\mathcal{H}_{0}\)</span>. Whether this is a good thing is open to question.<a href="prediction_and_inference.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>A secondary problem is also the fact that all values of <span class="math inline">\(x_{0}\)</span> that lie between the two groups of <span class="math inline">\(x\)</span> values are equivalent, and there is thus no way to pick one.<a href="prediction_and_inference.html#fnref9" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="deviance_and_diagnostics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-Prediction_and_Inference.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

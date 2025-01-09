@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Review of Generalised Linear Models | Advanced Statistical Modelling III (second term)</title>
+  <meta name="description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Review of Generalised Linear Models | Advanced Statistical Modelling III (second term)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Review of Generalised Linear Models | Advanced Statistical Modelling III (second term)" />
+  
+  <meta name="twitter:description" content="These are the course notes for the module Advanced Statistical Modelling III of Durham University’s degree for Mathematics and Statistics." />
+  
+
+<meta name="author" content="Department of Mathematical Sciences at Durham University" />
+
+
+<meta name="date" content="2025-01-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Advanced Statistical Modelling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>General Information</a></li>
+<li class="chapter" data-level="1" data-path="generalised_linear_models.html"><a href="generalised_linear_models.html"><i class="fa fa-check"></i><b>1</b> Review of Generalised Linear Models</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Statistical Modelling III (second term)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="generalised_linear_models" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Review of Generalised Linear Models<a href="generalised_linear_models.html#generalised_linear_models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Definition.</strong> A GLM is specified through the following components:</p>
+<ul>
+<li><p>A <span style="color: blue;">linear predictor</span>: <span class="math inline">\(\eta = \boldsymbol{\beta}^{T}\boldsymbol{x}\)</span>.</p></li>
+<li><p>An <span style="color: blue;">injective response function</span> <span class="math inline">\(h\)</span>, such that <span class="math inline">\(\mu = {\mathrm E}[Y |\boldsymbol{x}, \boldsymbol{\beta}] = h(\eta) = h(\boldsymbol{\beta}^{T}\boldsymbol{x})\)</span>.<br />
+Equivalently, one can write <span class="math inline">\(g(\mu) = \boldsymbol{\beta}^{T}\boldsymbol{x}\)</span>, where <span class="math inline">\(g = h^{-1}\)</span> is the <span style="color: blue;">link</span> function.</p></li>
+<li><p>The <span style="color: blue;">distributional assumption</span>: <span class="math inline">\(P_{}\left(Y |\boldsymbol{x}, \boldsymbol{\beta}\right)\)</span> is an EDF, that is:
+<span class="math display">\[\begin{equation}
+      P_{}\left(y |\boldsymbol{x}, \boldsymbol{\beta}\right)
+      =
+      P_{}\left(y |\theta(\boldsymbol{x}, \boldsymbol{\beta}), \phi(\boldsymbol{x}, \boldsymbol{\beta})\right)
+      = \exp
+      \Big(
+          \frac{y\theta - b(\theta)}{\phi} + c(y, \phi)
+      \Big)
+  \end{equation}\]</span>
+Thus, the mean and variance of this distribution are:
+<span class="math display">\[\begin{align}
+  {\mathrm E}[Y |\theta, \phi] &amp;= \mu = b&#39;(\theta)
+  \\
+  {\mathrm{Var}}[Y |\theta, \phi] &amp;= \phi \, b&#39;&#39;(\theta) = \phi \, b&#39;&#39;((b&#39;)^{-1}(\mu)) = \phi \, \mathcal{V}(\mu)
+\end{align}\]</span></p></li>
+<li><p>We also assume <span style="color: blue;">independent data</span>, that is:
+<span class="math display">\[\begin{equation}
+      P_{}\left(\left\{y_{i}\right\} |\left\{\boldsymbol{x}_{i}\right\}, \boldsymbol{\beta}\right)
+      =
+      \prod_{i=1}^n
+      P_{}\left(y_{i} |\boldsymbol{x}_{i}, \boldsymbol{\beta}\right)
+  \end{equation}\]</span>
+where <span class="math inline">\(\left\{y_{i}, i = 1,...,n\right\}\)</span> are response data given the <span class="math inline">\(\left\{\boldsymbol{x}_i, i = 1,...,n\right\}\)</span>.</p></li>
+</ul>
+<p><strong>The Natural/Canonical Link.</strong> Recall that we have both:
+<span class="math display" id="eq:meanh" id="eq:meanbtheta">\[\begin{alignat}{4}
+\mu &amp; =  {\mathrm E}[Y |\theta, \phi] &amp;&amp; =  b&#39;(\theta)
+\tag{1.1}
+\\
+\mu &amp; =  {\mathrm E}[Y |\boldsymbol{x}, \boldsymbol{\beta}] &amp;&amp; =  h(\boldsymbol{\beta}^T\boldsymbol{x})  =  h(\eta)
+\tag{1.2}
+\end{alignat}\]</span>
+with Equation <a href="generalised_linear_models.html#eq:meanbtheta">(1.1)</a> holding as a result of
+<span class="math inline">\(P_{}\left(y |\theta, \phi\right)\)</span>
+following an EDF distribution, and Equation <a href="generalised_linear_models.html#eq:meanh">(1.2)</a> holding by definition for a GLM.</p>
+<p>The <span style="color: blue;">natural link</span> is the choice <span class="math inline">\(h = b&#39;\)</span>, or equivalently <span class="math inline">\(g = (b&#39;)^{-1}\)</span>, resulting in the equation
+<span class="math display">\[\begin{equation}
+\theta = \boldsymbol{\beta}^T\boldsymbol{x} = \eta.
+\end{equation}\]</span></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-Review_GLM.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
