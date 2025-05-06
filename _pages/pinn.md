@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Project IV: Prediction Intervals for Neural Networks"
+title: "Project IV: Prediction Intervals for Modern Neural Networks"
 permalink: /pinn/
 author_profile: true
 ---
