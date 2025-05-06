@@ -3,8 +3,6 @@ layout: archive
 title: "Project III: Modern Neural Networks"
 permalink: /mnn/
 author_profile: true
-redirect_from:
-  - /mnn
 ---
 
 {% include base_path %}
