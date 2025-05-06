@@ -23,4 +23,3 @@ Neural networks are the primary type of models used in deep learning and modern 
 ## References
 
 - Zhang et al. *Dive into Deep Learning*. Online book (link: [https://d2l.ai/](https://d2l.ai/){:target="_blank"}).
-- Other online resources on deep learning.
