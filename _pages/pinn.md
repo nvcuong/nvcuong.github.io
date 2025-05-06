@@ -2,17 +2,18 @@
 layout: archive
 title: "Project IV: Prediction Intervals for Neural Networks"
 permalink: /pinn/
-author_profile: false
+author_profile: true
 ---
 
 {% include base_path %}
 
 ## Description
 
-Neural networks are the primary type of models used in deep learning and modern artificial intelligence. These models, especially those with more modern architectures, have been applied to several applications with great success. In this project, students will investigate different neural network architectures, their properties as well as their empirical performance. They will have opportunities to work with real-world large scale data sets and state-of-the-art neural network models. Depending on the student’s interest, the project could also be theoretical where the focus will be on analysing theoretical properties of neural networks.
+Neural networks are the primary type of models used in deep learning and modern artificial intelligence. These models, especially those with more modern architectures, have been applied to several applications with great success. In this project, students will investigate the mathematical theory for constructing prediction intervals for neural networks. Based on this theory, they will implement a prediction interval construction method into the computer and evaluate this method on different neural network architectures. The students will have opportunities to work with both theory and application of state-of-the-art neural network models on real-world data sets.
 
 ## Essential prior and companion modules
 
+- Statistical Inference II (prior).
 - Machine Learning and Neural Networks III (prior).
 - Deep Learning and Artificial Intelligence (companion).
 - You must be willing to code in Python.
