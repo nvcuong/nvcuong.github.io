@@ -28,5 +28,5 @@ Then please send an email to me that includes the following information:
 2. Your up-to-date CV.
 3. Your degree transcripts.
 
-Please also see [Apply for a Research Degree in Mathematical Sciences](https://www.durham.ac.uk/departments/academic/mathematical-sciences/postgraduate-study/research-degrees/apply/){:target="_blank"} for more information.
+Please also see [Apply for a Research Degree in Mathematical Sciences](https://www.durham.ac.uk/departments/academic/mathematical-sciences/postgraduate-study/research-degrees/apply/){:target="_blank"} for additional information on how to apply to our Statistics group.
 
