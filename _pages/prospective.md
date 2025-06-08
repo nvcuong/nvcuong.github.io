@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Information for prospective PhD students"
-permalink: /prospective_students/
+permalink: /prospective/
 author_profile: true
 ---
 
