@@ -18,7 +18,7 @@ You also need to ensure you meet the following criteria:
 
 - First class honours (or high 2.1 at undergraduate or Masters) degree in Maths, Physics, Computer Science, or related subjects. This is equivalent to GPA 3.3+ for international degrees.
 - Strong background in mathematics.
-- Strong programming skills in a high-level language such as Python, R, C/C++, etc.
+- Strong programming skills in a high-level language such as Python, C/C++, or R.
 - Meeting the [English language requirements of Durham University](https://www.dur.ac.uk/study/international/entry-requirements/english-language-requirements/){:target="_blank"}.
 
 Then please send an email to me that includes the following information:
