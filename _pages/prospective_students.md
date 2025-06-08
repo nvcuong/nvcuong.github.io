@@ -20,12 +20,13 @@ You also need to ensure you meet the following criteria:
 - Meeting the [English language requirements of Durham University](https://www.dur.ac.uk/study/international/entry-requirements/english-language-requirements/){:target="_blank"}.
 
 Then please send an email to me that includes the following information:
-- A short statement (maximum 500 words) on:
-    1. Potential research problems that you want to work on;
-    2. Why you feel PhD research is for you;
-    3. Your plan to secure funding for your full-time PhD research (Please note that scholarships from Durham are available but very competitive).
-- Your up-to-date CV.
-- Your degree transcripts.
+
+1. A short statement (maximum 500 words) on:
+    - Potential research problems that you want to work on;
+    - Why you feel PhD research is for you;
+    - Your plan to secure funding for your full-time PhD research (Please note that scholarships from Durham are available but very competitive).
+2. Your up-to-date CV.
+3. Your degree transcripts.
 
 Please also see [Apply for a Research Degree in Mathematical Sciences](https://www.durham.ac.uk/departments/academic/mathematical-sciences/postgraduate-study/research-degrees/apply/){:target="_blank"} for more information.
 
