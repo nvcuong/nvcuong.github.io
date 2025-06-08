@@ -10,7 +10,7 @@ redirect_from:
 
 {% include base_path %}
 
-I am an Assistant Professor in Statistics in the Department of Mathematical Sciences, Durham University, United Kingdom. I am also a courtesy faculty member in the Institute of Environment, Florida International University, USA. My research interests are machine learning, artificial intelligence, and their intersection with statistics. See my [publications](https://nvcuong.github.io/publications/){:target="_blank"} for more details of my work.
+I am an Assistant Professor in Statistics in the Department of Mathematical Sciences, Durham University. I am also a courtesy faculty member in the Institute of Environment, Florida International University, USA. My research interests are machine learning, artificial intelligence, and their intersection with statistics. See my [publications](https://nvcuong.github.io/publications/){:target="_blank"} for more details of my work.
 
 **Previous positions:** 
 - 2021--2023: Assistant Professor in Computer Science at Florida International University
