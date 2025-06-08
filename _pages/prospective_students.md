@@ -7,7 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-Before contacting me for a potential PhD application, please look at my research interests below to see if you want to work on one of them.
+Before contacting me for a potential PhD application, please look at my research interests below to see if you want to work on one of them:
 
 - Bayesian methods for ML (see [this paper](https://arxiv.org/pdf/1710.10628){:target="_blank"} or [this paper](https://arxiv.org/pdf/1705.07131){:target="_blank"})
 - Intersection between ML and statistics (see [this paper](https://arxiv.org/pdf/2410.22065){:target="_blank"})
@@ -23,7 +23,7 @@ You also need to ensure you meet the following criteria:
 
 Then please send an email to me that includes the following information:
 
-- A short statement (maximum 500 words) on: (1) potential research problems that you want to work on; (2) why you feel PhD research is for you; and (3) your plan to secure funding for your full-time PhD research.
+- A short statement (maximum 500 words) on: (1) potential research problems that you want to work on; (2) why you feel PhD research is for you; and (3) your plan to secure funding for your full-time PhD research (scholarships from Durham are available but very competitive).
 - Your current CV.
 - All degree transcripts.
 
