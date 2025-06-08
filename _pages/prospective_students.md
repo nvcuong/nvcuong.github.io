@@ -1,3 +1,12 @@
+---
+layout: archive
+title: "Information for prospective PhD students"
+permalink: /prospective_students/
+author_profile: true
+---
+
+{% include base_path %}
+
 # Information for prospective PhD students
 
 Before contacting me for a potential PhD application, please look at my research interests below to see if you *really* want to work on one of them.
