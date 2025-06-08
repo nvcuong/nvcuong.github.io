@@ -17,16 +17,16 @@ You also need to ensure you meet the following criteria:
 - First class honours or equivalent degree (such as GPA 3.3+ for international degrees) in Maths, Physics, Computer Science, or related subjects;
 - Strong background in mathematics;
 - Strong programming skills in a high-level language such as Python, C/C++, or R;
-- Meeting the [English language requirements](https://www.dur.ac.uk/study/international/entry-requirements/english-language-requirements/){:target="_blank"} of Durham University.
+- Meeting the [English language requirements](https://www.dur.ac.uk/study/international/entry-requirements/english-language-requirements/){:target="_blank"}.
 
 Then please send an email to me that includes the following information:
 
 1. A short statement (maximum 500 words) on:
     - Potential research problems that you want to work on;
     - Why you feel PhD research is for you;
-    - Your plan to secure funding for your full-time PhD research (Please note that scholarships from Durham are available but very competitive).
+    - Your plan to secure funding for your PhD research (Please note that scholarships from Durham are available but very competitive).
 2. Your up-to-date CV.
-3. Your degree transcripts.
+3. All your degree transcripts.
 
 Please also see [Apply for a Research Degree in Mathematical Sciences](https://www.durham.ac.uk/departments/academic/mathematical-sciences/postgraduate-study/research-degrees/apply/){:target="_blank"} for additional information on how to apply to our Statistics group.
 
