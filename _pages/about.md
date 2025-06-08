@@ -23,4 +23,4 @@ I am an Assistant Professor in Statistics in the Department of Mathematical Scie
 - 2010: Bachelor in Computing, National University of Singapore
 
 **Prospective PhD students:** 
-- Please read [this information](https://nvcuong.github.io/prospective_students/) if you want to work with me for PhD research.
+- Please read [this information](https://nvcuong.github.io/prospective_students/){:target="_blank"} if you want to work with me for PhD research.
