@@ -7,7 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-Before contacting me for a potential PhD application, please look at my research interests below to see if you *really* want to work on one of them.
+Before contacting me for a potential PhD application, please look at my research interests below to see if you **really** want to work on one of them.
 
 - Bayesian methods for machine learning (see [this paper](https://arxiv.org/pdf/1710.10628){:target="_blank"} or [this paper](https://arxiv.org/pdf/1705.07131){:target="_blank"})
 - Intersection between machine learning and statistics (see [this paper](https://arxiv.org/pdf/2410.22065){:target="_blank"})
