@@ -26,7 +26,7 @@ Then please send an email to me that includes the following information:
     - Why you feel PhD research is for you;
     - Your plan to secure funding for your PhD research (please note that scholarships from Durham are available but very competitive).
 2. Your up-to-date CV.
-3. All your degree transcripts.
+3. All your academic transcripts.
 
 Please also see [Apply for a Research Degree in Mathematical Sciences](https://www.durham.ac.uk/departments/academic/mathematical-sciences/postgraduate-study/research-degrees/apply/){:target="_blank"} for additional information on how to apply to our Statistics group.
 
