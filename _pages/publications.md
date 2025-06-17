@@ -19,7 +19,7 @@ redirect_from:
 ### Selected publications:
 
 - Vu Dinh, Lam Ho, **Cuong Nguyen**. [Hamiltonian Monte Carlo on ReLU neural networks is inefficient](https://arxiv.org/pdf/2410.22065){:target="_blank"}. In *NeurIPS*, 2024.
-- **Cuong Nguyen**, Siddharth Swaroop, Thang Bui, Yingzhen Li, Richard Turner. [Lifelong learning for deep neural networks with Bayesian principles](https://books.google.co.uk/books?id=5O4GEQAAQBAJ){:target="_blank"}. Book chapter in *Towards Human Brain Inspired Lifelong Learning*, 2024.
+- **Cuong Nguyen**, Siddharth Swaroop, Thang Bui, Yingzhen Li, Richard Turner. [Lifelong learning for deep neural networks with Bayesian principles](https://nvcuong.github.io/files/lifelong-learning-chapter.pdf){:target="_blank"}. Book chapter in *Towards Human Brain Inspired Lifelong Learning*, 2024.
 - Behzad Ousat, Esteban Schafir, Duc Hoang, Mohammad Tofighi, **Cuong Nguyen**, Sajjad Arshad, Selcuk Uluagac, Amin Kharraz. [The matter of Captchas: An analysis of a brittle security feature on the modern web](https://dl.acm.org/doi/pdf/10.1145/3589334.3645619){:target="_blank"}. In *WWW*, 2024.
 - Cuong N Nguyen, Phong Tran, Lam Ho, Vu Dinh, Anh Tran, Tal Hassner, **Cuong V Nguyen**. [Simple transferability estimation for regression tasks](https://proceedings.mlr.press/v216/nguyen23a.html){:target="_blank"}. In *UAI*, 2023. ([code](https://github.com/CuongNN218/regression_transferability){:target="_blank"})
 - **Cuong Nguyen**, Lam Ho, Huan Xu, Vu Dinh, Binh Nguyen. [Bayesian active learning with abstention feedbacks](https://arxiv.org/abs/1906.02179){:target="_blank"}. In *Neurocomputing*, 2022.
