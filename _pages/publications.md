@@ -18,7 +18,7 @@ redirect_from:
 
 ### Selected publications:
 
-- Cuong N Nguyen, **Cuong V Nguyen**. [Data Distribution Valuation Using Generalized Bayesian Inference](https://arxiv.org/pdf/2604.05993){:target="_blank"}. In *AISTATS*, 2026.
+- Cuong N Nguyen, **Cuong V Nguyen**. [Data distribution valuation using generalized Bayesian inference](https://arxiv.org/pdf/2604.05993){:target="_blank"}. In *AISTATS*, 2026.
 - Vu Dinh, Lam Ho, **Cuong Nguyen**. [Hamiltonian Monte Carlo on ReLU neural networks is inefficient](https://arxiv.org/pdf/2410.22065){:target="_blank"}. In *NeurIPS*, 2024.
 - **Cuong Nguyen**, Siddharth Swaroop, Thang Bui, Yingzhen Li, Richard Turner. [Lifelong learning for deep neural networks with Bayesian principles](https://nvcuong.github.io/files/lifelong-learning-chapter.pdf){:target="_blank"}. Book chapter in *Towards Human Brain Inspired Lifelong Learning*, 2024.
 - Behzad Ousat, Esteban Schafir, Duc Hoang, Mohammad Tofighi, **Cuong Nguyen**, Sajjad Arshad, Selcuk Uluagac, Amin Kharraz. [The matter of Captchas: An analysis of a brittle security feature on the modern web](https://dl.acm.org/doi/pdf/10.1145/3589334.3645619){:target="_blank"}. In *WWW*, 2024.
