@@ -15,7 +15,7 @@ We will study empirical risk minimization as a principle for fitting models to d
 Key topics include generalization theory, the bias–complexity tradeoff, and measures of hypothesis class capacity such as VC dimension. 
 The project emphasizes precise mathematical formulation, proof techniques, and conceptual understanding, and is suitable for students with an interest in rigorous mathematical theory for machine learning.
 
-*Note: This project does **not** involve programming or applications of machine learning.*
+*This project does **not** involve programming or applications of machine learning.*
 
 ## Group project
 
