@@ -51,7 +51,7 @@ Students will demonstrate their understanding by solving relevant problems, expl
 ## Prerequisites
 
 - Analysis I, Probability I, Statistics I
-- One of (Statistical Inference II) or (Data Science and Statistical Modelling II)
+- Statistical Inference II or Data Science and Statistical Modelling II
 
 ## Reference
 
