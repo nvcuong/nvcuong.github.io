@@ -11,11 +11,6 @@ redirect_from:
 
 (Full list: [Google Scholar](https://scholar.google.com/citations?hl=en&user=CG9yOXoAAAAJ&view_op=list_works&sortby=pubdate){:target="_blank"})
 
-### Preprints:
-
-- Thinh Nguyen, Cuong N Nguyen, Quang Pham, Binh Nguyen, Savitha Ramasamy, Xiaoli Li, **Cuong V Nguyen**. [Sequence transferability and task order selection in continual learning](https://arxiv.org/pdf/2502.06544){:target="_blank"}. *Under review*.
-- Duc Hoang, Behzad Ousat, Amin Kharraz, **Cuong Nguyen**. [EnSolver: Uncertainty-aware ensemble CAPTCHA solvers with theoretical guarantees](https://arxiv.org/abs/2307.15180){:target="_blank"}. *Under review*.
-
 ### Selected publications:
 
 - Cuong N Nguyen, **Cuong V Nguyen**. [Data distribution valuation using generalized Bayesian inference](https://arxiv.org/pdf/2604.05993){:target="_blank"}. In *AISTATS*, 2026.
