@@ -15,9 +15,11 @@ Before contacting me for a potential PhD application, please ensure you meet the
 
 Then please send an email to me that includes the following information:
 
-1. A short statement (maximum 500 words) on (please do **not** use AI to write this statement):
+1. A short statement (maximum 500 words) on:
     - Potential research problems that you want to work on;
     - Why you feel PhD research is for you;
     - Your plan to secure funding for your PhD research.
 2. Your up-to-date CV.
 3. All your academic transcripts.
+
+Please do **not** use AI to write your statement.
